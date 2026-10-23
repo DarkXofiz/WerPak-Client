@@ -1,0 +1,19 @@
+WerPak Client sources, rebuilt from the jar (ThunderHack 1.7 base, Minecraft 1.21 Fabric)
+
+- Base: https://github.com/Pan4ur/ThunderHack-Recode (GPL v3)
+- Files under src/main/java/thunder/hack that come from the jar were decompiled with CFR 0.152
+  and remapped from intermediary to yarn 1.21 names (script based, not compiled or tested here).
+- 15 files overwrite repo files / add WerPak classes, 29 more classes were missing from the repo
+  (SpotifyHud, TargetStrafe, ElytraBooster, SkyShader, TargetESP, TotemPop and others).
+- Repo modules that the jar does not contain (AutoCrystal and others) are still in the project.
+  If the build complains about them, delete them and their entries in ModuleManager.
+- Build: Java 21, then ./gradlew build  (jar ends up in build/libs)
+- Expect a few compile errors to fix by hand (decompiler output).
+
+Update (2. kontrol):
+- Jar'daki 471 ust seviye sinifin hepsi zaten .java olarak projede var; eksik sinif yok.
+- Eklendi: src/main/resources/mediaplayerinfo/natives/win/MediaPlayerInfo.dll (jar'da vardi, projede yoktu).
+- WerPak_Client-refmap.json eklenmedi: loom build sirasinda kendisi uretir.
+- Duzeltildi: Burrow.changeId dev ortaminda "entityId" alanini kullanir (AutoCrystal ile ayni).
+- CFR'in biraktigi class_12972 vb. yerel degisken adlari okunur isimlere cevrildi (5 dosya).
+- Bu ortamda javac/internet yok: derleme TEST EDILEMEDI. ./gradlew build calistirip kalan hatalari bakin.
