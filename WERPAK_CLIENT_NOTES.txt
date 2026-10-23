@@ -17,3 +17,9 @@ Update (2. kontrol):
 - Duzeltildi: Burrow.changeId dev ortaminda "entityId" alanini kullanir (AutoCrystal ile ayni).
 - CFR'in biraktigi class_12972 vb. yerel degisken adlari okunur isimlere cevrildi (5 dosya).
 - Bu ortamda javac/internet yok: derleme TEST EDILEMEDI. ./gradlew build calistirip kalan hatalari bakin.
+
+V1:
+- SpotifyHud: dev.redstones.mediaplayerinfo paketi eksikti. libs/MediaPlayerInfo.jar (jar'dan alinan siniflar) + kotlin-stdlib, kotlinx-serialization, dbus-java build.gradle'a eklendi.
+- Aura: eksik "import thunder.hack.events.impl.PacketEvent" eklendi.
+- .github/workflows/gradle.yml: calismayan release action'i softprops/action-gh-release ile degistirildi.
+- Derleme hala bu ortamda denenemedi; CI log'una gore devam.

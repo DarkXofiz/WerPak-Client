@@ -53,6 +53,13 @@ dependencies {
 	libImpl("io.netty:netty-handler-proxy:${project.netty_version}") { transitive = false }
 	libImpl("io.netty:netty-codec-socks:${project.netty_version}") { transitive = false }
 
+	// MediaPlayerInfo (SpotifyHud) - classes taken from the original jar, plus what they need at runtime
+	libImpl(files("libs/MediaPlayerInfo.jar"))
+	libImpl("org.jetbrains.kotlin:kotlin-stdlib:1.9.24")
+	libImpl("org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.6.3")
+	libImpl("com.github.hypfvieh:dbus-java-core:5.0.0")
+	libImpl("com.github.hypfvieh:dbus-java-transport-jnr-unixsocket:5.0.0")
+
 	configurations.libImpl.dependencies.each {
 		implementation(it)
 	}

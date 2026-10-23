@@ -108,6 +108,7 @@ import thunder.hack.core.Managers;
 import thunder.hack.core.manager.client.ModuleManager;
 import thunder.hack.core.manager.player.PlayerManager;
 import thunder.hack.events.impl.EventSync;
+import thunder.hack.events.impl.PacketEvent;
 import thunder.hack.events.impl.PlayerUpdateEvent;
 import thunder.hack.features.modules.Module;
 import thunder.hack.features.modules.client.ClientSettings;
