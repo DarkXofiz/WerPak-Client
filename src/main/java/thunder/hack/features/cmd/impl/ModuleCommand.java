@@ -48,14 +48,14 @@ extends Command {
         builder.then(ModuleCommand.arg("module", ModuleArgumentType.create()).executes(context -> {
             Module module = (Module)context.getArgument("module", Module.class);
             ModuleCommand.sendMessage(module.getDisplayName() + " : " + I18n.translate((String)module.getDescription(), (Object[])new Object[0]));
-            for (Setting<?> setting2 : module.getSettings()) {
+            for (Setting setting2 : module.getSettings()) {
                 ModuleCommand.sendMessage(setting2.getName() + " : " + String.valueOf(setting2.getValue()));
             }
             return 1;
         }));
         builder.then(((RequiredArgumentBuilder)ModuleCommand.arg("module", ModuleArgumentType.create()).then(ModuleCommand.literal("reset").executes(context -> {
             Module module = (Module)context.getArgument("module", Module.class);
-            for (Setting<?> s : module.getSettings()) {
+            for (Setting s : module.getSettings()) {
                 Object patt0$temp = s.getValue();
                 if (patt0$temp instanceof ColorSetting) {
                     ColorSetting cs = (ColorSetting)patt0$temp;
@@ -70,7 +70,7 @@ extends Command {
             String settingName = (String)context.getArgument("setting", String.class);
             String settingValue = (String)context.getArgument("settingValue", String.class);
             Setting<?> setting = null;
-            for (Setting<?> set : module.getSettings()) {
+            for (Setting set : module.getSettings()) {
                 if (!Objects.equals(set.getName(), settingName)) continue;
                 setting = set;
             }
@@ -120,7 +120,7 @@ extends Command {
     }
 
     public static void setCommandValue(@NotNull Module feature, Setting setting, JsonElement element) {
-        block25: for (Setting<?> checkSetting : feature.getSettings()) {
+        block25: for (Setting checkSetting : feature.getSettings()) {
             if (!Objects.equals(setting.getName(), checkSetting.getName())) continue;
             switch (checkSetting.getValue().getClass().getSimpleName()) {
                 case "SettingGroup": 

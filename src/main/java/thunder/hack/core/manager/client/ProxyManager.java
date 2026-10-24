@@ -135,7 +135,7 @@ implements IManager {
             try {
                 NioEventLoopGroup group = new NioEventLoopGroup();
                 Bootstrap bootstrap = new Bootstrap();
-                ((Bootstrap)((Bootstrap)bootstrap.group((EventLoopGroup)group)).channel(NioSocketChannel.class)).handler((ChannelHandler)new ChannelInitializer<SocketChannel>(this){
+                ((Bootstrap)((Bootstrap)bootstrap.group((EventLoopGroup)group)).channel(NioSocketChannel.class)).handler((ChannelHandler)new ChannelInitializer<SocketChannel>(){
 
                     protected void initChannel(SocketChannel ch) {
                         ch.pipeline().addLast(new ChannelHandler[]{new FlowControlHandler()}).addLast("timeout_proxy_checker", (ChannelHandler)new ReadTimeoutHandler(8)).addLast("inbound_proxy_checker", (ChannelHandler)new NetworkStateTransitions.InboundConfigurer()).addLast("outbound_proxy_checker", (ChannelHandler)new NetworkStateTransitions.OutboundConfigurer()).addLast(new ChannelHandler[]{new Socks5ProxyHandler(new InetSocketAddress(proxy.getIp(), proxy.getPort()), proxy.getL(), proxy.getP())}).addLast(new ChannelHandler[]{new ProxyHandler()});

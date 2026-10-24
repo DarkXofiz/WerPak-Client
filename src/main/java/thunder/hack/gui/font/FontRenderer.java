@@ -157,7 +157,7 @@ implements Closeable {
 
     private GlyphMap generateMap(char from, char to) {
         GlyphMap gm = new GlyphMap(from, to, this.font, FontRenderer.randomIdentifier(), this.padding);
-        this.maps.add((Object)gm);
+        this.maps.add(gm);
         return gm;
     }
 
@@ -266,13 +266,13 @@ implements Closeable {
                 if (glyph.value() != ' ') {
                     Identifier i1 = glyph.owner().bindToTexture;
                     DrawEntry entry = new DrawEntry(xOffset, yOffset, r2, g2, b2, glyph);
-                    ((ObjectList)this.GLYPH_PAGE_CACHE.computeIfAbsent((Object)i1, integer -> new ObjectArrayList())).add((Object)entry);
+                    this.GLYPH_PAGE_CACHE.computeIfAbsent(i1, integer -> new ObjectArrayList<>()).add(entry);
                 }
                 xOffset += (float)glyph.width();
             }
             for (Identifier identifier : this.GLYPH_PAGE_CACHE.keySet()) {
                 RenderSystem.setShaderTexture((int)0, (Identifier)identifier);
-                var objects = (List)this.GLYPH_PAGE_CACHE.get((Object)identifier);
+                var objects = this.GLYPH_PAGE_CACHE.get(identifier);
                 BufferBuilder bb = Tessellator.getInstance().begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_TEXTURE_COLOR);
                 for (DrawEntry object : objects) {
                     float xo = object.atX;

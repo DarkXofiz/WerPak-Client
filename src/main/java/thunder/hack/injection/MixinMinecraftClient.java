@@ -126,7 +126,7 @@ public abstract class MixinMinecraftClient {
 
     @Inject(method={"onResolutionChanged"}, at={@At(value="TAIL")})
     private void captureResize(CallbackInfo ci) {
-        ((WindowResizeCallback)WindowResizeCallback.EVENT.invoker()).onResized((MinecraftClient)this, this.window);
+        ((WindowResizeCallback)WindowResizeCallback.EVENT.invoker()).onResized((MinecraftClient)(Object)this, this.window);
     }
 
     @Inject(method={"doItemPick"}, at={@At(value="HEAD")}, cancellable=true)
@@ -215,7 +215,7 @@ public abstract class MixinMinecraftClient {
         EventAttack event = new EventAttack(null, true);
         ThunderHack.EVENT_BUS.post(event);
         if (event.isCancelled()) {
-            cir.setReturnValue((Object)false);
+            cir.setReturnValue(false);
         }
     }
 

@@ -326,7 +326,7 @@ extends Module {
         if (LegacyHud.mc.player == null || LegacyHud.mc.world == null) {
             return null;
         }
-        Identifier id = LegacyHud.mc.world.getRegistryManager().get(RegistryKeys.BIOME).getId((Object)((Biome)LegacyHud.mc.world.getBiome(LegacyHud.mc.player.getBlockPos()).value()));
+        Identifier id = LegacyHud.mc.world.getRegistryManager().get(RegistryKeys.BIOME).getId(((Biome)LegacyHud.mc.world.getBiome(LegacyHud.mc.player.getBlockPos()).value()));
         if (id == null) {
             return "Unknown";
         }

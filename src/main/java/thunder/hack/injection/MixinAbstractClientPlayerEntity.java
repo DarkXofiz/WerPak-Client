@@ -30,7 +30,7 @@ import thunder.hack.utility.render.TextureStorage;
 public class MixinAbstractClientPlayerEntity {
     @Inject(method={"getSkinTextures"}, at={@At(value="RETURN")}, cancellable=true)
     public void onGetSkinTextures(CallbackInfoReturnable<SkinTextures> cir) {
-        if (this == MinecraftClient.getInstance().player && ModuleManager.customModel != null && ModuleManager.customModel.isEnabled()) {
+        if ((Object)this == MinecraftClient.getInstance().player && ModuleManager.customModel != null && ModuleManager.customModel.isEnabled()) {
             Identifier texture = switch (ModuleManager.customModel.mode.getValue()) {
                 case CustomModel.Mode.Tavsan -> Identifier.of((String)"thunderhack", (String)"textures/rabbit.png");
                 case CustomModel.Mode.Boykisser -> TextureStorage.boykisser;
@@ -40,9 +40,9 @@ public class MixinAbstractClientPlayerEntity {
             };
             SkinTextures current = (SkinTextures)cir.getReturnValue();
             if (current == null) {
-                cir.setReturnValue((Object)new SkinTextures(texture, null, null, null, SkinTextures.Model.WIDE, false));
+                cir.setReturnValue(new SkinTextures(texture, null, null, null, SkinTextures.Model.WIDE, false));
             } else {
-                cir.setReturnValue((Object)new SkinTextures(texture, null, current.capeTexture(), current.elytraTexture(), SkinTextures.Model.WIDE, current.secure()));
+                cir.setReturnValue(new SkinTextures(texture, null, current.capeTexture(), current.elytraTexture(), SkinTextures.Model.WIDE, current.secure()));
             }
         }
     }

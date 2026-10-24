@@ -61,8 +61,8 @@ public abstract class MixinScreen {
         if (class_25582 instanceof ClientClickEvent && (clientClickEvent = (ClientClickEvent)class_25582).getValue().startsWith(Managers.COMMAND.getPrefix())) {
             try {
                 CommandManager manager = Managers.COMMAND;
-                manager.getDispatcher().execute(style.getClickEvent().getValue().substring(Managers.COMMAND.getPrefix().length()), (Object)manager.getSource());
-                cir.setReturnValue((Object)true);
+                manager.getDispatcher().execute(style.getClickEvent().getValue().substring(Managers.COMMAND.getPrefix().length()), manager.getSource());
+                cir.setReturnValue(true);
             }
             catch (CommandSyntaxException commandSyntaxException) {
                 // empty catch block

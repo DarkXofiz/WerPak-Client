@@ -44,7 +44,7 @@ extends Screen {
     private void initHook(CallbackInfo ci) {
         ButtonWidget.Builder builder = ButtonWidget.builder((Text)Text.literal((String)"\u26a1"), button -> IManager.mc.setScreen((Screen)new WindowsScreen(MacroWindow.get(ModuleManager.windows.macroPos.getValue().getX() * (float)IManager.mc.getWindow().getScaledWidth(), ModuleManager.windows.macroPos.getValue().getY() * (float)IManager.mc.getWindow().getScaledHeight(), ModuleManager.windows.macroPos), ConfigWindow.get(ModuleManager.windows.configPos.getValue().getX() * (float)IManager.mc.getWindow().getScaledWidth(), ModuleManager.windows.configPos.getValue().getY() * (float)IManager.mc.getWindow().getScaledHeight(), ModuleManager.windows.configPos), FriendsWindow.get(ModuleManager.windows.friendPos.getValue().getX() * (float)IManager.mc.getWindow().getScaledWidth(), ModuleManager.windows.friendPos.getValue().getY() * (float)IManager.mc.getWindow().getScaledHeight(), ModuleManager.windows.friendPos), WaypointWindow.get(ModuleManager.windows.waypointPos.getValue().getX() * (float)IManager.mc.getWindow().getScaledWidth(), ModuleManager.windows.waypointPos.getValue().getY() * (float)IManager.mc.getWindow().getScaledHeight(), ModuleManager.windows.waypointPos), ProxyWindow.get(ModuleManager.windows.proxyPos.getValue().getX() * (float)IManager.mc.getWindow().getScaledWidth(), ModuleManager.windows.proxyPos.getValue().getY() * (float)IManager.mc.getWindow().getScaledHeight(), ModuleManager.windows.proxyPos)))).size(60, 20);
         if (!ModuleManager.unHook.isEnabled()) {
-            this.addDrawableChild((Element)builder.position(this.width - 65, this.height - 25).build());
+            this.addDrawableChild(builder.position(this.width - 65, this.height - 25).build());
         }
     }
 }

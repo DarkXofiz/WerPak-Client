@@ -90,7 +90,7 @@ extends AbstractClientPlayerEntity {
     public void shouldSlowDownHook(CallbackInfoReturnable<Boolean> cir) {
         NoWeb.Mode m;
         if (NoWeb.isNoWebEnabled() && ((m = NoWeb.getNoWebMode()) == NoWeb.Mode.Cancel || m == NoWeb.Mode.Spoof || m == NoWeb.Mode.WerPak)) {
-            cir.setReturnValue((Object)false);
+            cir.setReturnValue(false);
         }
     }
 
@@ -120,9 +120,9 @@ extends AbstractClientPlayerEntity {
         ThunderHack.EVENT_BUS.post(new EventAfterRotate());
         if (e.getSprintState() != Module.mc.player.lastSprinting) {
             if (e.getSprintState()) {
-                Module.mc.player.networkHandler.sendPacket((Packet)new ClientCommandC2SPacket((Entity)this, ClientCommandC2SPacket.Mode.START_SPRINTING));
+                Module.mc.player.networkHandler.sendPacket((Packet)new ClientCommandC2SPacket((Entity)(Object)this, ClientCommandC2SPacket.Mode.START_SPRINTING));
             } else {
-                Module.mc.player.networkHandler.sendPacket((Packet)new ClientCommandC2SPacket((Entity)this, ClientCommandC2SPacket.Mode.STOP_SPRINTING));
+                Module.mc.player.networkHandler.sendPacket((Packet)new ClientCommandC2SPacket((Entity)(Object)this, ClientCommandC2SPacket.Mode.STOP_SPRINTING));
             }
             Module.mc.player.lastSprinting = e.getSprintState();
         }

@@ -34,7 +34,7 @@ public class MixinClientPlayNetworkHandler {
         }
         if (message.startsWith(Managers.COMMAND.getPrefix())) {
             try {
-                Managers.COMMAND.getDispatcher().execute(message.substring(Managers.COMMAND.getPrefix().length()), (Object)Managers.COMMAND.getSource());
+                Managers.COMMAND.getDispatcher().execute(message.substring(Managers.COMMAND.getPrefix().length()), Managers.COMMAND.getSource());
             }
             catch (CommandSyntaxException commandSyntaxException) {
                 // empty catch block

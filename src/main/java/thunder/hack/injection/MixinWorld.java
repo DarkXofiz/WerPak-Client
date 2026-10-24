@@ -31,12 +31,12 @@ public abstract class MixinWorld {
     @Inject(method={"getBlockState"}, at={@At(value="HEAD")}, cancellable=true)
     public void blockStateHook(BlockPos pos, CallbackInfoReturnable<BlockState> cir) {
         if (ExplosionUtility.terrainIgnore && Module.mc.world != null && !Module.mc.world.isInBuildLimit(pos)) {
-            WorldChunk worldChunk = Module.mc.world.getWorldChunk(pos.getX() >> 4, pos.getZ() >> 4);
+            WorldChunk worldChunk = Module.mc.world.getChunk(pos.getX() >> 4, pos.getZ() >> 4);
             BlockState tempState = worldChunk.getBlockState(pos);
             if (tempState.getBlock() == Blocks.OBSIDIAN || tempState.getBlock() == Blocks.BEDROCK || tempState.getBlock() == Blocks.ENDER_CHEST || tempState.getBlock() == Blocks.RESPAWN_ANCHOR) {
                 return;
             }
-            cir.setReturnValue((Object)Blocks.AIR.getDefaultState());
+            cir.setReturnValue(Blocks.AIR.getDefaultState());
         }
     }
 }

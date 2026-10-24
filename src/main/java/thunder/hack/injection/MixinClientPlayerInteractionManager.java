@@ -50,7 +50,7 @@ public class MixinClientPlayerInteractionManager {
     @Inject(method={"updateBlockBreakingProgress"}, at={@At(value="HEAD")}, cancellable=true)
     public void updateBlockBreakingProgress(BlockPos pos, Direction direction, CallbackInfoReturnable<Boolean> cir) {
         if (ModuleManager.speedMine.isEnabled() && ModuleManager.speedMine.mode.getValue() == SpeedMine.Mode.Packet) {
-            cir.setReturnValue((Object)false);
+            cir.setReturnValue(false);
         }
     }
 
@@ -62,7 +62,7 @@ public class MixinClientPlayerInteractionManager {
         EventAttackBlock event = new EventAttackBlock(pos, direction);
         ThunderHack.EVENT_BUS.post(event);
         if (event.isCancelled()) {
-            cir.setReturnValue((Object)false);
+            cir.setReturnValue(false);
         }
     }
 
@@ -74,7 +74,7 @@ public class MixinClientPlayerInteractionManager {
         EventBreakBlock event = new EventBreakBlock(pos);
         ThunderHack.EVENT_BUS.post(event);
         if (event.isCancelled()) {
-            cir.setReturnValue((Object)false);
+            cir.setReturnValue(false);
         }
     }
 

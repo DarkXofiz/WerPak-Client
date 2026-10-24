@@ -134,7 +134,7 @@ class GlyphMap {
             g2d.setFont(this.getFontForGlyph(glyph.value()));
             FontMetrics fontMetrics = g2d.getFontMetrics();
             g2d.drawString(String.valueOf(glyph.value()), glyph.u(), glyph.v() + fontMetrics.getAscent());
-            this.glyphs.put(glyph.value(), (Object)glyph);
+            this.glyphs.put(glyph.value(), glyph);
         }
         GlyphMap.registerBufferedImageTexture(this.bindToTexture, bi);
         this.generated = true;
@@ -145,19 +145,19 @@ class GlyphMap {
             int ow = bi.getWidth();
             int oh = bi.getHeight();
             NativeImage image = new NativeImage(NativeImage.Format.RGBA, ow, oh, false);
-            long ptr = ((INativeImage)image).getPointer();
+            long ptr = ((INativeImage)(Object)image).getPointer();
             IntBuffer backingBuffer = MemoryUtil.memIntBuffer((long)ptr, (int)(image.getWidth() * image.getHeight()));
             boolean off = false;
             WritableRaster _ra = bi.getRaster();
             ColorModel _cm = bi.getColorModel();
             int nbands = _ra.getNumBands();
             int dataType = _ra.getDataBuffer().getDataType();
-            Object[] _d = switch (dataType) {
+            Object _d = switch (dataType) {
                 case 0 -> new byte[nbands];
-                case 1 -> (Object[])new short[nbands];
-                case 3 -> (Object[])new int[nbands];
-                case 4 -> (Object[])new float[nbands];
-                case 5 -> (Object[])new double[nbands];
+                case 1 -> new short[nbands];
+                case 3 -> new int[nbands];
+                case 4 -> new float[nbands];
+                case 5 -> new double[nbands];
                 default -> throw new IllegalArgumentException("Unknown data buffer type: " + dataType);
             };
             for (int y = 0; y < oh; ++y) {

@@ -43,7 +43,7 @@ public class MixinDynamic {
         this.tickDelta += this.lastFrameDuration;
         int i = (int)this.tickDelta;
         this.tickDelta -= (float)i;
-        cir.setReturnValue((Object)i);
+        cir.setReturnValue(i);
     }
 }
 

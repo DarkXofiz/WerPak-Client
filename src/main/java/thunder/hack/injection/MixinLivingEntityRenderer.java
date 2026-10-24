@@ -31,6 +31,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.client.render.entity.feature.FeatureRenderer;
 import net.minecraft.entity.EntityPose;
@@ -74,6 +75,7 @@ public abstract class MixinLivingEntityRenderer<T extends LivingEntity, M extend
     @Inject(method={"render"}, at={@At(value="HEAD")}, cancellable=true)
     public void onRenderPre(T livingEntity, float f, float g, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, CallbackInfo ci) {
         Object direction;
+        Direction sleepDir;
         PlayerEntity pe;
         if (Module.fullNullCheck()) {
             return;
@@ -98,7 +100,7 @@ public abstract class MixinLivingEntityRenderer<T extends LivingEntity, M extend
         if (livingEntity instanceof PlayerEntity) {
             pe = (PlayerEntity)livingEntity;
             if (ModuleManager.chams.isEnabled() && ModuleManager.chams.players.getValue().booleanValue()) {
-                ModuleManager.chams.renderPlayer(pe, f, g, matrixStack, i, (EntityModel)this.model, ci, () -> this.postRender(livingEntity));
+                ModuleManager.chams.renderPlayer(pe, f, g, matrixStack, i, (EntityModel)(Object)this.model, ci, () -> this.postRender(livingEntity));
                 if (!pe.isSpectator()) {
                     float n;
                     float l;
@@ -129,9 +131,9 @@ public abstract class MixinLivingEntityRenderer<T extends LivingEntity, M extend
                         m *= -1.0f;
                         k *= -1.0f;
                     }
-                    if (pe.isInPose(EntityPose.SLEEPING) && (direction = pe.getSleepingDirection()) != null) {
+                    if (pe.isInPose(EntityPose.SLEEPING) && (sleepDir = pe.getSleepingDirection()) != null) {
                         n = pe.getEyeHeight(EntityPose.STANDING) - 0.1f;
-                        matrixStack.translate((float)(-direction.getOffsetX()) * n, 0.0f, (float)(-direction.getOffsetZ()) * n);
+                        matrixStack.translate((float)(-sleepDir.getOffsetX()) * n, 0.0f, (float)(-sleepDir.getOffsetZ()) * n);
                     }
                     l = (float)pe.age + g;
                     ModuleManager.chams.setupTransforms1(pe, matrixStack, l, h, g);
@@ -202,7 +204,7 @@ public abstract class MixinLivingEntityRenderer<T extends LivingEntity, M extend
             bipedModel.setAngles((LivingEntity)pe, limbPos, limbSpeed, l, k2, m);
             ModuleManager.customModel.customModelRenderer.render(pe, f, g, matrixStack, vertexConsumerProvider, i, ModuleManager.customModel.mode.getValue(), (BipedEntityModel<PlayerEntity>)bipedModel);
             for (FeatureRenderer<T, M> featureRenderer : this.features) {
-                featureRenderer.render(matrixStack, vertexConsumerProvider, i, (Entity)pe, limbPos, limbSpeed, g, l, k2, m);
+                featureRenderer.render(matrixStack, vertexConsumerProvider, i, (T)(Object)pe, limbPos, limbSpeed, g, l, k2, m);
             }
             matrixStack.pop();
             ci.cancel();

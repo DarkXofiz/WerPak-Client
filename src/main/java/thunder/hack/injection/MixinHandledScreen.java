@@ -244,9 +244,9 @@ implements ScreenHandlerProvider<T> {
         int y1 = y - 12;
         int x1 = x + 8;
         int z = 300;
-        MapState mapState = FilledMapItem.getMapState((ItemStack)stack, (World)this.client.world);
+        MapState mapState = FilledMapItem.getMapState((ItemStack)stack, (World)(Object)this.client.world);
         if (mapState != null) {
-            mapState.getPlayerSyncData((PlayerEntity)this.client.player);
+            mapState.getPlayerSyncData((PlayerEntity)(Object)this.client.player);
             z = 310;
             double scale = 0.65625;
             context.getMatrices().translate((float)(x1 += 8), (float)(y1 += 8), (float)z);
@@ -272,8 +272,8 @@ implements ScreenHandlerProvider<T> {
                     MixinHandledScreen.ITEMS[i] = (ItemStack)list.get(i);
                 }
             }
-            this.client.setScreen((Screen)new PeekScreen(new ShulkerBoxScreenHandler(0, this.client.player.getInventory(), (Inventory)new SimpleInventory(ITEMS)), this.client.player.getInventory(), this.focusedSlot.getStack().getName(), ((BlockItem)this.focusedSlot.getStack().getItem()).getBlock()));
-            cir.setReturnValue((Object)true);
+            this.client.setScreen((Screen)new PeekScreen(new ShulkerBoxScreenHandler(0, this.client.player.getInventory(), (Inventory)new SimpleInventory(ITEMS)), this.client.player.getInventory(), this.focusedSlot.getStack().getName(), ((BlockItem)(Object)this.focusedSlot.getStack().getItem()).getBlock()));
+            cir.setReturnValue(true);
         }
         for (Render2DEngine.Rectangle rect : this.clickableRects.keySet()) {
             if (!rect.contains(mouseX, mouseY)) continue;

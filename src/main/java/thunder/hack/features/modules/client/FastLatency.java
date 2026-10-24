@@ -46,7 +46,7 @@ extends Module {
     public void onPacketReceive(@NotNull PacketEvent.Receive e) {
         CommandSuggestionsS2CPacket c;
         Object t = e.getPacket();
-        if (t instanceof CommandSuggestionsS2CPacket && (c = (CommandSuggestionsS2CPacket)t).completionId() == 1337) {
+        if (t instanceof CommandSuggestionsS2CPacket && (c = (CommandSuggestionsS2CPacket)t).id() == 1337) {
             this.resolvedPing = (int)MathUtility.clamp(System.currentTimeMillis() - this.ping, 0.0f, 1000.0f);
             this.timer.setMs(5000L);
         }

@@ -47,8 +47,8 @@ implements IManager {
         if (AsyncManager.mc.world == null) {
             return;
         }
-        this.threadSafeEntityList = Lists.newArrayList((Iterable)AsyncManager.mc.world.getEntities());
-        this.threadSafePlayersList = Lists.newArrayList((Iterable)AsyncManager.mc.world.getPlayers());
+        this.threadSafeEntityList = Lists.newArrayList(AsyncManager.mc.world.getEntities());
+        this.threadSafePlayersList = Lists.newArrayList(AsyncManager.mc.world.getPlayers());
         this.ticking.set(false);
     }
 

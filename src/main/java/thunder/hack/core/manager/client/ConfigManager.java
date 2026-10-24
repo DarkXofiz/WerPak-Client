@@ -382,7 +382,7 @@ implements IManager {
                 array = new JsonArray();
                 ((JsonArray)array).add((JsonElement)new JsonPrimitive((Number)color.getRawColor()));
                 ((JsonArray)array).add((JsonElement)new JsonPrimitive(Boolean.valueOf(color.isRainbow())));
-                attribs.add(setting.getName(), array);
+                attribs.add(setting.getName(), (JsonElement)array);
                 continue;
             }
             array = setting.getValue();
@@ -391,7 +391,7 @@ implements IManager {
                 array = new JsonArray();
                 ((JsonArray)array).add((JsonElement)new JsonPrimitive((Number)Float.valueOf(pos.getX())));
                 ((JsonArray)array).add((JsonElement)new JsonPrimitive((Number)Float.valueOf(pos.getY())));
-                attribs.add(setting.getName(), array);
+                attribs.add(setting.getName(), (JsonElement)array);
                 continue;
             }
             array = setting.getValue();
@@ -410,7 +410,7 @@ implements IManager {
                     ((JsonArray)array).add((JsonElement)new JsonPrimitive((Number)b.getKey()));
                 }
                 ((JsonArray)array).add((JsonElement)new JsonPrimitive(Boolean.valueOf(b.isHold())));
-                attribs.add(setting.getName(), array);
+                attribs.add(setting.getName(), (JsonElement)array);
                 continue;
             }
             array = setting.getValue();
@@ -429,7 +429,7 @@ implements IManager {
                 for (String id : iSelect.getItemsById()) {
                     ((JsonArray)array).add((JsonElement)new JsonPrimitive(id));
                 }
-                attribs.add(setting.getName(), array);
+                attribs.add(setting.getName(), (JsonElement)array);
                 continue;
             }
             if (setting.isEnumSetting()) {

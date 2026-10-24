@@ -245,7 +245,7 @@ public abstract class Module {
     }
 
     public List<Setting<?>> getSettings() {
-        var settingList = new ArrayList();
+        ArrayList<Setting<?>> settingList = new ArrayList<>();
         for (Class<?> currentSuperclass = this.getClass(); currentSuperclass != null; currentSuperclass = currentSuperclass.getSuperclass()) {
             for (Field field : currentSuperclass.getDeclaredFields()) {
                 if (!Setting.class.isAssignableFrom(field.getType())) continue;
@@ -350,7 +350,7 @@ public abstract class Module {
 
     @Nullable
     public Setting<?> getSettingByName(String name) {
-        for (Setting<?> setting : this.getSettings()) {
+        for (Setting setting : this.getSettings()) {
             if (!setting.getName().equalsIgnoreCase(name)) continue;
             return setting;
         }

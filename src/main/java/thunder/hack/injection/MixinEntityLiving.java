@@ -65,7 +65,7 @@ implements IEntityLiving {
     @Inject(method={"getHandSwingDuration"}, at={@At(value="HEAD")}, cancellable=true)
     private void getArmSwingAnimationEnd(CallbackInfoReturnable<Integer> info) {
         if (!ModuleManager.noRender.noSwing.getValue().booleanValue() && ModuleManager.animations.shouldChangeAnimationDuration() && Animations.slowAnimation.getValue().booleanValue()) {
-            info.setReturnValue((Object)Animations.slowAnimationVal.getValue());
+            info.setReturnValue(Animations.slowAnimationVal.getValue());
         }
     }
 
@@ -101,7 +101,7 @@ implements IEntityLiving {
         if (ModuleManager.elytraRecast.isEnabled()) {
             boolean elytra = (Boolean)cir.getReturnValue();
             if (this.prevFlying && !((Boolean)cir.getReturnValue()).booleanValue()) {
-                cir.setReturnValue((Object)ModuleManager.elytraRecast.castElytra());
+                cir.setReturnValue(ModuleManager.elytraRecast.castElytra());
             }
             this.prevFlying = elytra;
         }
@@ -112,7 +112,7 @@ implements IEntityLiving {
         if (Module.fullNullCheck()) {
             return;
         }
-        if ((LivingEntity)this != Module.mc.player) {
+        if ((LivingEntity)(Object)this != Module.mc.player) {
             return;
         }
         EventTravel event = new EventTravel(Module.mc.player.getVelocity(), true);
@@ -128,7 +128,7 @@ implements IEntityLiving {
         if (Module.fullNullCheck()) {
             return;
         }
-        if ((LivingEntity)this != Module.mc.player) {
+        if ((LivingEntity)(Object)this != Module.mc.player) {
             return;
         }
         EventTravel event = new EventTravel(movementInput, false);
@@ -147,7 +147,7 @@ implements IEntityLiving {
     @Inject(method={"getHandSwingDuration"}, at={@At(value="HEAD")}, cancellable=true)
     private void onGetHandSwingDuration(CallbackInfoReturnable<Integer> cir) {
         if (ModuleManager.noRender.isEnabled() && ModuleManager.noRender.noSwing.getValue().booleanValue()) {
-            cir.setReturnValue((Object)0);
+            cir.setReturnValue(0);
             cir.cancel();
         }
     }

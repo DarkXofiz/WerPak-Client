@@ -40,7 +40,7 @@ public class MixinDrawContext {
             return true;
         });
         FontRenderers.sf_medium.drawString(this.matrices, text1.getString(), (double)x, (double)y, color);
-        cir.setReturnValue((Object)((int)FontRenderers.sf_medium.getStringWidth(text.toString())));
+        cir.setReturnValue(((int)FontRenderers.sf_medium.getStringWidth(text.toString())));
     }
 }
 

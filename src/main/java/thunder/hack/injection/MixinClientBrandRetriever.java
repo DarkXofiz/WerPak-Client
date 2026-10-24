@@ -22,7 +22,7 @@ public class MixinClientBrandRetriever {
     @Inject(method={"getClientModName"}, at={@At(value="HEAD")}, cancellable=true, remap=false)
     private static void getClientModNameHook(CallbackInfoReturnable<String> cir) {
         if (ModuleManager.clientSpoof.isEnabled()) {
-            cir.setReturnValue((Object)ModuleManager.clientSpoof.getClientName());
+            cir.setReturnValue(ModuleManager.clientSpoof.getClientName());
         }
     }
 }

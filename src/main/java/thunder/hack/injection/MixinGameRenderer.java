@@ -159,7 +159,7 @@ public abstract class MixinGameRenderer {
                 matrixStack.scale(this.zoom, this.zoom, 1.0f);
             }
             matrixStack.peek().getPositionMatrix().mul((Matrix4fc)new Matrix4f().setPerspective((float)(fov * 0.01745329238474369), ModuleManager.aspectRatio.ratio.getValue().floatValue(), 0.05f, this.viewDistance * 4.0f));
-            cir.setReturnValue((Object)matrixStack.peek().getPositionMatrix());
+            cir.setReturnValue(matrixStack.peek().getPositionMatrix());
         }
     }
 
@@ -170,13 +170,13 @@ public abstract class MixinGameRenderer {
                 return;
             }
             if (ModuleManager.fov.itemFov.getValue().booleanValue() && (Double)cb.getReturnValue() == 70.0) {
-                cb.setReturnValue((Object)ModuleManager.fov.itemFovModifier.getValue().doubleValue());
+                cb.setReturnValue(ModuleManager.fov.itemFovModifier.getValue().doubleValue());
                 return;
             }
             if (Module.mc.player.isSubmergedInWater()) {
                 return;
             }
-            cb.setReturnValue((Object)ModuleManager.fov.fovModifier.getValue().doubleValue());
+            cb.setReturnValue(ModuleManager.fov.fovModifier.getValue().doubleValue());
         }
     }
 

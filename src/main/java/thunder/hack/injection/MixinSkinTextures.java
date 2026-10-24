@@ -26,7 +26,7 @@ public class MixinSkinTextures {
     @Inject(method={"texture"}, at={@At(value="HEAD")}, cancellable=true)
     public void getSkinTextureHook(CallbackInfoReturnable<Identifier> cir) {
         if (ModuleManager.media.isEnabled() && Media.skinProtect.getValue().booleanValue()) {
-            cir.setReturnValue((Object)TextureStorage.sunRiseSkin);
+            cir.setReturnValue(TextureStorage.sunRiseSkin);
         }
     }
 }

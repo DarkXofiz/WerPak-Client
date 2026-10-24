@@ -52,7 +52,7 @@ public class MixinPlayerListEntry {
         if (this.customCapeTexture != null) {
             SkinTextures prev = (SkinTextures)cir.getReturnValue();
             SkinTextures newTextures = new SkinTextures(prev.texture(), prev.textureUrl(), this.customCapeTexture, this.customCapeTexture, prev.model(), prev.secure());
-            cir.setReturnValue((Object)newTextures);
+            cir.setReturnValue(newTextures);
         }
     }
 

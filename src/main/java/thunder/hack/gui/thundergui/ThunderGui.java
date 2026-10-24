@@ -268,7 +268,7 @@ extends Screen {
             this.settings.clear();
             this.scroll = 0.0f;
             if (selected_plate != null) {
-                for (Setting<?> setting : selected_plate.getModule().getSettings()) {
+                for (Setting setting : selected_plate.getModule().getSettings()) {
                     if (setting.getValue() instanceof SettingGroup) {
                         this.settings.add(new ParentComponent(setting));
                     }

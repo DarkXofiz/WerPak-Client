@@ -81,7 +81,7 @@ extends AbstractButton {
     public ModuleButton(Module module) {
         this.module = module;
         this.elements = new ArrayList<AbstractElement>();
-        for (Setting<?> setting : module.getSettings()) {
+        for (Setting setting : module.getSettings()) {
             if (setting.getValue() instanceof Boolean && !setting.getName().equals("Enabled") && !setting.getName().equals("Drawn")) {
                 this.elements.add(new BooleanElement(setting));
                 continue;
@@ -295,7 +295,7 @@ extends AbstractButton {
                     if (this.module.isEnabled()) {
                         this.module.disable("reseting");
                     }
-                    for (Setting<?> s : this.module.getSettings()) {
+                    for (Setting s : this.module.getSettings()) {
                         Object patt0$temp = s.getValue();
                         if (patt0$temp instanceof ColorSetting) {
                             ColorSetting cs = (ColorSetting)patt0$temp;

@@ -62,7 +62,7 @@ public abstract class MixinChatInputSuggestor {
             int cursor;
             reader.setCursor(reader.getCursor() + 1);
             if (this.parse == null) {
-                this.parse = Managers.COMMAND.getDispatcher().parse(reader, (Object)Managers.COMMAND.getSource());
+                this.parse = Managers.COMMAND.getDispatcher().parse(reader, Managers.COMMAND.getSource());
             }
             if (!((cursor = this.textField.getCursor()) < 1 || this.window != null && this.completingSuggestions)) {
                 this.pendingSuggestions = Managers.COMMAND.getDispatcher().getCompletionSuggestions(this.parse, cursor);

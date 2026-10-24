@@ -41,7 +41,7 @@ import thunder.hack.utility.render.animation.AnimationUtility;
 
 @Mixin(value={PlayerListHud.class})
 public class MixinPlayerListHud {
-    private static final Comparator<Object> ENTRY_ORDERING = Comparator.comparingInt(entry -> ((PlayerListEntry)entry).getGameMode() == GameMode.SPECTATOR ? 1 : 0).thenComparing(entry -> (String)Nullables.mapOrElse((Object)((PlayerListEntry)entry).getScoreboardTeam(), Team::getName, (Object)"")).thenComparing(entry -> ((PlayerListEntry)entry).getProfile().getName(), String::compareToIgnoreCase);
+    private static final Comparator<PlayerListEntry> ENTRY_ORDERING = Comparator.<PlayerListEntry>comparingInt(entry -> entry.getGameMode() == GameMode.SPECTATOR ? 1 : 0).thenComparing(entry -> Nullables.mapOrElse(entry.getScoreboardTeam(), Team::getName, "")).thenComparing(entry -> entry.getProfile().getName(), String::compareToIgnoreCase);
     private float animation = 0.0f;
 
     @Inject(method={"collectPlayerEntries"}, at={@At(value="HEAD")}, cancellable=true)

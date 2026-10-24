@@ -90,7 +90,7 @@ extends HudElement {
             context.getMatrices().translate(middleW + this.CRadius.getValue().floatValue(), middleH + this.CRadius.getValue().floatValue(), 0.0f);
             context.getMatrices().multiply(RotationAxis.POSITIVE_X.rotationDegrees(90.0f / Math.abs(90.0f / MathUtility.clamp(RadarRewrite.mc.player.getPitch(), (float)this.pitchLock.getValue().intValue(), 90.0f)) - 102.0f));
             context.getMatrices().translate(-(middleW + this.CRadius.getValue().floatValue()), -(middleH + this.CRadius.getValue().floatValue()), 0.0f);
-            for (PlayerEntity e : Lists.newArrayList((Iterable)RadarRewrite.mc.world.getPlayers())) {
+            for (PlayerEntity e : Lists.newArrayList(RadarRewrite.mc.world.getPlayers())) {
                 if (e == RadarRewrite.mc.player) continue;
                 context.getMatrices().push();
                 float yaw = RadarRewrite.getRotations((Entity)e) - RadarRewrite.mc.player.getYaw();

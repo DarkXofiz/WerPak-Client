@@ -47,14 +47,14 @@ public class MixinPlayerEntity {
     @Inject(method={"getAttackCooldownProgressPerTick"}, at={@At(value="HEAD")}, cancellable=true)
     public void getAttackCooldownProgressPerTickHook(CallbackInfoReturnable<Float> cir) {
         if (ModuleManager.aura.isEnabled() && ModuleManager.aura.switchMode.getValue() == Aura.Switch.Silent) {
-            cir.setReturnValue((Object)Float.valueOf(12.5f));
+            cir.setReturnValue(Float.valueOf(12.5f));
         }
     }
 
     @Inject(method={"getDisplayName"}, at={@At(value="HEAD")}, cancellable=true)
     public void getDisplayNameHook(CallbackInfoReturnable<Text> cir) {
         if (ModuleManager.media.isEnabled() && Media.nickProtect.getValue().booleanValue()) {
-            cir.setReturnValue((Object)Text.of((String)"Protected"));
+            cir.setReturnValue(Text.of((String)"Protected"));
         }
     }
 

@@ -101,7 +101,7 @@ extends Module {
         if (e.getEntity().equals((Object)TotemPop.mc.player) || TotemPop.mc.world == null) {
             return;
         }
-        PlayerEntity entity = new PlayerEntity(this, (World)TotemPop.mc.world, BlockPos.ORIGIN, e.getEntity().bodyYaw, new GameProfile(e.getEntity().getUuid(), e.getEntity().getName().getString())){
+        PlayerEntity entity = new PlayerEntity((World)TotemPop.mc.world, BlockPos.ORIGIN, e.getEntity().bodyYaw, new GameProfile(e.getEntity().getUuid(), e.getEntity().getName().getString())){
 
             public boolean isSpectator() {
                 return false;
@@ -139,9 +139,9 @@ extends Module {
         yRotYaw = yRotYaw == 0.0f ? 0.0f : Render2DEngine.interpolateFloat(yRotYaw, yRotYaw - (float)this.aSpeed.getValue().intValue() / 255.0f * 360.0f * this.rotSpeed.getValue().floatValue(), Render3DEngine.getTickDelta());
         matrices.multiply(RotationAxis.POSITIVE_Y.rotation(MathUtility.rad(180.0f - entity.bodyYaw + yRotYaw)));
         TotemPop.prepareScale(matrices);
-        modelBase.animateModel((LivingEntity)((PlayerEntity)entity), entity.limbAnimator.getPos(), entity.limbAnimator.getSpeed(), Render3DEngine.getTickDelta());
+        modelBase.animateModel((PlayerEntity)entity, entity.limbAnimator.getPos(), entity.limbAnimator.getSpeed(), Render3DEngine.getTickDelta());
         float limbSpeed = Math.min(entity.limbAnimator.getSpeed(), 1.0f);
-        modelBase.setAngles((LivingEntity)((PlayerEntity)entity), entity.limbAnimator.getPos(), limbSpeed, (float)entity.age, entity.headYaw - entity.bodyYaw, entity.getPitch());
+        modelBase.setAngles((PlayerEntity)entity, entity.limbAnimator.getPos(), limbSpeed, (float)entity.age, entity.headYaw - entity.bodyYaw, entity.getPitch());
         if (this.mode.is(Mode.Textured)) {
             RenderSystem.setShaderTexture((int)0, (Identifier)texture);
             RenderSystem.setShader(GameRenderer::getPositionTexProgram);

@@ -32,7 +32,7 @@ public class MixinFireworkRocketEntity {
         if (mc.player == null) {
             return;
         }
-        FireworkRocketEntity self = (FireworkRocketEntity)this;
+        FireworkRocketEntity self = (FireworkRocketEntity)(Object)this;
         Entity class_12972 = self.getOwner();
         if (!(class_12972 instanceof ClientPlayerEntity) || (player = (ClientPlayerEntity)class_12972) != mc.player) {
             return;
@@ -47,7 +47,7 @@ public class MixinFireworkRocketEntity {
         if (mc.player == null) {
             return;
         }
-        FireworkRocketEntity self = (FireworkRocketEntity)this;
+        FireworkRocketEntity self = (FireworkRocketEntity)(Object)this;
         Entity class_12972 = self.getOwner();
         if (!(class_12972 instanceof ClientPlayerEntity) || (player = (ClientPlayerEntity)class_12972) != mc.player) {
             return;

@@ -59,7 +59,7 @@ extends HudElement {
         context.getMatrices().multiply(RotationAxis.POSITIVE_X.rotationDegrees(90.0f / Math.abs(90.0f / MathUtility.clamp(CrosshairArrows.mc.player.getPitch(), (float)this.pitchLock.getValue().intValue(), 90.0f)) - 102.0f));
         context.getMatrices().translate(-middleW, -middleH, 0.0f);
         this.smoothYaw = AnimationUtility.fast(this.smoothYaw, CrosshairArrows.mc.player.getYaw(), 13.0f);
-        for (PlayerEntity e : Lists.newArrayList((Iterable)CrosshairArrows.mc.world.getPlayers())) {
+        for (PlayerEntity e : Lists.newArrayList(CrosshairArrows.mc.world.getPlayers())) {
             if (e == CrosshairArrows.mc.player) continue;
             context.getMatrices().push();
             float yaw = RadarRewrite.getRotations((Entity)e) - this.smoothYaw;

@@ -67,7 +67,7 @@ implements IEntity {
         if (Module.fullNullCheck()) {
             return;
         }
-        if (this == Module.mc.player) {
+        if ((Object)this == Module.mc.player) {
             ci.cancel();
             EventFixVelocity event = new EventFixVelocity(movementInput, speed, Module.mc.player.getYaw(), MixinEntity.movementInputToVelocityC(movementInput, speed, Module.mc.player.getYaw()));
             ThunderHack.EVENT_BUS.post(event);
@@ -89,8 +89,8 @@ implements IEntity {
 
     @Inject(method={"getBoundingBox"}, at={@At(value="HEAD")}, cancellable=true)
     public final void getBoundingBox(CallbackInfoReturnable<Box> cir) {
-        if (ModuleManager.hitBox.isEnabled() && Module.mc != null && Module.mc.player != null && ((Entity)this).getId() != Module.mc.player.getId() && (ModuleManager.aura.isDisabled() || HitBox.affectToAura.getValue().booleanValue())) {
-            cir.setReturnValue((Object)new Box(this.boundingBox.minX - (double)(HitBox.XZExpand.getValue().floatValue() / 2.0f), this.boundingBox.minY - (double)(HitBox.YExpand.getValue().floatValue() / 2.0f), this.boundingBox.minZ - (double)(HitBox.XZExpand.getValue().floatValue() / 2.0f), this.boundingBox.maxX + (double)(HitBox.XZExpand.getValue().floatValue() / 2.0f), this.boundingBox.maxY + (double)(HitBox.YExpand.getValue().floatValue() / 2.0f), this.boundingBox.maxZ + (double)(HitBox.XZExpand.getValue().floatValue() / 2.0f)));
+        if (ModuleManager.hitBox.isEnabled() && Module.mc != null && Module.mc.player != null && ((Entity)(Object)this).getId() != Module.mc.player.getId() && (ModuleManager.aura.isDisabled() || HitBox.affectToAura.getValue().booleanValue())) {
+            cir.setReturnValue(new Box(this.boundingBox.minX - (double)(HitBox.XZExpand.getValue().floatValue() / 2.0f), this.boundingBox.minY - (double)(HitBox.YExpand.getValue().floatValue() / 2.0f), this.boundingBox.minZ - (double)(HitBox.XZExpand.getValue().floatValue() / 2.0f), this.boundingBox.maxX + (double)(HitBox.XZExpand.getValue().floatValue() / 2.0f), this.boundingBox.maxY + (double)(HitBox.YExpand.getValue().floatValue() / 2.0f), this.boundingBox.maxZ + (double)(HitBox.XZExpand.getValue().floatValue() / 2.0f)));
         }
     }
 
@@ -101,7 +101,7 @@ implements IEntity {
     @Inject(method={"isOnFire"}, at={@At(value="HEAD")}, cancellable=true)
     public void isOnFireHook(CallbackInfoReturnable<Boolean> cir) {
         if (ModuleManager.noRender.isEnabled() && ModuleManager.noRender.fireEntity.getValue().booleanValue()) {
-            cir.setReturnValue((Object)false);
+            cir.setReturnValue(false);
         }
     }
 

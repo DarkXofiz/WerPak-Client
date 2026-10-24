@@ -41,7 +41,7 @@ implements ArgumentType<String> {
 
     public static List<String> getSettings(Module module) {
         ArrayList<String> result = new ArrayList<String>();
-        for (Setting<?> setting : module.getSettings()) {
+        for (Setting setting : module.getSettings()) {
             result.add(setting.getName());
         }
         return result;

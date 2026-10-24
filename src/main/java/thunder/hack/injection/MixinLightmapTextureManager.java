@@ -27,7 +27,7 @@ public class MixinLightmapTextureManager {
     @Inject(method={"getDarknessFactor(F)F"}, at={@At(value="HEAD")}, cancellable=true)
     private void getDarknessFactor(float tickDelta, CallbackInfoReturnable<Float> info) {
         if (ModuleManager.noRender.isEnabled() && ModuleManager.noRender.darkness.getValue().booleanValue()) {
-            info.setReturnValue((Object)Float.valueOf(0.0f));
+            info.setReturnValue(Float.valueOf(0.0f));
         }
     }
 
@@ -36,7 +36,7 @@ public class MixinLightmapTextureManager {
         if (ModuleManager.fullbright.isEnabled()) {
             float f = (float)lightLevel / 15.0f;
             float g = f / (4.0f - 3.0f * f);
-            cir.setReturnValue((Object)Float.valueOf(Math.max(MathHelper.lerp((float)type.ambientLight(), (float)g, (float)1.0f), Fullbright.minBright.getValue().floatValue())));
+            cir.setReturnValue(Float.valueOf(Math.max(MathHelper.lerp((float)type.ambientLight(), (float)g, (float)1.0f), Fullbright.minBright.getValue().floatValue())));
         }
     }
 }

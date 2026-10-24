@@ -38,14 +38,14 @@ public abstract class MixinBlock {
         if (!NoWeb.isNoWebEnabled()) {
             return;
         }
-        if (!((Block)this instanceof CobwebBlock)) {
+        if (!((Block)(Object)this instanceof CobwebBlock)) {
             return;
         }
         NoWeb.Mode mode = NoWeb.getNoWebMode();
         if (mode == NoWeb.Mode.Cancel || mode == NoWeb.Mode.Spoof || mode == NoWeb.Mode.WerPak) {
-            cir.setReturnValue((Object)Float.valueOf(1.0f));
+            cir.setReturnValue(Float.valueOf(1.0f));
         } else if (mode == NoWeb.Mode.Legit) {
-            cir.setReturnValue((Object)Float.valueOf(0.7f + NoWeb.getLegitFactor() * 0.3f));
+            cir.setReturnValue(Float.valueOf(0.7f + NoWeb.getLegitFactor() * 0.3f));
         }
     }
 
