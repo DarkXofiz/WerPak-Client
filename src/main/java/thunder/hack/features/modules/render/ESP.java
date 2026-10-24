@@ -229,7 +229,7 @@ extends Module {
         }
         if (this.burrow.getValue().booleanValue()) {
             for (PlayerEntity pl : ESP.mc.world.getPlayers()) {
-                BlockPos blockPos = BlockPos.ofFloored((Position)pl.getPos().add(0.0, (double)0.15f, 0.0));
+                BlockPos blockPos = BlockPos.ofFloored(pl.getPos().add(0.0, (double)0.15f, 0.0));
                 Block block = ESP.mc.world.getBlockState(blockPos).getBlock();
                 double x = (double)blockPos.getX() - ESP.mc.getEntityRenderDispatcher().camera.getPos().getX();
                 double y3 = (double)blockPos.getY() - ESP.mc.getEntityRenderDispatcher().camera.getPos().getY();

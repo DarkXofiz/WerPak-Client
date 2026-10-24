@@ -120,7 +120,7 @@ extends Module {
         }
         int n2 = LegacyHud.mc.currentScreen instanceof ChatScreen && this.renderingUp.getValue() != false ? 13 : (i = this.renderingUp.getValue() != false ? -2 : 0);
         if (this.potions.getValue().booleanValue()) {
-            ArrayList effects = new ArrayList(LegacyHud.mc.player.getStatusEffects());
+            var effects = new ArrayList<>(LegacyHud.mc.player.getStatusEffects());
             for (StatusEffectInstance potionEffect : effects) {
                 StatusEffect potion = (StatusEffect)potionEffect.getEffectType().value();
                 String power = "";

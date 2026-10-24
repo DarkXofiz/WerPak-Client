@@ -147,7 +147,7 @@ extends Module {
     private BlockPos getSequentialPos() {
         PlayerEntity target = Managers.COMBAT.getNearestTarget(this.range.getValue().intValue());
         if (target != null) {
-            BlockPos targetBp = BlockPos.ofFloored((Position)target.getPos());
+            BlockPos targetBp = BlockPos.ofFloored(target.getPos());
             ArrayList<BlockPos> positions = new ArrayList<BlockPos>();
             if (this.leggs.getValue().booleanValue()) {
                 positions.add(targetBp);

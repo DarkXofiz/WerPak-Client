@@ -163,7 +163,7 @@ extends Module {
         }
         if (this.mode.getValue() == Mode.FastAF) {
             int intRange = (int)(Math.floor(this.range.getValue().floatValue()) + 1.0);
-            Iterable blocks_ = BlockPos.iterateOutwards((BlockPos)new BlockPos((Vec3i)BlockPos.ofFloored((Position)Nuker.mc.player.getPos()).up()), (int)intRange, (int)intRange, (int)intRange);
+            var blocks_ = BlockPos.iterateOutwards((BlockPos)new BlockPos((Vec3i)BlockPos.ofFloored(Nuker.mc.player.getPos()).up()), (int)intRange, (int)intRange, (int)intRange);
             for (BlockPos b : blocks_) {
                 if (this.flatten.getValue().booleanValue() && (double)b.getY() < Nuker.mc.player.getY() || this.avoidLava.getValue().booleanValue() && this.checkLava(b)) continue;
                 BlockState state = Nuker.mc.world.getBlockState(b);
@@ -216,7 +216,7 @@ extends Module {
 
     public BlockData getNukerBlockPos() {
         int intRange = (int)(Math.floor(this.range.getValue().floatValue()) + 1.0);
-        Iterable blocks_ = BlockPos.iterateOutwards((BlockPos)new BlockPos((Vec3i)BlockPos.ofFloored((Position)Nuker.mc.player.getPos()).up()), (int)intRange, (int)intRange, (int)intRange);
+        var blocks_ = BlockPos.iterateOutwards((BlockPos)new BlockPos((Vec3i)BlockPos.ofFloored(Nuker.mc.player.getPos()).up()), (int)intRange, (int)intRange, (int)intRange);
         for (BlockPos b : blocks_) {
             BlockState state = Nuker.mc.world.getBlockState(b);
             if (this.flatten.getValue().booleanValue() && (double)b.getY() < Nuker.mc.player.getY() || !(PlayerUtility.squaredDistanceFromEyes(b.toCenterPos()) <= this.range.getPow2Value()) || this.avoidLava.getValue().booleanValue() && this.checkLava(b) || !this.isAllowed(state.getBlock())) continue;
@@ -241,7 +241,7 @@ extends Module {
 
     private boolean checkLava(BlockPos base) {
         for (Direction dir : Direction.values()) {
-            if (Nuker.mc.world.getBlockState(base.method_10093(dir)).getBlock() != Blocks.LAVA) continue;
+            if (Nuker.mc.world.getBlockState(base.offset(dir)).getBlock() != Blocks.LAVA) continue;
             return true;
         }
         return false;

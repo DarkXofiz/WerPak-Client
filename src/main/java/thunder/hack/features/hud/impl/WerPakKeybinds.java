@@ -38,7 +38,7 @@ extends HudElement {
     @Override
     public void onRender2D(DrawContext context) {
         super.onRender2D(context);
-        List activeModules = Managers.MODULE.modules.stream().filter(modx -> modx.isOn() && !Objects.equals(modx.getBind().getBind(), "None")).collect(Collectors.toList());
+        var activeModules = Managers.MODULE.modules.stream().filter(modx -> modx.isOn() && !Objects.equals(modx.getBind().getBind(), "None")).collect(Collectors.toList());
         boolean isEditing = WerPakKeybinds.mc.currentScreen instanceof ChatScreen || WerPakKeybinds.mc.currentScreen instanceof HudEditorGui;
         boolean shouldShow = !activeModules.isEmpty() || isEditing;
         this.visibleValue = AnimationUtility.fast(this.visibleValue, shouldShow ? 1.0f : 0.0f, 15.0f);

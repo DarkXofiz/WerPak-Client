@@ -84,7 +84,7 @@ extends Module {
             return false;
         }
         Box pBox = NoWeb.mc.player.getBoundingBox();
-        BlockPos pBlockPos = BlockPos.ofFloored((Position)NoWeb.mc.player.getPos());
+        BlockPos pBlockPos = BlockPos.ofFloored(NoWeb.mc.player.getPos());
         for (int x = pBlockPos.getX() - 1; x <= pBlockPos.getX() + 1; ++x) {
             for (int y = pBlockPos.getY() - 1; y <= pBlockPos.getY() + 2; ++y) {
                 for (int z = pBlockPos.getZ() - 1; z <= pBlockPos.getZ() + 1; ++z) {

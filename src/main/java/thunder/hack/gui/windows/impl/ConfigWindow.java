@@ -115,7 +115,7 @@ extends WindowBase {
             this.addName = "";
             this.refresh();
         }
-        ArrayList copy = Lists.newArrayList(this.configPlates);
+        var copy = Lists.newArrayList(this.configPlates);
         for (ConfigPlate configPlate : copy) {
             if ((float)((int)(configPlate.offset + this.getY() + 50.0f)) + this.getScrollOffset() > this.getY() + this.getHeight()) continue;
             boolean hoveringRemove = Render2DEngine.isHovered(mouseX, mouseY, this.getX() + this.getWidth() - 15.0f, configPlate.offset + this.getY() + 36.0f + this.getScrollOffset(), 11.0, 11.0);

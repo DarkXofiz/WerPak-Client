@@ -338,7 +338,7 @@ extends Module {
         }
     }
 
-    public boolean @NotNull [] preAttack() {
+    public boolean[] preAttack() {
         boolean sprint;
         boolean blocking;
         boolean bl = blocking = Aura.mc.player.isUsingItem() && Aura.mc.player.getActiveItem().getItem().getUseAction(Aura.mc.player.getActiveItem()) == UseAction.BLOCK;
@@ -615,7 +615,7 @@ extends Module {
     }
 
     public boolean isAboveWater() {
-        return Aura.mc.player.isSubmergedInWater() || Aura.mc.world.getBlockState(BlockPos.ofFloored((Position)Aura.mc.player.getPos().add(0.0, -0.4, 0.0))).getBlock() == Blocks.WATER;
+        return Aura.mc.player.isSubmergedInWater() || Aura.mc.world.getBlockState(BlockPos.ofFloored(Aura.mc.player.getPos().add(0.0, -0.4, 0.0))).getBlock() == Blocks.WATER;
     }
 
     public float getAttackCooldownProgressPerTick() {

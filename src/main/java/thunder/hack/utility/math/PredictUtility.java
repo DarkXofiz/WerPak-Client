@@ -53,7 +53,7 @@ public class PredictUtility {
             float hbDeltaZ;
             float hbDeltaX = motionX > 0.0 ? 0.3f : -0.3f;
             float f = hbDeltaZ = motionZ > 0.0 ? 0.3f : -0.3f;
-            if (!Module.mc.world.isAir(BlockPos.ofFloored((Position)posVec.add(motionX + (double)hbDeltaX, 0.1, motionZ + (double)hbDeltaZ))) || !Module.mc.world.isAir(BlockPos.ofFloored((Position)posVec.add(motionX + (double)hbDeltaX, 1.0, motionZ + (double)hbDeltaZ)))) {
+            if (!Module.mc.world.isAir(BlockPos.ofFloored(posVec.add(motionX + (double)hbDeltaX, 0.1, motionZ + (double)hbDeltaZ))) || !Module.mc.world.isAir(BlockPos.ofFloored(posVec.add(motionX + (double)hbDeltaX, 1.0, motionZ + (double)hbDeltaZ)))) {
                 motionX = 0.0;
                 motionZ = 0.0;
             }

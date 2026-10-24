@@ -245,7 +245,7 @@ public abstract class Module {
     }
 
     public List<Setting<?>> getSettings() {
-        ArrayList settingList = new ArrayList();
+        var settingList = new ArrayList();
         for (Class<?> currentSuperclass = this.getClass(); currentSuperclass != null; currentSuperclass = currentSuperclass.getSuperclass()) {
             for (Field field : currentSuperclass.getDeclaredFields()) {
                 if (!Setting.class.isAssignableFrom(field.getType())) continue;
@@ -258,7 +258,7 @@ public abstract class Module {
                 }
             }
         }
-        settingList.forEach((Consumer<Setting<?>>)((Consumer<Setting>)s -> s.setModule(this)));
+        settingList.forEach(s -> s.setModule(this));
         return settingList;
     }
 

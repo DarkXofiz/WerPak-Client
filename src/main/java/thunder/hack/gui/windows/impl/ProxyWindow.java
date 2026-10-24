@@ -207,7 +207,7 @@ extends WindowBase {
             }
             this.refresh();
         }
-        ArrayList copy = Lists.newArrayList(this.proxyPlates);
+        var copy = Lists.newArrayList(this.proxyPlates);
         for (ProxyPlate proxyPlate : copy) {
             if ((float)((int)(proxyPlate.offset + this.getY() + 50.0f)) + this.getScrollOffset() > this.getY() + this.getHeight()) continue;
             boolean hoveringName2 = Render2DEngine.isHovered(mouseX, mouseY, nameX, this.getY() + 36.0f + this.getScrollOffset() + proxyPlate.offset, nameWidth, 11.0);

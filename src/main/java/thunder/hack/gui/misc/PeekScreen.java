@@ -46,7 +46,7 @@ extends ShulkerBoxScreen {
             Arrays.fill(ITEMS, ItemStack.EMPTY);
             ContainerComponent nbt = (ContainerComponent)itemStack.get(DataComponentTypes.CONTAINER);
             if (nbt != null) {
-                List list = nbt.stream().toList();
+                var list = nbt.stream().toList();
                 for (int i = 0; i < list.size(); ++i) {
                     PeekScreen.ITEMS[i] = (ItemStack)list.get(i);
                 }

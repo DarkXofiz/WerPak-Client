@@ -49,7 +49,7 @@ public final class HoleUtility {
     public static List<BlockPos> getSurroundPoses(@NotNull Vec3d from) {
         int z;
         int x;
-        BlockPos fromPos = BlockPos.ofFloored((Position)from);
+        BlockPos fromPos = BlockPos.ofFloored(from);
         ArrayList<BlockPos> tempOffsets = new ArrayList<BlockPos>();
         double decimalX = Math.abs(from.getX()) - Math.floor(Math.abs(from.getX()));
         double decimalZ = Math.abs(from.getZ()) - Math.floor(Math.abs(from.getZ()));

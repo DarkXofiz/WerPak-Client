@@ -126,7 +126,7 @@ extends Module {
 
     public static String generateRandomSymbol() {
         Random random = new Random();
-        Object randomSymbol = "[";
+        String randomSymbol = "[";
         randomSymbol = (String)randomSymbol + (char)(random.nextInt(26) + 97);
         randomSymbol = (String)randomSymbol + random.nextInt(10);
         randomSymbol = (String)randomSymbol + (char)(random.nextInt(26) + 97);

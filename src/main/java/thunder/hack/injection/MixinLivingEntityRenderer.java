@@ -199,7 +199,7 @@ public abstract class MixinLivingEntityRenderer<T extends LivingEntity, M extend
                 m *= -1.0f;
                 k2 *= -1.0f;
             }
-            bipedModel.method_17087((LivingEntity)pe, limbPos, limbSpeed, l, k2, m);
+            bipedModel.setAngles((LivingEntity)pe, limbPos, limbSpeed, l, k2, m);
             ModuleManager.customModel.customModelRenderer.render(pe, f, g, matrixStack, vertexConsumerProvider, i, ModuleManager.customModel.mode.getValue(), (BipedEntityModel<PlayerEntity>)bipedModel);
             for (FeatureRenderer<T, M> featureRenderer : this.features) {
                 featureRenderer.render(matrixStack, vertexConsumerProvider, i, (Entity)pe, limbPos, limbSpeed, g, l, k2, m);

@@ -7,6 +7,7 @@
  */
 package thunder.hack.core.manager.client;
 
+import thunder.hack.events.impl.PacketEvent;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayDeque;

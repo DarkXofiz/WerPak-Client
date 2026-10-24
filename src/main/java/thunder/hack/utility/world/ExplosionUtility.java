@@ -184,7 +184,7 @@ public final class ExplosionUtility {
     }
 
     public static BlockHitResult rayCastBlock(RaycastContext context, BlockPos block) {
-        return (BlockHitResult)BlockView.raycast((Vec3d)context.getStart(), (Vec3d)context.getEnd(), (Object)context, (raycastContext, blockPos) -> {
+        return (BlockHitResult)BlockView.raycast((Vec3d)context.getStart(), (Vec3d)context.getEnd(), context, (raycastContext, blockPos) -> {
             BlockState blockState = !blockPos.equals((Object)block) ? Blocks.AIR.getDefaultState() : Blocks.OBSIDIAN.getDefaultState();
             Vec3d vec3d = raycastContext.getStart();
             Vec3d vec3d2 = raycastContext.getEnd();
@@ -197,7 +197,7 @@ public final class ExplosionUtility {
             return d <= e ? blockHitResult : blockHitResult2;
         }, raycastContext -> {
             Vec3d vec3d = raycastContext.getStart().subtract(raycastContext.getEnd());
-            return BlockHitResult.createMissed((Vec3d)raycastContext.getEnd(), (Direction)Direction.getFacing((double)vec3d.x, (double)vec3d.y, (double)vec3d.z), (BlockPos)BlockPos.ofFloored((Position)raycastContext.getEnd()));
+            return BlockHitResult.createMissed((Vec3d)raycastContext.getEnd(), (Direction)Direction.getFacing((double)vec3d.x, (double)vec3d.y, (double)vec3d.z), (BlockPos)BlockPos.ofFloored(raycastContext.getEnd()));
         });
     }
 
@@ -325,7 +325,7 @@ public final class ExplosionUtility {
     }
 
     private static BlockHitResult raycastGhost(RaycastContext context, BlockPos bPos) {
-        return (BlockHitResult)BlockView.raycast((Vec3d)context.getStart(), (Vec3d)context.getEnd(), (Object)context, (innerContext, pos) -> {
+        return (BlockHitResult)BlockView.raycast((Vec3d)context.getStart(), (Vec3d)context.getEnd(), context, (innerContext, pos) -> {
             Vec3d vec3d = innerContext.getStart();
             Vec3d vec3d2 = innerContext.getEnd();
             BlockState blockState = !pos.equals((Object)bPos) ? Module.mc.world.getBlockState(bPos) : Blocks.OBSIDIAN.getDefaultState();
@@ -337,7 +337,7 @@ public final class ExplosionUtility {
             return d <= e ? blockHitResult : blockHitResult2;
         }, innerContext -> {
             Vec3d vec3d = innerContext.getStart().subtract(innerContext.getEnd());
-            return BlockHitResult.createMissed((Vec3d)innerContext.getEnd(), (Direction)Direction.getFacing((double)vec3d.x, (double)vec3d.y, (double)vec3d.z), (BlockPos)BlockPos.ofFloored((Position)innerContext.getEnd()));
+            return BlockHitResult.createMissed((Vec3d)innerContext.getEnd(), (Direction)Direction.getFacing((double)vec3d.x, (double)vec3d.y, (double)vec3d.z), (BlockPos)BlockPos.ofFloored(innerContext.getEnd()));
         });
     }
 

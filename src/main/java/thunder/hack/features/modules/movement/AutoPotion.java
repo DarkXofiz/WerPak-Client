@@ -135,61 +135,14 @@ extends Module {
         }
     }
 
-    public static final class TriggerOn
-    extends Enum<TriggerOn> {
-        public static final /* enum */ TriggerOn LackOfRegen = new TriggerOn();
-        public static final /* enum */ TriggerOn Health = new TriggerOn();
-        private static final /* synthetic */ TriggerOn[] $VALUES;
-
-        public static TriggerOn[] values() {
-            return (TriggerOn[])$VALUES.clone();
-        }
-
-        public static TriggerOn valueOf(String name) {
-            return Enum.valueOf(TriggerOn.class, name);
-        }
-
-        private static TriggerOn[] $values() {
-            return new TriggerOn[]{LackOfRegen, Health};
-        }
-
-        private static /* synthetic */ TriggerOn[] $values$() {
-            return new TriggerOn[]{LackOfRegen, Health};
-        }
-
-        static {
-            $VALUES = TriggerOn.$values$();
-        }
+    public enum TriggerOn {
+        LackOfRegen, Health;
     }
 
-    public static final class Potions
-    extends Enum<Potions> {
-        public static final /* enum */ Potions STRENGTH = new Potions();
-        public static final /* enum */ Potions SPEED = new Potions();
-        public static final /* enum */ Potions FIRERES = new Potions();
-        public static final /* enum */ Potions HEAL = new Potions();
-        public static final /* enum */ Potions REGEN = new Potions();
-        private static final /* synthetic */ Potions[] $VALUES;
 
-        public static Potions[] values() {
-            return (Potions[])$VALUES.clone();
-        }
-
-        public static Potions valueOf(String name) {
-            return Enum.valueOf(Potions.class, name);
-        }
-
-        private static Potions[] $values() {
-            return new Potions[]{STRENGTH, SPEED, FIRERES, HEAL, REGEN};
-        }
-
-        private static /* synthetic */ Potions[] $values$() {
-            return new Potions[]{STRENGTH, SPEED, FIRERES, HEAL, REGEN};
-        }
-
-        static {
-            $VALUES = Potions.$values$();
-        }
+    public enum Potions {
+        STRENGTH, SPEED, FIRERES, HEAL, REGEN;
     }
+
 }
 

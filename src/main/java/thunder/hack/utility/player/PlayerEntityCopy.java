@@ -20,7 +20,7 @@ extends OtherClientPlayerEntity {
         super(Objects.requireNonNull(Module.mc.world), Objects.requireNonNull(Module.mc.player).getGameProfile());
         this.copyFrom((Entity)Module.mc.player);
         this.getPlayerListEntry();
-        this.dataTracker.set(PLAYER_MODEL_PARTS, (Object)((Byte)Module.mc.player.getDataTracker().get(PLAYER_MODEL_PARTS)));
+        this.dataTracker.set(PLAYER_MODEL_PARTS, Module.mc.player.getDataTracker().get(PLAYER_MODEL_PARTS));
         this.setUuid(UUID.randomUUID());
     }
 

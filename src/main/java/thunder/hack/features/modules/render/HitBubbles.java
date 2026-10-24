@@ -46,7 +46,7 @@ extends Module {
     @Override
     public void onRender3D(MatrixStack matrixStack) {
         RenderSystem.disableDepthTest();
-        ArrayList bubblesCopy = Lists.newArrayList(this.bubbles);
+        var bubblesCopy = Lists.newArrayList(this.bubbles);
         bubblesCopy.forEach(b -> {
             matrixStack.push();
             matrixStack.translate((double)b.x - HitBubbles.mc.getEntityRenderDispatcher().camera.getPos().getX(), (double)b.y - HitBubbles.mc.getEntityRenderDispatcher().camera.getPos().getY(), (double)b.z - HitBubbles.mc.getEntityRenderDispatcher().camera.getPos().getZ());

@@ -145,17 +145,17 @@ public class Setting<T> {
     }
 
     public void setEnum(Enum mod) {
-        this.plannedValue = mod;
+        this.plannedValue = (T)mod;
     }
 
     public void increaseEnum() {
-        this.plannedValue = EnumConverter.increaseEnum((Enum)this.value);
+        this.plannedValue = (T)EnumConverter.increaseEnum((Enum)this.value);
         this.value = this.plannedValue;
         ThunderHack.EVENT_BUS.post(new EventSetting(this));
     }
 
     public void setEnumByNumber(int id) {
-        this.plannedValue = EnumConverter.setEnumInt((Enum)this.value, id);
+        this.plannedValue = (T)EnumConverter.setEnumInt((Enum)this.value, id);
         this.value = this.plannedValue;
         ThunderHack.EVENT_BUS.post(new EventSetting(this));
     }

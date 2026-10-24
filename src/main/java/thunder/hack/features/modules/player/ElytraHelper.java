@@ -360,33 +360,9 @@ extends Module {
         return this.swing.getValue();
     }
 
-    public static final class FireWorkMode
-    extends Enum<FireWorkMode> {
-        public static final /* enum */ FireWorkMode Normal = new FireWorkMode();
-        public static final /* enum */ FireWorkMode Silent = new FireWorkMode();
-        public static final /* enum */ FireWorkMode Legit = new FireWorkMode();
-        public static final /* enum */ FireWorkMode HvH = new FireWorkMode();
-        private static final /* synthetic */ FireWorkMode[] $VALUES;
-
-        public static FireWorkMode[] values() {
-            return (FireWorkMode[])$VALUES.clone();
-        }
-
-        public static FireWorkMode valueOf(String name) {
-            return Enum.valueOf(FireWorkMode.class, name);
-        }
-
-        private static FireWorkMode[] $values() {
-            return new FireWorkMode[]{Normal, Silent, Legit, HvH};
-        }
-
-        private static /* synthetic */ FireWorkMode[] $values$() {
-            return new FireWorkMode[]{Normal, Silent, Legit, HvH};
-        }
-
-        static {
-            $VALUES = FireWorkMode.$values$();
-        }
+    public enum FireWorkMode {
+        Normal, Silent, Legit, HvH;
     }
+
 }
 

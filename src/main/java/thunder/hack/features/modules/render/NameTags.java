@@ -533,7 +533,7 @@ extends Module {
     }
 
     private void renderStatusEffectOverlay(DrawContext context, float x, float y, PlayerEntity player) {
-        ArrayList effects = new ArrayList(player.getStatusEffects());
+        var effects = new ArrayList<>(player.getStatusEffects());
         if (effects.isEmpty()) {
             return;
         }

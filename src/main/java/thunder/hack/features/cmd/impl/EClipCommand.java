@@ -60,11 +60,11 @@ extends Command {
         builder.then(((LiteralArgumentBuilder)EClipCommand.literal("down").executes(context -> {
             float y = 0.0f;
             for (int i = 1; i < 255; ++i) {
-                if (EClipCommand.mc.world.getBlockState(BlockPos.ofFloored((Position)EClipCommand.mc.player.getPos()).add(0, -i, 0)) == Blocks.AIR.getDefaultState()) {
+                if (EClipCommand.mc.world.getBlockState(BlockPos.ofFloored(EClipCommand.mc.player.getPos()).add(0, -i, 0)) == Blocks.AIR.getDefaultState()) {
                     y = -i - 1;
                     break;
                 }
-                if (EClipCommand.mc.world.getBlockState(BlockPos.ofFloored((Position)EClipCommand.mc.player.getPos()).add(0, -i, 0)) != Blocks.BEDROCK.getDefaultState()) continue;
+                if (EClipCommand.mc.world.getBlockState(BlockPos.ofFloored(EClipCommand.mc.player.getPos()).add(0, -i, 0)) != Blocks.BEDROCK.getDefaultState()) continue;
                 EClipCommand.sendMessage(String.valueOf(Formatting.RED) + " \u043c\u043e\u0436\u043d\u043e \u0442\u0435\u043b\u0435\u043f\u043e\u0440\u0442\u0438\u0440\u043e\u0432\u0430\u0442\u044c\u0441\u044f \u0442\u043e\u043b\u044c\u043a\u043e \u043f\u043e\u0434 \u0431\u0435\u0434\u0440\u043e\u043a");
                 EClipCommand.sendMessage(String.valueOf(Formatting.RED) + " eclip bedrock");
                 return 1;
@@ -74,11 +74,11 @@ extends Command {
         })).then(EClipCommand.arg("number", FloatArgumentType.floatArg()).executes(context -> {
             float y = 0.0f;
             for (int i = 1; i < 255; ++i) {
-                if (EClipCommand.mc.world.getBlockState(BlockPos.ofFloored((Position)EClipCommand.mc.player.getPos()).add(0, -i, 0)) == Blocks.AIR.getDefaultState()) {
+                if (EClipCommand.mc.world.getBlockState(BlockPos.ofFloored(EClipCommand.mc.player.getPos()).add(0, -i, 0)) == Blocks.AIR.getDefaultState()) {
                     y = -i - 1;
                     break;
                 }
-                if (EClipCommand.mc.world.getBlockState(BlockPos.ofFloored((Position)EClipCommand.mc.player.getPos()).add(0, -i, 0)) != Blocks.BEDROCK.getDefaultState()) continue;
+                if (EClipCommand.mc.world.getBlockState(BlockPos.ofFloored(EClipCommand.mc.player.getPos()).add(0, -i, 0)) != Blocks.BEDROCK.getDefaultState()) continue;
                 EClipCommand.sendMessage(String.valueOf(Formatting.RED) + " \u043c\u043e\u0436\u043d\u043e \u0442\u0435\u043b\u0435\u043f\u043e\u0440\u0442\u0438\u0440\u043e\u0432\u0430\u0442\u044c\u0441\u044f \u0442\u043e\u043b\u044c\u043a\u043e \u043f\u043e\u0434 \u0431\u0435\u0434\u0440\u043e\u043a");
                 EClipCommand.sendMessage(String.valueOf(Formatting.RED) + " eclip bedrock");
                 return 1;
@@ -92,7 +92,7 @@ extends Command {
         builder.then(((LiteralArgumentBuilder)EClipCommand.literal("up").executes(context -> {
             float y = 0.0f;
             for (int i = 4; i < 255; ++i) {
-                if (EClipCommand.mc.world.getBlockState(BlockPos.ofFloored((Position)EClipCommand.mc.player.getPos()).add(0, i, 0)) != Blocks.AIR.getDefaultState()) continue;
+                if (EClipCommand.mc.world.getBlockState(BlockPos.ofFloored(EClipCommand.mc.player.getPos()).add(0, i, 0)) != Blocks.AIR.getDefaultState()) continue;
                 y = i + 1;
                 break;
             }
@@ -101,7 +101,7 @@ extends Command {
         })).then(EClipCommand.arg("number", FloatArgumentType.floatArg()).executes(context -> {
             float y = 0.0f;
             for (int i = 4; i < 255; ++i) {
-                if (EClipCommand.mc.world.getBlockState(BlockPos.ofFloored((Position)EClipCommand.mc.player.getPos()).add(0, i, 0)) != Blocks.AIR.getDefaultState()) continue;
+                if (EClipCommand.mc.world.getBlockState(BlockPos.ofFloored(EClipCommand.mc.player.getPos()).add(0, i, 0)) != Blocks.AIR.getDefaultState()) continue;
                 y = i + 1;
                 break;
             }

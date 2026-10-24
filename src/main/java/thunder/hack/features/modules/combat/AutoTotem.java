@@ -462,120 +462,24 @@ extends Module {
         return AutoTotem.mc.player.getPos();
     }
 
-    private static final class Mode
-    extends Enum<Mode> {
-        public static final /* enum */ Mode Default = new Mode();
-        public static final /* enum */ Mode Alternative = new Mode();
-        public static final /* enum */ Mode Matrix = new Mode();
-        public static final /* enum */ Mode MatrixPick = new Mode();
-        public static final /* enum */ Mode NewVersion = new Mode();
-        private static final /* synthetic */ Mode[] $VALUES;
-
-        public static Mode[] values() {
-            return (Mode[])$VALUES.clone();
-        }
-
-        public static Mode valueOf(String name) {
-            return Enum.valueOf(Mode.class, name);
-        }
-
-        private static Mode[] $values() {
-            return new Mode[]{Default, Alternative, Matrix, MatrixPick, NewVersion};
-        }
-
-        private static /* synthetic */ Mode[] $values$() {
-            return new Mode[]{Default, Alternative, Matrix, MatrixPick, NewVersion};
-        }
-
-        static {
-            $VALUES = Mode.$values$();
-        }
+    private enum Mode {
+        Default, Alternative, Matrix, MatrixPick, NewVersion;
     }
 
-    private static final class OffHand
-    extends Enum<OffHand> {
-        public static final /* enum */ OffHand Totem = new OffHand();
-        public static final /* enum */ OffHand Crystal = new OffHand();
-        public static final /* enum */ OffHand GApple = new OffHand();
-        public static final /* enum */ OffHand Shield = new OffHand();
-        private static final /* synthetic */ OffHand[] $VALUES;
 
-        public static OffHand[] values() {
-            return (OffHand[])$VALUES.clone();
-        }
-
-        public static OffHand valueOf(String name) {
-            return Enum.valueOf(OffHand.class, name);
-        }
-
-        private static OffHand[] $values() {
-            return new OffHand[]{Totem, Crystal, GApple, Shield};
-        }
-
-        private static /* synthetic */ OffHand[] $values$() {
-            return new OffHand[]{Totem, Crystal, GApple, Shield};
-        }
-
-        static {
-            $VALUES = OffHand.$values$();
-        }
+    private enum OffHand {
+        Totem, Crystal, GApple, Shield;
     }
 
-    private static final class Swap
-    extends Enum<Swap> {
-        public static final /* enum */ Swap GappleShield = new Swap();
-        public static final /* enum */ Swap BallShield = new Swap();
-        public static final /* enum */ Swap GappleBall = new Swap();
-        public static final /* enum */ Swap BallTotem = new Swap();
-        private static final /* synthetic */ Swap[] $VALUES;
 
-        public static Swap[] values() {
-            return (Swap[])$VALUES.clone();
-        }
-
-        public static Swap valueOf(String name) {
-            return Enum.valueOf(Swap.class, name);
-        }
-
-        private static Swap[] $values() {
-            return new Swap[]{GappleShield, BallShield, GappleBall, BallTotem};
-        }
-
-        private static /* synthetic */ Swap[] $values$() {
-            return new Swap[]{GappleShield, BallShield, GappleBall, BallTotem};
-        }
-
-        static {
-            $VALUES = Swap.$values$();
-        }
+    private enum Swap {
+        GappleShield, BallShield, GappleBall, BallTotem;
     }
 
-    public static final class RCGap
-    extends Enum<RCGap> {
-        public static final /* enum */ RCGap Off = new RCGap();
-        public static final /* enum */ RCGap Always = new RCGap();
-        public static final /* enum */ RCGap OnlySafe = new RCGap();
-        private static final /* synthetic */ RCGap[] $VALUES;
 
-        public static RCGap[] values() {
-            return (RCGap[])$VALUES.clone();
-        }
-
-        public static RCGap valueOf(String name) {
-            return Enum.valueOf(RCGap.class, name);
-        }
-
-        private static RCGap[] $values() {
-            return new RCGap[]{Off, Always, OnlySafe};
-        }
-
-        private static /* synthetic */ RCGap[] $values$() {
-            return new RCGap[]{Off, Always, OnlySafe};
-        }
-
-        static {
-            $VALUES = RCGap.$values$();
-        }
+    public enum RCGap {
+        Off, Always, OnlySafe;
     }
+
 }
 

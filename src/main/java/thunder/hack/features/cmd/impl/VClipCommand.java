@@ -38,11 +38,11 @@ extends Command {
         builder.then(VClipCommand.literal("down").executes(context -> {
             float y = 0.0f;
             for (int i = 1; i < 255; ++i) {
-                if (VClipCommand.mc.world.getBlockState(BlockPos.ofFloored((Position)VClipCommand.mc.player.getPos()).add(0, -i, 0)) == Blocks.AIR.getDefaultState()) {
+                if (VClipCommand.mc.world.getBlockState(BlockPos.ofFloored(VClipCommand.mc.player.getPos()).add(0, -i, 0)) == Blocks.AIR.getDefaultState()) {
                     y = -i - 1;
                     break;
                 }
-                if (VClipCommand.mc.world.getBlockState(BlockPos.ofFloored((Position)VClipCommand.mc.player.getPos()).add(0, -i, 0)) != Blocks.BEDROCK.getDefaultState()) continue;
+                if (VClipCommand.mc.world.getBlockState(BlockPos.ofFloored(VClipCommand.mc.player.getPos()).add(0, -i, 0)) != Blocks.BEDROCK.getDefaultState()) continue;
                 VClipCommand.sendMessage(String.valueOf(Formatting.RED) + (ClientSettings.isRu() ? "\u041d\u0435\u043a\u0443\u0434\u0430 \u043a\u043b\u0438\u043f\u0430\u0442\u044c!" : "There's nowhere to clip!"));
                 return 1;
             }
@@ -52,7 +52,7 @@ extends Command {
         builder.then(VClipCommand.literal("up").executes(context -> {
             float y = 0.0f;
             for (int i = 4; i < 255; ++i) {
-                if (VClipCommand.mc.world.getBlockState(BlockPos.ofFloored((Position)VClipCommand.mc.player.getPos()).add(0, i, 0)) != Blocks.AIR.getDefaultState()) continue;
+                if (VClipCommand.mc.world.getBlockState(BlockPos.ofFloored(VClipCommand.mc.player.getPos()).add(0, i, 0)) != Blocks.AIR.getDefaultState()) continue;
                 y = i + 1;
                 break;
             }

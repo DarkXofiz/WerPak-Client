@@ -272,7 +272,7 @@ implements Closeable {
             }
             for (Identifier identifier : this.GLYPH_PAGE_CACHE.keySet()) {
                 RenderSystem.setShaderTexture((int)0, (Identifier)identifier);
-                List objects = (List)this.GLYPH_PAGE_CACHE.get((Object)identifier);
+                var objects = (List)this.GLYPH_PAGE_CACHE.get((Object)identifier);
                 BufferBuilder bb = Tessellator.getInstance().begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_TEXTURE_COLOR);
                 for (DrawEntry object : objects) {
                     float xo = object.atX;
@@ -385,7 +385,7 @@ implements Closeable {
     }
 
     @Contract(value="_ -> new", pure=true)
-    public static int @NotNull [] RGBIntToRGB(int in) {
+    public static int[] RGBIntToRGB(int in) {
         int red = in >> 16 & 0xFF;
         int green = in >> 8 & 0xFF;
         int blue = in & 0xFF;

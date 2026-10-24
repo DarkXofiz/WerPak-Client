@@ -79,34 +79,9 @@ implements ModInitializer {
         core = new Core();
     }
 
-    public static final class KeyListening
-    extends Enum<KeyListening> {
-        public static final /* enum */ KeyListening ThunderGui = new KeyListening();
-        public static final /* enum */ KeyListening ClickGui = new KeyListening();
-        public static final /* enum */ KeyListening Search = new KeyListening();
-        public static final /* enum */ KeyListening Sliders = new KeyListening();
-        public static final /* enum */ KeyListening Strings = new KeyListening();
-        private static final /* synthetic */ KeyListening[] $VALUES;
-
-        public static KeyListening[] values() {
-            return (KeyListening[])$VALUES.clone();
-        }
-
-        public static KeyListening valueOf(String name) {
-            return Enum.valueOf(KeyListening.class, name);
-        }
-
-        private static KeyListening[] $values() {
-            return new KeyListening[]{ThunderGui, ClickGui, Search, Sliders, Strings};
-        }
-
-        private static /* synthetic */ KeyListening[] $values$() {
-            return new KeyListening[]{ThunderGui, ClickGui, Search, Sliders, Strings};
-        }
-
-        static {
-            $VALUES = KeyListening.$values$();
-        }
+    public enum KeyListening {
+        ThunderGui, ClickGui, Search, Sliders, Strings;
     }
+
 }
 

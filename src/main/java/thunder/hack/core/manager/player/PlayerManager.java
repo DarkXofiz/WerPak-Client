@@ -29,6 +29,7 @@
  */
 package thunder.hack.core.manager.player;
 
+import thunder.hack.events.impl.PacketEvent;
 import java.util.ArrayDeque;
 import meteordevelopment.orbit.EventHandler;
 import net.minecraft.entity.Entity;
@@ -321,7 +322,7 @@ implements IManager {
 
     public boolean isInWeb() {
         Box pBox = PlayerManager.mc.player.getBoundingBox();
-        BlockPos pBlockPos = BlockPos.ofFloored((Position)PlayerManager.mc.player.getPos());
+        BlockPos pBlockPos = BlockPos.ofFloored(PlayerManager.mc.player.getPos());
         for (int x = pBlockPos.getX() - 2; x <= pBlockPos.getX() + 2; ++x) {
             for (int y = pBlockPos.getY() - 1; y <= pBlockPos.getY() + 4; ++y) {
                 for (int z = pBlockPos.getZ() - 2; z <= pBlockPos.getZ() + 2; ++z) {

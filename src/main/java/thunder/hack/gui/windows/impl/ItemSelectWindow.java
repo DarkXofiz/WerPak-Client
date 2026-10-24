@@ -150,7 +150,7 @@ extends WindowBase {
         if (Render2DEngine.isHovered(mouseX, mouseY, this.getX() + this.getWidth() - 15.0f, this.getY() + 3.0f, 10.0, 10.0)) {
             Module.mc.setScreen((Screen)ClickGUI.getClickGui());
         }
-        ArrayList copy = Lists.newArrayList(this.allTab ? this.allItems : this.itemPlates);
+        var copy = Lists.newArrayList(this.allTab ? this.allItems : this.itemPlates);
         for (ItemPlate itemPlate : copy) {
             if ((float)((int)(itemPlate.offset + this.getY() + 50.0f)) + this.getScrollOffset() > this.getY() + this.getHeight()) continue;
             String name = itemPlate.key().replace("item.minecraft.", "").replace("block.minecraft.", "");

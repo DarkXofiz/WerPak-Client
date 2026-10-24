@@ -24,7 +24,6 @@ import com.mojang.brigadier.builder.RequiredArgumentBuilder;
 import java.util.Arrays;
 import java.util.List;
 import net.minecraft.client.resource.language.I18n;
-import net.minecraft.server.command.CommandManager;
 import net.minecraft.command.CommandSource;
 import net.minecraft.text.Text;
 import net.minecraft.client.MinecraftClient;
@@ -35,7 +34,7 @@ import org.jetbrains.annotations.NotNull;
 import thunder.hack.core.manager.client.CommandManager;
 
 public abstract class Command {
-    protected static final CommandRegistryAccess REGISTRY_ACCESS = CommandManager.createRegistryAccess((RegistryWrapper.WrapperLookup)BuiltinRegistries.createWrapperLookup());
+    protected static final CommandRegistryAccess REGISTRY_ACCESS = net.minecraft.server.command.CommandManager.createRegistryAccess((RegistryWrapper.WrapperLookup)BuiltinRegistries.createWrapperLookup());
     protected static final MinecraftClient mc = MinecraftClient.getInstance();
     protected final List<String> names;
     private final String description;

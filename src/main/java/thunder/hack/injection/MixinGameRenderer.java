@@ -194,10 +194,10 @@ public abstract class MixinGameRenderer {
     @Unique
     private HitResult ensureTargetInRangeCustom(HitResult hitResult, Vec3d cameraPos, double interactionRange) {
         Vec3d vec3d = hitResult.getPos();
-        if (!vec3d.isInRange((Position)cameraPos, interactionRange)) {
+        if (!vec3d.isInRange(cameraPos, interactionRange)) {
             Vec3d vec3d2 = hitResult.getPos();
             Direction direction = Direction.getFacing((double)(vec3d2.x - cameraPos.x), (double)(vec3d2.y - cameraPos.y), (double)(vec3d2.z - cameraPos.z));
-            return BlockHitResult.createMissed((Vec3d)vec3d2, (Direction)direction, (BlockPos)BlockPos.ofFloored((Position)vec3d2));
+            return BlockHitResult.createMissed((Vec3d)vec3d2, (Direction)direction, (BlockPos)BlockPos.ofFloored(vec3d2));
         }
         return hitResult;
     }

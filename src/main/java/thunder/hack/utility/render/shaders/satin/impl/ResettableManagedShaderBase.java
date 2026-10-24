@@ -108,7 +108,7 @@ implements UniformFinder {
         if (this.shader != null && !(found = this.setupUniform(ret, this.shader))) {
             LogUtils.getLogger().warn("No {} found with name {} in shader {}", uniformKind, uniformName, this.location);
         }
-        uniformMap.put(uniformName, ret);
+        uniformMap.put(uniformName, (U)ret);
         this.allUniforms.add(ret);
         return (U)ret;
     }

@@ -210,7 +210,7 @@ extends WindowBase {
             }
             this.refresh();
         }
-        ArrayList copy = Lists.newArrayList(this.waypointPlates);
+        var copy = Lists.newArrayList(this.waypointPlates);
         for (WaypointPlate waypointPlate : copy) {
             if ((float)((int)(waypointPlate.offset + this.getY() + 50.0f)) + this.getScrollOffset() > this.getY() + this.getHeight()) continue;
             boolean hoveringName2 = Render2DEngine.isHovered(mouseX, mouseY, nameX, this.getY() + 36.0f + this.getScrollOffset() + waypointPlate.offset, nameWidth, 11.0);

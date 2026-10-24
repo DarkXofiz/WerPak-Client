@@ -60,7 +60,7 @@ extends Command {
                 writer.write("Server: " + TabParseCommand.mc.getNetworkHandler().getServerInfo().address + "\n");
                 writer.write("Date: " + new SimpleDateFormat("dd.MM.yyyy").format(new Date()) + "\n\n");
                 writer.write("========================\n\n");
-                ArrayList sortedPlayers = new ArrayList(mc.getNetworkHandler().getPlayerList());
+                var sortedPlayers = new ArrayList<>(mc.getNetworkHandler().getPlayerList());
                 sortedPlayers.sort((player1, player2) -> {
                     String prefix1 = player1.getScoreboardTeam().getPrefix().getString();
                     String prefix2 = player2.getScoreboardTeam().getPrefix().getString();

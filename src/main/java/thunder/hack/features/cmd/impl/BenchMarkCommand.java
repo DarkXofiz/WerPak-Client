@@ -34,7 +34,7 @@ extends Command {
         builder.executes(context -> {
             new Thread(() -> {
                 long time = System.currentTimeMillis();
-                BlockPos playerPos = BlockPos.ofFloored((Position)BenchMarkCommand.mc.player.getPos());
+                BlockPos playerPos = BlockPos.ofFloored(BenchMarkCommand.mc.player.getPos());
                 int r = 6;
                 for (int x = playerPos.getX() - r; x <= playerPos.getX() + r; ++x) {
                     for (int y = playerPos.getY() - r; y <= playerPos.getY() + r; ++y) {

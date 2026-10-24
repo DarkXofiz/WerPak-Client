@@ -61,7 +61,7 @@ extends Module {
 
     @Override
     public void onRender2D(DrawContext context) {
-        for (Object ent : ItemESP.mc.world.getEntities()) {
+        for (Entity ent : ItemESP.mc.world.getEntities()) {
             if (!(ent instanceof ItemEntity)) continue;
             Vec3d[] vectors = ItemESP.getPoints((Entity)ent);
             Vector4d position = null;

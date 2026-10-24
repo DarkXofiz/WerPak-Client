@@ -416,7 +416,7 @@ extends Module {
         EntityTrackerUpdateS2CPacket pac;
         Object t = e.getPacket();
         if (t instanceof EntityTrackerUpdateS2CPacket && (pac = (EntityTrackerUpdateS2CPacket)t).id() == ElytraPlus.mc.player.getId() && (this.mode.is(Mode.Packet) || this.mode.is(Mode.SunriseOld))) {
-            List values2 = pac.trackedValues();
+            var values2 = pac.trackedValues();
             if (values2.isEmpty()) {
                 return;
             }
@@ -919,7 +919,7 @@ extends Module {
 
     public void fireWorkOnPlayerUpdate() {
         boolean aboveLiquid;
-        boolean inAir = ElytraPlus.mc.world.isAir(BlockPos.ofFloored((Position)ElytraPlus.mc.player.getPos()));
+        boolean inAir = ElytraPlus.mc.world.isAir(BlockPos.ofFloored(ElytraPlus.mc.player.getPos()));
         boolean bl = aboveLiquid = ElytraPlus.isAboveLiquid(0.1f) && inAir && ElytraPlus.mc.player.getVelocity().getY() < 0.0;
         if (ElytraPlus.mc.player.fallDistance > 0.0f && inAir || aboveLiquid) {
             this.equipElytra();

@@ -160,7 +160,7 @@ extends WindowBase {
             MacroManager.addMacro(new MacroManager.Macro(this.addName, this.addText, this.addBindKeyCode));
             this.refresh();
         }
-        ArrayList copy = Lists.newArrayList(this.macroPlates);
+        var copy = Lists.newArrayList(this.macroPlates);
         for (MacroPlate macroPlate : copy) {
             if ((float)((int)(macroPlate.offset + this.getY() + 50.0f)) + this.getScrollOffset() > this.getY() + this.getHeight()) continue;
             boolean hoveringName1 = Render2DEngine.isHovered(mouseX, mouseY, nameX, macroPlate.offset + this.getY() + 36.0f + this.getScrollOffset(), nameWidth, 11.0);

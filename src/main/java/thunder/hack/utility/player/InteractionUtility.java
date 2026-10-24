@@ -15,7 +15,7 @@
  *  net.minecraft.util.math.Vec3d
  *  net.minecraft.network.packet.Packet
  *  net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket.Full
- *  net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket.class_2831
+ *  net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket.LookAndOnGround
  *  net.minecraft.network.packet.c2s.play.ClientCommandC2SPacket
  *  net.minecraft.network.packet.c2s.play.ClientCommandC2SPacket.Mode
  *  net.minecraft.network.packet.c2s.play.HandSwingC2SPacket
@@ -96,11 +96,11 @@ public final class InteractionUtility {
         return entity.getPos().add(0.0, (double)entity.getEyeHeight(entity.getPose()), 0.0);
     }
 
-    public static float @NotNull [] calculateAngle(Vec3d to) {
+    public static float[] calculateAngle(Vec3d to) {
         return InteractionUtility.calculateAngle(InteractionUtility.getEyesPos((Entity)Module.mc.player), to);
     }
 
-    public static float @NotNull [] calculateAngle(@NotNull Vec3d from, @NotNull Vec3d to) {
+    public static float[] calculateAngle(@NotNull Vec3d from, @NotNull Vec3d to) {
         double difX = to.x - from.x;
         double difY = (to.y - from.y) * -1.0;
         double difZ = to.z - from.z;
@@ -153,7 +153,7 @@ public final class InteractionUtility {
                 break;
             }
             case 1: {
-                Module.mc.player.networkHandler.sendPacket((Packet)new PlayerMoveC2SPacket.class_2831(angle[0], angle[1], Module.mc.player.isOnGround()));
+                Module.mc.player.networkHandler.sendPacket((Packet)new PlayerMoveC2SPacket.LookAndOnGround(angle[0], angle[1], Module.mc.player.isOnGround()));
                 break;
             }
             case 2: {
@@ -187,7 +187,7 @@ public final class InteractionUtility {
         return InteractionUtility.getPlaceResult(bp, interact, ignoreEntities) != null;
     }
 
-    public static float @Nullable [] getPlaceAngle(@NotNull BlockPos bp, Interact interact, boolean ignoreEntities) {
+    public static float[] getPlaceAngle(@NotNull BlockPos bp, Interact interact, boolean ignoreEntities) {
         BlockHitResult result = InteractionUtility.getPlaceResult(bp, interact, ignoreEntities);
         if (result != null) {
             return InteractionUtility.calculateAngle(result.getPos());
@@ -208,7 +208,7 @@ public final class InteractionUtility {
     @Nullable
     public static BlockHitResult getPlaceResult(@NotNull BlockPos bp, Interact interact, boolean ignoreEntities) {
         if (!ignoreEntities) {
-            for (Entity entity : new ArrayList(Module.mc.world.getNonSpectatingEntities(Entity.class, new Box(bp)))) {
+            for (Entity entity : Module.mc.world.getNonSpectatingEntities(Entity.class, new Box(bp))) {
                 if (entity instanceof ItemEntity || entity instanceof ExperienceOrbEntity) continue;
                 return null;
             }
