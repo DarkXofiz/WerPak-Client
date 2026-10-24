@@ -110,8 +110,9 @@ public class Render3DEngine {
             RenderSystem.disableDepthTest();
             RenderSystem.setShader(GameRenderer::getRenderTypeLinesProgram);
             RenderSystem.lineWidth((float)2.0f);
-            OUTLINE_QUEUE.forEach(action -> Render3DEngine.setOutlinePoints(action.box(), Render3DEngine.matrixFrom(action.box().minX, action.box().minY, action.box().minZ), buffer, action.color()));
-            OUTLINE_SIDE_QUEUE.forEach(action -> Render3DEngine.setSideOutlinePoints(action.box, Render3DEngine.matrixFrom(action.box().minX, action.box().minY, action.box().minZ), buffer, action.color(), action.side()));
+            final BufferBuilder fbOutline = buffer;
+            OUTLINE_QUEUE.forEach(action -> Render3DEngine.setOutlinePoints(action.box(), Render3DEngine.matrixFrom(action.box().minX, action.box().minY, action.box().minZ), fbOutline, action.color()));
+            OUTLINE_SIDE_QUEUE.forEach(action -> Render3DEngine.setSideOutlinePoints(action.box, Render3DEngine.matrixFrom(action.box().minX, action.box().minY, action.box().minZ), fbOutline, action.color(), action.side()));
             Render2DEngine.endBuilding(buffer);
             RenderSystem.enableCull();
             RenderSystem.enableDepthTest();
@@ -126,9 +127,10 @@ public class Render3DEngine {
             buffer = tessellator.begin(VertexFormat.DrawMode.DEBUG_LINES, VertexFormats.LINES);
             RenderSystem.disableCull();
             RenderSystem.setShader(GameRenderer::getRenderTypeLinesProgram);
+            final BufferBuilder fbLine1 = buffer;
             DEBUG_LINE_QUEUE.forEach(action -> {
                 MatrixStack matrices = Render3DEngine.matrixFrom(action.start.getX(), action.start.getY(), action.start.getZ());
-                Render3DEngine.vertexLine(matrices, (VertexConsumer)buffer, 0.0f, 0.0f, 0.0f, (float)(action.end.getX() - action.start.getX()), (float)(action.end.getY() - action.start.getY()), (float)(action.end.getZ() - action.start.getZ()), action.color);
+                Render3DEngine.vertexLine(matrices, (VertexConsumer)fbLine1, 0.0f, 0.0f, 0.0f, (float)(action.end.getX() - action.start.getX()), (float)(action.end.getY() - action.start.getY()), (float)(action.end.getZ() - action.start.getZ()), action.color);
             });
             Render2DEngine.endBuilding(buffer);
             RenderSystem.enableCull();
@@ -144,9 +146,10 @@ public class Render3DEngine {
             RenderSystem.lineWidth((float)2.0f);
             RenderSystem.disableDepthTest();
             buffer = tessellator.begin(VertexFormat.DrawMode.LINES, VertexFormats.LINES);
+            final BufferBuilder fbLine2 = buffer;
             LINE_QUEUE.forEach(action -> {
                 MatrixStack matrices = Render3DEngine.matrixFrom(action.start.getX(), action.start.getY(), action.start.getZ());
-                Render3DEngine.vertexLine(matrices, (VertexConsumer)buffer, 0.0f, 0.0f, 0.0f, (float)(action.end.getX() - action.start.getX()), (float)(action.end.getY() - action.start.getY()), (float)(action.end.getZ() - action.start.getZ()), action.color);
+                Render3DEngine.vertexLine(matrices, (VertexConsumer)fbLine2, 0.0f, 0.0f, 0.0f, (float)(action.end.getX() - action.start.getX()), (float)(action.end.getY() - action.start.getY()), (float)(action.end.getZ() - action.start.getZ()), action.color);
             });
             Render2DEngine.endBuilding(buffer);
             RenderSystem.enableCull();

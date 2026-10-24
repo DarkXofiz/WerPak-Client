@@ -69,7 +69,7 @@ extends Command {
             Module module = (Module)context.getArgument("module", Module.class);
             String settingName = (String)context.getArgument("setting", String.class);
             String settingValue = (String)context.getArgument("settingValue", String.class);
-            Setting<?> setting = null;
+            Setting setting = null;
             for (Setting set : module.getSettings()) {
                 if (!Objects.equals(set.getName(), settingName)) continue;
                 setting = set;
