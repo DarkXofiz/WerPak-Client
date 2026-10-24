@@ -1,0 +1,32 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  net.minecraft.block.Block
+ *  net.minecraft.util.math.BlockPos
+ */
+package thunder.hack.events.impl;
+
+import net.minecraft.block.Block;
+import net.minecraft.util.math.BlockPos;
+import thunder.hack.events.Event;
+
+public class EventPlaceBlock
+extends Event {
+    private final BlockPos blockPos;
+    private final Block block;
+
+    public EventPlaceBlock(BlockPos blockPos, Block block) {
+        this.blockPos = blockPos;
+        this.block = block;
+    }
+
+    public BlockPos getBlockPos() {
+        return this.blockPos;
+    }
+
+    public Block getBlock() {
+        return this.block;
+    }
+}
+

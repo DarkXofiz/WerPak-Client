@@ -1,0 +1,30 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  net.minecraft.entity.Entity
+ */
+package thunder.hack.events.impl;
+
+import net.minecraft.entity.Entity;
+import thunder.hack.events.Event;
+
+public class EventAttack
+extends Event {
+    private Entity entity;
+    boolean pre;
+
+    public EventAttack(Entity entity, boolean pre) {
+        this.entity = entity;
+        this.pre = pre;
+    }
+
+    public Entity getEntity() {
+        return this.entity;
+    }
+
+    public boolean isPre() {
+        return this.pre;
+    }
+}
+

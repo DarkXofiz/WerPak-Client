@@ -1,0 +1,68 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  com.mojang.brigadier.StringReader
+ *  com.mojang.brigadier.arguments.ArgumentType
+ *  com.mojang.brigadier.context.CommandContext
+ *  com.mojang.brigadier.exceptions.CommandSyntaxException
+ *  com.mojang.brigadier.exceptions.DynamicCommandExceptionType
+ *  com.mojang.brigadier.suggestion.Suggestions
+ *  com.mojang.brigadier.suggestion.SuggestionsBuilder
+ *  net.minecraft.command.CommandSource
+ *  net.minecraft.block.Block
+ *  net.minecraft.text.Text
+ *  net.minecraft.registry.Registries
+ */
+package thunder.hack.features.cmd.args;
+
+import com.mojang.brigadier.StringReader;
+import com.mojang.brigadier.arguments.ArgumentType;
+import com.mojang.brigadier.context.CommandContext;
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import com.mojang.brigadier.exceptions.DynamicCommandExceptionType;
+import com.mojang.brigadier.suggestion.Suggestions;
+import com.mojang.brigadier.suggestion.SuggestionsBuilder;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import net.minecraft.command.CommandSource;
+import net.minecraft.block.Block;
+import net.minecraft.text.Text;
+import net.minecraft.registry.Registries;
+import thunder.hack.features.modules.client.ClientSettings;
+
+public class SearchArgumentType
+implements ArgumentType<String> {
+    private static final List<String> EXAMPLES = SearchArgumentType.getRegisteredBlocks().stream().limit(5L).toList();
+
+    public static SearchArgumentType create() {
+        return new SearchArgumentType();
+    }
+
+    public String parse(StringReader reader) throws CommandSyntaxException {
+        String blockName = reader.readString();
+        if (!SearchArgumentType.getRegisteredBlocks().contains(blockName)) {
+            throw new DynamicCommandExceptionType(name -> Text.literal((String)(ClientSettings.isRu() ? "\u0422\u0430\u043a\u043e\u0433\u043e \u0431\u043b\u043e\u043a\u0430 \u043d\u0435\u0442!" : "There is no such block!"))).create((Object)blockName);
+        }
+        return blockName;
+    }
+
+    public <S> CompletableFuture<Suggestions> listSuggestions(CommandContext<S> context, SuggestionsBuilder builder) {
+        return CommandSource.suggestMatching(SearchArgumentType.getRegisteredBlocks(), (SuggestionsBuilder)builder);
+    }
+
+    public Collection<String> getExamples() {
+        return EXAMPLES;
+    }
+
+    public static List<String> getRegisteredBlocks() {
+        ArrayList<String> result = new ArrayList<String>();
+        for (Block block : Registries.BLOCK) {
+            result.add(block.getTranslationKey().replace("block.minecraft.", ""));
+        }
+        return result;
+    }
+}
+

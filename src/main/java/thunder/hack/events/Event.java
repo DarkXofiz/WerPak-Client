@@ -1,0 +1,17 @@
+/*
+ * Decompiled with CFR 0.152.
+ */
+package thunder.hack.events;
+
+public class Event {
+    private boolean cancelled = false;
+
+    public boolean isCancelled() {
+        return this.cancelled;
+    }
+
+    public void cancel() {
+        this.cancelled = true;
+    }
+}
+

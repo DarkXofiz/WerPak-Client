@@ -1,0 +1,170 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  com.google.gson.JsonArray
+ *  com.google.gson.JsonObject
+ *  com.google.gson.JsonParser
+ *  net.fabricmc.loader.api.metadata.Person
+ *  net.minecraft.client.texture.NativeImage
+ *  net.minecraft.client.texture.NativeImageBackedTexture
+ *  net.minecraft.util.Formatting
+ *  net.minecraft.util.Identifier
+ */
+package thunder.hack.utility;
+
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.List;
+import java.util.Objects;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.jar.Manifest;
+import net.fabricmc.loader.api.metadata.Person;
+import net.minecraft.client.texture.NativeImage;
+import net.minecraft.client.texture.NativeImageBackedTexture;
+import net.minecraft.util.Formatting;
+import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.NotNull;
+import thunder.hack.ThunderHack;
+import thunder.hack.core.manager.client.ConfigManager;
+import thunder.hack.features.modules.Module;
+import thunder.hack.utility.math.MathUtility;
+
+public final class ThunderUtility {
+    public static List<String> changeLog = new ArrayList<String>();
+    public static List<String> starGazer = new ArrayList<String>();
+
+    @NotNull
+    public static String getAuthors() {
+        List<String> names = ThunderHack.MOD_META.getAuthors().stream().map(Person::getName).toList();
+        return String.join((CharSequence)", ", names);
+    }
+
+    public static String solveName(String notSolved) {
+        AtomicReference<String> mb = new AtomicReference<String>("FATAL ERROR");
+        Objects.requireNonNull(Module.mc.getNetworkHandler()).getListedPlayerListEntries().forEach(player -> {
+            if (notSolved.contains(player.getProfile().getName())) {
+                mb.set(player.getProfile().getName());
+            }
+        });
+        return mb.get();
+    }
+
+    public static Identifier getCustomImg(String name) throws IOException {
+        return Module.mc.getTextureManager().registerDynamicTexture("th-" + name + "-" + (int)MathUtility.random(0.0f, 1000.0f), new NativeImageBackedTexture(NativeImage.read((InputStream)new FileInputStream(String.valueOf(ConfigManager.IMAGES_FOLDER) + "/" + name + ".png"))));
+    }
+
+    public static void syncVersion() {
+        try {
+            if (!new BufferedReader(new InputStreamReader(new URL("https://raw.githubusercontent.com/Pan4ur/THRecodeUtil/main/syncVersion121.txt").openStream())).readLine().equals("1.7b2407")) {
+                ThunderHack.isOutdated = true;
+            }
+        }
+        catch (Exception exception) {
+            // empty catch block
+        }
+    }
+
+    public static void parseStarGazer() {
+        ArrayList<String> starGazers = new ArrayList<String>();
+        try {
+            for (int page = 1; page <= 3; ++page) {
+                String inputLine;
+                URL url = new URL("https://api.github.com/repos/Pan4ur/ThunderHack-Recode/stargazers?per_page=100&page=" + page);
+                BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
+                StringBuilder response = new StringBuilder();
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+                in.close();
+                JsonArray jsonArray = JsonParser.parseString((String)response.toString()).getAsJsonArray();
+                for (int i = 0; i < jsonArray.size(); ++i) {
+                    JsonObject jsonObject = jsonArray.get(i).getAsJsonObject();
+                    starGazers.add(jsonObject.getAsJsonPrimitive("login").getAsString());
+                }
+                Thread.sleep(1500L);
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void syncContributors() {
+        try {
+            String inputLine;
+            URL list = new URL("https://raw.githubusercontent.com/Pan4ur/THRecodeUtil/main/thTeam.txt");
+            BufferedReader in = new BufferedReader(new InputStreamReader(list.openStream(), StandardCharsets.UTF_8));
+            int i = 0;
+            while ((inputLine = in.readLine()) != null) {
+                ThunderHack.contributors[i] = inputLine.trim();
+                ++i;
+            }
+            in.close();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static String readManifestField(String fieldName) {
+        try {
+            Enumeration<URL> en = Thread.currentThread().getContextClassLoader().getResources("META-INF/MANIFEST.MF");
+            while (en.hasMoreElements()) {
+                try {
+                    String s;
+                    URL url = en.nextElement();
+                    InputStream is = url.openStream();
+                    if (is == null || (s = new Manifest(is).getMainAttributes().getValue(fieldName)) == null) continue;
+                    return s;
+                }
+                catch (Exception exception) {
+                }
+            }
+        }
+        catch (Exception exception) {
+            // empty catch block
+        }
+        return "0";
+    }
+
+    public static void parseCommits() {
+        try {
+            String inputLine;
+            URL url = new URL("https://api.github.com/repos/Pan4ur/ThunderHack-Recode/commits?per_page=50");
+            BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream(), StandardCharsets.UTF_8));
+            changeLog.add("Changelog [Recode; Date: " + ThunderHack.BUILD_DATE + "; GitHash:" + ThunderHack.GITHUB_HASH + "]");
+            changeLog.add("\n");
+            while ((inputLine = in.readLine()) != null) {
+                JsonArray jsonArray = JsonParser.parseString((String)inputLine).getAsJsonArray();
+                for (int i = 0; i < jsonArray.size(); ++i) {
+                    JsonObject jsonObject = jsonArray.get(i).getAsJsonObject();
+                    JsonObject commitObject = jsonObject.getAsJsonObject("commit");
+                    JsonObject authorObject = commitObject.getAsJsonObject("author");
+                    String name = authorObject.get("name").getAsString().replace("\n", "");
+                    String date = authorObject.get("date").getAsString().replace("\n", "");
+                    String info = commitObject.get("message").getAsString().replace("\n", "");
+                    if (name.contains("ImgBot") || info.startsWith("Merge") || info.startsWith("Revert")) continue;
+                    String formattedDate = String.valueOf(Formatting.GRAY) + date.split("T")[0] + String.valueOf(Formatting.RESET);
+                    String formattedName = "@" + String.valueOf(Formatting.RED) + name + String.valueOf(Formatting.RESET);
+                    changeLog.add("- " + info + " [" + formattedDate + "]  (" + formattedName + ")");
+                }
+            }
+            in.close();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+

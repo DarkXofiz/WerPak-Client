@@ -1,0 +1,112 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  com.mojang.logging.LogUtils
+ *  net.fabricmc.api.ModInitializer
+ *  net.fabricmc.loader.api.FabricLoader
+ *  net.fabricmc.loader.api.ModContainer
+ *  net.fabricmc.loader.api.metadata.ModMetadata
+ *  net.minecraft.util.math.BlockPos
+ *  net.minecraft.client.MinecraftClient
+ */
+package thunder.hack;
+
+import com.mojang.logging.LogUtils;
+import java.awt.Color;
+import java.lang.invoke.MethodHandles;
+import meteordevelopment.orbit.EventBus;
+import meteordevelopment.orbit.IEventBus;
+import net.fabricmc.api.ModInitializer;
+import net.fabricmc.loader.api.FabricLoader;
+import net.fabricmc.loader.api.ModContainer;
+import net.fabricmc.loader.api.metadata.ModMetadata;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.client.MinecraftClient;
+import org.slf4j.Logger;
+import thunder.hack.core.Core;
+import thunder.hack.core.Managers;
+import thunder.hack.core.hooks.ManagerShutdownHook;
+import thunder.hack.core.manager.client.ModuleManager;
+import thunder.hack.utility.ThunderUtility;
+import thunder.hack.utility.render.Render2DEngine;
+
+public class ThunderHack
+implements ModInitializer {
+    public static final ModMetadata MOD_META = ((ModContainer)FabricLoader.getInstance().getModContainer("thunderhack").orElseThrow()).getMetadata();
+    public static final String MOD_ID = "thunderhack";
+    public static final String VERSION = "V15";
+    public static String GITHUB_HASH = "0";
+    public static String BUILD_DATE = "1 Jan 1970";
+    public static final Logger LOGGER = LogUtils.getLogger();
+    public static final Runtime RUNTIME = Runtime.getRuntime();
+    public static final boolean baritone = FabricLoader.getInstance().isModLoaded("baritone") || FabricLoader.getInstance().isModLoaded("baritone-meteor");
+    public static final IEventBus EVENT_BUS = new EventBus();
+    public static String[] contributors = new String[32];
+    public static Color copy_color = new Color(-1);
+    public static KeyListening currentKeyListener;
+    public static boolean isOutdated;
+    public static BlockPos gps_position;
+    public static float TICK_TIMER;
+    public static MinecraftClient mc;
+    public static long initTime;
+    public static Core core;
+
+    public void onInitialize() {
+        mc = MinecraftClient.getInstance();
+        initTime = System.currentTimeMillis();
+        BUILD_DATE = ThunderUtility.readManifestField("Build-Timestamp");
+        GITHUB_HASH = ThunderUtility.readManifestField("Git-Commit");
+        ThunderUtility.syncVersion();
+        EVENT_BUS.registerLambdaFactory("thunder.hack", (lookupInMethod, klass) -> (MethodHandles.Lookup)lookupInMethod.invoke(null, klass, MethodHandles.lookup()));
+        EVENT_BUS.subscribe(core);
+        Managers.init();
+        Managers.subscribe();
+        Render2DEngine.initShaders();
+        ModuleManager.rpc.startRpc();
+        LOGGER.info("[ThunderHack] Init time: {} ms.", (Object)(System.currentTimeMillis() - initTime));
+        initTime = System.currentTimeMillis();
+        RUNTIME.addShutdownHook(new ManagerShutdownHook());
+    }
+
+    public static boolean isFuturePresent() {
+        return FabricLoader.getInstance().getModContainer("future").isPresent();
+    }
+
+    static {
+        isOutdated = false;
+        TICK_TIMER = 1.0f;
+        core = new Core();
+    }
+
+    public static final class KeyListening
+    extends Enum<KeyListening> {
+        public static final /* enum */ KeyListening ThunderGui = new KeyListening();
+        public static final /* enum */ KeyListening ClickGui = new KeyListening();
+        public static final /* enum */ KeyListening Search = new KeyListening();
+        public static final /* enum */ KeyListening Sliders = new KeyListening();
+        public static final /* enum */ KeyListening Strings = new KeyListening();
+        private static final /* synthetic */ KeyListening[] $VALUES;
+
+        public static KeyListening[] values() {
+            return (KeyListening[])$VALUES.clone();
+        }
+
+        public static KeyListening valueOf(String name) {
+            return Enum.valueOf(KeyListening.class, name);
+        }
+
+        private static KeyListening[] $values() {
+            return new KeyListening[]{ThunderGui, ClickGui, Search, Sliders, Strings};
+        }
+
+        private static /* synthetic */ KeyListening[] $values$() {
+            return new KeyListening[]{ThunderGui, ClickGui, Search, Sliders, Strings};
+        }
+
+        static {
+            $VALUES = KeyListening.$values$();
+        }
+    }
+}
+

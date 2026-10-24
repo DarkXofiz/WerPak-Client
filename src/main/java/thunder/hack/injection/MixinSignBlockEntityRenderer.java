@@ -1,0 +1,37 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  net.minecraft.util.math.BlockPos
+ *  net.minecraft.client.util.math.MatrixStack
+ *  net.minecraft.client.render.VertexConsumerProvider
+ *  net.minecraft.block.entity.SignText
+ *  net.minecraft.client.render.block.entity.SignBlockEntityRenderer
+ *  org.spongepowered.asm.mixin.Mixin
+ *  org.spongepowered.asm.mixin.injection.At
+ *  org.spongepowered.asm.mixin.injection.Inject
+ *  org.spongepowered.asm.mixin.injection.callback.CallbackInfo
+ */
+package thunder.hack.injection;
+
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.client.render.VertexConsumerProvider;
+import net.minecraft.block.entity.SignText;
+import net.minecraft.client.render.block.entity.SignBlockEntityRenderer;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import thunder.hack.core.manager.client.ModuleManager;
+
+@Mixin(value={SignBlockEntityRenderer.class})
+public class MixinSignBlockEntityRenderer {
+    @Inject(method={"renderText"}, at={@At(value="HEAD")}, cancellable=true)
+    public final void renderTextHook(BlockPos pos, SignText signText, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int lineHeight, int lineWidth, boolean front, CallbackInfo ci) {
+        if (ModuleManager.noRender.isEnabled() && ModuleManager.noRender.signText.getValue().booleanValue()) {
+            ci.cancel();
+        }
+    }
+}
+

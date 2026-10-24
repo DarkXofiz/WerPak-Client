@@ -1,0 +1,49 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  net.minecraft.item.ItemStack
+ */
+package thunder.hack.utility.player;
+
+import net.minecraft.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
+import thunder.hack.features.modules.Module;
+import thunder.hack.utility.player.InventoryUtility;
+
+public record SearchInvResult(int slot, boolean found, ItemStack stack) {
+    private static final SearchInvResult NOT_FOUND_RESULT = new SearchInvResult(-1, false, null);
+
+    public static SearchInvResult notFound() {
+        return NOT_FOUND_RESULT;
+    }
+
+    @NotNull
+    public static SearchInvResult inOffhand(ItemStack stack) {
+        return new SearchInvResult(999, true, stack);
+    }
+
+    public boolean isHolding() {
+        if (Module.mc.player == null) {
+            return false;
+        }
+        return Module.mc.player.getInventory().selectedSlot == this.slot;
+    }
+
+    public boolean isInHotBar() {
+        return this.slot < 9;
+    }
+
+    public void switchTo() {
+        if (this.found && this.isInHotBar()) {
+            InventoryUtility.switchTo(this.slot);
+        }
+    }
+
+    public void switchToSilent() {
+        if (this.found && this.isInHotBar()) {
+            InventoryUtility.switchToSilent(this.slot);
+        }
+    }
+}
+
