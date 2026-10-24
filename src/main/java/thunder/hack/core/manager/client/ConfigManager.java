@@ -212,7 +212,7 @@ implements IManager {
     public void loadModuleOnly(File config, Module module) {
         try (FileReader reader = new FileReader(config);){
             JsonArray array = JsonParser.parseReader((Reader)reader).getAsJsonArray();
-            JsonObject modulesObject = array.get(0).getAsJsonObject();
+            JsonObject modulesObject = ((JsonArray)array).get(0).getAsJsonObject();
             JsonArray modules = modulesObject.getAsJsonArray("Modules");
             if (modules != null) {
                 for (JsonElement element : modules) {
@@ -248,7 +248,7 @@ implements IManager {
             JsonArray array = new JsonArray();
             JsonObject modulesObj = new JsonObject();
             modulesObj.add("Modules", (JsonElement)this.getModuleArray());
-            array.add((JsonElement)modulesObj);
+            ((JsonArray)array).add((JsonElement)modulesObj);
             FileWriter writer = new FileWriter(config, StandardCharsets.UTF_8);
             new GsonBuilder().setPrettyPrinting().create().toJson((JsonElement)array, (Appendable)writer);
             writer.close();
@@ -267,7 +267,7 @@ implements IManager {
             return;
         }
         JsonObject mobject = object.getAsJsonObject(module.getName());
-        for (Setting<?> setting : module.getSettings()) {
+        for (Setting setting : module.getSettings()) {
             try {
                 Object array;
                 if (setting.getValue() instanceof SettingGroup) continue;
@@ -289,27 +289,27 @@ implements IManager {
                 }
                 if (setting.getValue() instanceof Bind) {
                     array = mobject.getAsJsonArray(setting.getName());
-                    if (array.get(0).getAsString().contains("M")) {
-                        setting.setValue(new Bind(Integer.parseInt(array.get(0).getAsString().replace("M", "")), true, array.get(1).getAsBoolean()));
+                    if (((JsonArray)array).get(0).getAsString().contains("M")) {
+                        setting.setValue(new Bind(Integer.parseInt(((JsonArray)array).get(0).getAsString().replace("M", "")), true, ((JsonArray)array).get(1).getAsBoolean()));
                         continue;
                     }
-                    setting.setValue(new Bind(Integer.parseInt(array.get(0).getAsString()), false, array.get(1).getAsBoolean()));
+                    setting.setValue(new Bind(Integer.parseInt(((JsonArray)array).get(0).getAsString()), false, ((JsonArray)array).get(1).getAsBoolean()));
                     continue;
                 }
                 array = setting.getValue();
                 if (array instanceof ColorSetting) {
                     ColorSetting colorSetting = (ColorSetting)array;
                     array = mobject.getAsJsonArray(setting.getName());
-                    colorSetting.setColor(array.get(0).getAsInt());
-                    colorSetting.setRainbow(array.get(1).getAsBoolean());
+                    colorSetting.setColor(((JsonArray)array).get(0).getAsInt());
+                    colorSetting.setRainbow(((JsonArray)array).get(1).getAsBoolean());
                     continue;
                 }
                 array = setting.getValue();
                 if (array instanceof PositionSetting) {
                     PositionSetting posSetting = (PositionSetting)array;
                     array = mobject.getAsJsonArray(setting.getName());
-                    posSetting.setX(array.get(0).getAsFloat());
-                    posSetting.setY(array.get(1).getAsFloat());
+                    posSetting.setX(((JsonArray)array).get(0).getAsFloat());
+                    posSetting.setY(((JsonArray)array).get(1).getAsFloat());
                     continue;
                 }
                 array = setting.getValue();
@@ -322,9 +322,9 @@ implements IManager {
                 if (array instanceof ItemSelectSetting) {
                     ItemSelectSetting iSetting = (ItemSelectSetting)array;
                     array = mobject.getAsJsonArray(setting.getName());
-                    for (int i = 0; i < array.size(); ++i) {
-                        if (iSetting.getItemsById().contains(array.get(i).getAsString())) continue;
-                        iSetting.getItemsById().add(array.get(i).getAsString());
+                    for (int i = 0; i < ((JsonArray)array).size(); ++i) {
+                        if (iSetting.getItemsById().contains(((JsonArray)array).get(i).getAsString())) continue;
+                        iSetting.getItemsById().add(((JsonArray)array).get(i).getAsString());
                     }
                     continue;
                 }
@@ -345,15 +345,15 @@ implements IManager {
             return;
         }
         JsonObject mobject = object.getAsJsonObject(module.getName());
-        for (Setting<?> setting : module.getSettings()) {
+        for (Setting setting : module.getSettings()) {
             try {
                 if (!(setting.getValue() instanceof Bind)) continue;
                 JsonArray array = mobject.getAsJsonArray(setting.getName());
-                if (array.get(0).getAsString().contains("M")) {
-                    setting.setValue(new Bind(Integer.parseInt(array.get(0).getAsString().replace("M", "")), true, array.get(1).getAsBoolean()));
+                if (((JsonArray)array).get(0).getAsString().contains("M")) {
+                    setting.setValue(new Bind(Integer.parseInt(((JsonArray)array).get(0).getAsString().replace("M", "")), true, ((JsonArray)array).get(1).getAsBoolean()));
                     continue;
                 }
-                setting.setValue(new Bind(Integer.parseInt(array.get(0).getAsString()), false, array.get(1).getAsBoolean()));
+                setting.setValue(new Bind(Integer.parseInt(((JsonArray)array).get(0).getAsString()), false, ((JsonArray)array).get(1).getAsBoolean()));
             }
             catch (Exception e) {
                 LogUtils.getLogger().warn("[Thunderhack] Module: " + module.getName() + " Setting: " + setting.getName() + " Error: ");
@@ -374,14 +374,14 @@ implements IManager {
     public JsonObject getModuleObject(@NotNull Module m) {
         JsonObject attribs = new JsonObject();
         JsonParser jp = new JsonParser();
-        for (Setting<?> setting : m.getSettings()) {
+        for (Setting setting : m.getSettings()) {
             Object array;
             Object obj = setting.getValue();
             if (obj instanceof ColorSetting) {
                 ColorSetting color = (ColorSetting)obj;
                 array = new JsonArray();
-                array.add((JsonElement)new JsonPrimitive((Number)color.getRawColor()));
-                array.add((JsonElement)new JsonPrimitive(Boolean.valueOf(color.isRainbow())));
+                ((JsonArray)array).add((JsonElement)new JsonPrimitive((Number)color.getRawColor()));
+                ((JsonArray)array).add((JsonElement)new JsonPrimitive(Boolean.valueOf(color.isRainbow())));
                 attribs.add(setting.getName(), array);
                 continue;
             }
@@ -389,8 +389,8 @@ implements IManager {
             if (array instanceof PositionSetting) {
                 PositionSetting pos = (PositionSetting)array;
                 array = new JsonArray();
-                array.add((JsonElement)new JsonPrimitive((Number)Float.valueOf(pos.getX())));
-                array.add((JsonElement)new JsonPrimitive((Number)Float.valueOf(pos.getY())));
+                ((JsonArray)array).add((JsonElement)new JsonPrimitive((Number)Float.valueOf(pos.getX())));
+                ((JsonArray)array).add((JsonElement)new JsonPrimitive((Number)Float.valueOf(pos.getY())));
                 attribs.add(setting.getName(), array);
                 continue;
             }
@@ -405,11 +405,11 @@ implements IManager {
                 Bind b = (Bind)array;
                 array = new JsonArray();
                 if (b.isMouse()) {
-                    array.add(jp.parse(b.getBind()));
+                    ((JsonArray)array).add(jp.parse(b.getBind()));
                 } else {
-                    array.add((JsonElement)new JsonPrimitive((Number)b.getKey()));
+                    ((JsonArray)array).add((JsonElement)new JsonPrimitive((Number)b.getKey()));
                 }
-                array.add((JsonElement)new JsonPrimitive(Boolean.valueOf(b.isHold())));
+                ((JsonArray)array).add((JsonElement)new JsonPrimitive(Boolean.valueOf(b.isHold())));
                 attribs.add(setting.getName(), array);
                 continue;
             }
@@ -427,7 +427,7 @@ implements IManager {
                 ItemSelectSetting iSelect = (ItemSelectSetting)array;
                 array = new JsonArray();
                 for (String id : iSelect.getItemsById()) {
-                    array.add((JsonElement)new JsonPrimitive(id));
+                    ((JsonArray)array).add((JsonElement)new JsonPrimitive(id));
                 }
                 attribs.add(setting.getName(), array);
                 continue;
