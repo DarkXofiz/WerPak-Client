@@ -670,8 +670,8 @@ extends Module {
         this.pitchAcceleration = Managers.PLAYER.checkRtx(this.rotationYaw, this.rotationPitch, this.getRange() + this.aimRange.getValue().floatValue(), this.getRange() + this.aimRange.getValue().floatValue(), this.rayTrace.getValue()) ? this.aimedPitchStep.getValue().floatValue() : (this.pitchAcceleration < this.maxPitchStep.getValue().floatValue() ? this.pitchAcceleration * this.pitchAccelerate.getValue().floatValue() : this.maxPitchStep.getValue().floatValue());
         float delta_yaw = MathHelper.wrapDegrees((float)((float)MathHelper.wrapDegrees((double)(Math.toDegrees(Math.atan2(targetVec.z - Aura.mc.player.getZ(), targetVec.x - Aura.mc.player.getX())) - 90.0)) - this.rotationYaw)) + (float)(this.wallsBypass.is(WallsBypass.V2) && !ready && !Aura.mc.player.canSee(target) ? 20 : 0);
         float delta_pitch = (float)(-Math.toDegrees(Math.atan2(targetVec.y - (Aura.mc.player.getPos().y + (double)Aura.mc.player.getEyeHeight(Aura.mc.player.getPose())), Math.sqrt(Math.pow(targetVec.x - Aura.mc.player.getX(), 2.0) + Math.pow(targetVec.z - Aura.mc.player.getZ(), 2.0))))) - this.rotationPitch;
-        float f = yawStep = this.rotationMode.getValue() != Mode.Track ? 360.0f : MathUtility.random(this.minYawStep.getValue().intValue(), this.maxYawStep.getValue().intValue());
-        float f2 = this.rotationMode.getValue() != Mode.Track ? 180.0f : (pitchStep = Managers.PLAYER.ticksElytraFlying > 5 ? 180.0f : this.pitchAcceleration + MathUtility.random(-1.0f, 1.0f));
+        yawStep = this.rotationMode.getValue() != Mode.Track ? 360.0f : MathUtility.random(this.minYawStep.getValue().intValue(), this.maxYawStep.getValue().intValue());
+        pitchStep = this.rotationMode.getValue() != Mode.Track ? 180.0f : (Managers.PLAYER.ticksElytraFlying > 5 ? 180.0f : this.pitchAcceleration + MathUtility.random(-1.0f, 1.0f));
         if (Aura.mc.player.isFallFlying() && ElytraHelper.getInstance().isEnabled() && ElytraHelper.getInstance().isSwingEnabled()) {
             yawStep = (float)(55.0 + Math.random() * 25.0);
             pitchStep = (float)(20.0 + Math.random() * 15.0);
