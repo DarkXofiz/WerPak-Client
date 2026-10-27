@@ -53,7 +53,7 @@ extends Screen {
     private static MainMenuScreen INSTANCE = new MainMenuScreen();
 
     protected MainMenuScreen() {
-        super(Text.of((String)"WerPakMainMenuScreen"));
+        super(Text.of((String)"ZeltrixWareZenoBest_CrackMainMenuScreen"));
         INSTANCE = this;
     }
 
@@ -89,7 +89,7 @@ extends Screen {
         this.buttons.add(new MainMenuButton(rightX + 12.0f, btnStartY, btnW, btnH, ClientSettings.isRu() ? "\u041e\u0434\u0438\u043d\u043e\u0447\u043d\u0430\u044f \u0438\u0433\u0440\u0430" : "Singleplayer", ClientSettings.isRu() ? "\u041b\u043e\u043a\u0430\u043b\u044c\u043d\u044b\u0435 \u043c\u0438\u0440\u044b" : "Play on local worlds", "\u2756", () -> Module.mc.setScreen((Screen)new SelectWorldScreen((Screen)this))));
         this.buttons.add(new MainMenuButton(rightX + 12.0f, btnStartY + (btnH + btnGap), btnW, btnH, ClientSettings.isRu() ? "\u0421\u0435\u0442\u0435\u0432\u0430\u044f \u0438\u0433\u0440\u0430" : "Multiplayer", ClientSettings.isRu() ? "\u041f\u043e\u0434\u043a\u043b\u044e\u0447\u0435\u043d\u0438\u0435 \u043a \u0441\u0435\u0440\u0432\u0435\u0440\u0430\u043c" : "Join online servers", "\ud83c\udf10", () -> Module.mc.setScreen((Screen)new MultiplayerScreen((Screen)this))));
         this.buttons.add(new MainMenuButton(rightX + 12.0f, btnStartY + (btnH + btnGap) * 2.0f, btnW, btnH, ClientSettings.isRu() ? "\u041d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0438" : "Options", ClientSettings.isRu() ? "\u041d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0438 \u0438\u0433\u0440\u044b \u0438 \u0433\u0440\u0430\u0444\u0438\u043a\u0438" : "Game & video settings", "\u2699", () -> Module.mc.setScreen((Screen)new OptionsScreen((Screen)this, Module.mc.options))));
-        this.buttons.add(new MainMenuButton(rightX + 12.0f, btnStartY + (btnH + btnGap) * 3.0f, btnW, btnH, ClientSettings.isRu() ? "\u041c\u043e\u0434\u0443\u043b\u0438 \u043a\u043b\u0438\u0435\u043d\u0442\u0430" : "Client GUI", ClientSettings.isRu() ? "\u041c\u0435\u043d\u044e \u0444\u0443\u043d\u043a\u0446\u0438\u0439 WerPak" : "Configure client features", "\u26a1", () -> ModuleManager.clickGui.setGui()));
+        this.buttons.add(new MainMenuButton(rightX + 12.0f, btnStartY + (btnH + btnGap) * 3.0f, btnW, btnH, ClientSettings.isRu() ? "\u041c\u043e\u0434\u0443\u043b\u0438 \u043a\u043b\u0438\u0435\u043d\u0442\u0430" : "Client GUI", ClientSettings.isRu() ? "\u041c\u0435\u043d\u044e \u0444\u0443\u043d\u043a\u0446\u0438\u0439 ZeltrixWareZenoBest_Crack" : "Configure client features", "\u26a1", () -> ModuleManager.clickGui.setGui()));
         this.buttons.add(new MainMenuButton(rightX + 12.0f, btnStartY + (btnH + btnGap) * 4.0f, btnW, btnH, ClientSettings.isRu() ? "\u041e\u0431\u044b\u0447\u043d\u043e\u0435 \u043c\u0435\u043d\u044e" : "Vanilla Menu", ClientSettings.isRu() ? "\u0421\u0442\u0430\u043d\u0434\u0430\u0440\u0442\u043d\u043e\u0435 \u0433\u043b\u0430\u0432\u043d\u043e\u0435 \u043c\u0435\u043d\u044e" : "Return to vanilla title", "\u25c0", () -> {
             this.confirm = true;
             Module.mc.setScreen((Screen)new TitleScreen());
@@ -136,7 +136,7 @@ extends Screen {
         Render2DEngine.drawRound(matrices, emblemX + 2.5f, emblemY + 2.5f, emblemSize - 5.0f, emblemSize - 5.0f, 16.0f, new Color(16, 12, 28, 250));
         FontRenderers.thglitchBig.drawCenteredString(matrices, "Z", (double)(emblemX + emblemSize / 2.0f), (double)(emblemY + 10.0f), Color.WHITE.getRGB());
         float brandY = leftY + 108.0f;
-        FontRenderers.sf_bold.drawCenteredString(matrices, "WerPak Ware", (double)(leftX + leftW / 2.0f), (double)brandY, Color.WHITE.getRGB());
+        FontRenderers.sf_bold.drawCenteredString(matrices, "ZeltrixWareZenoBest_Crack Ware", (double)(leftX + leftW / 2.0f), (double)brandY, Color.WHITE.getRGB());
         FontRenderers.sf_medium_mini.drawCenteredString(matrices, "PREMIUM UTILITY CLIENT", (double)(leftX + leftW / 2.0f), (double)(brandY + 16.0f), new Color(0, 210, 255, 210).getRGB());
         Render2DEngine.drawRound(matrices, leftX + 25.0f, brandY + 32.0f, leftW - 50.0f, 1.5f, 0.75f, new Color(255, 255, 255, 25));
         float infoY = brandY + 44.0f;
@@ -174,7 +174,7 @@ extends Screen {
         RenderSystem.setShaderColor((float)1.0f, (float)1.0f, (float)1.0f, (float)(hoveredDonate ? 1.0f : 0.7f));
         context.drawTexture(TextureStorage.donation, (int)(screenW - 67.0f), (int)(btnIconY + 3.0f), 20, 20, 0.0f, 0.0f, 30, 30, 30, 30);
         RenderSystem.setShaderColor((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
-        FontRenderers.sf_medium_mini.drawString(matrices, "WerPak \u2022 Powered by ThunderHack", 12.0, (double)(screenH - 16.0f), new Color(110, 105, 130, 180).getRGB());
+        FontRenderers.sf_medium_mini.drawString(matrices, "ZeltrixWareZenoBest_Crack \u2022 Powered by ThunderHack", 12.0, (double)(screenH - 16.0f), new Color(110, 105, 130, 180).getRGB());
     }
 
     public boolean mouseClicked(double mouseX, double mouseY, int button) {

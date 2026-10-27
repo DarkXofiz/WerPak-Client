@@ -115,7 +115,7 @@ extends HudElement {
         } else if (mode.is(Mode.Polyak)) {
             String ping = String.valueOf(Managers.SERVER.getPing());
             String fps = String.valueOf(mc.getCurrentFps());
-            String text = "WerPak | " + username + " | " + fps + " fps | " + ping + " ms";
+            String text = "ZeltrixWareZenoBest_Crack | " + username + " | " + fps + " fps | " + ping + " ms";
             float width = FontRenderers.sf_bold.getStringWidth(text) + 12.0f;
             Render2DEngine.drawRoundedBlur(context.getMatrices(), this.getPosX(), this.getPosY(), width, 18.0f, 4.0f, new Color(0, 0, 0, 150));
             Render2DEngine.drawRound(context.getMatrices(), this.getPosX(), this.getPosY(), width, 18.0f, 4.0f, new Color(20, 20, 20, 150));

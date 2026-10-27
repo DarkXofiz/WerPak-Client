@@ -24,22 +24,22 @@ import thunder.hack.setting.Setting;
 import thunder.hack.utility.render.Render2DEngine;
 import thunder.hack.utility.render.animation.AnimationUtility;
 
-public class WerPakKeybinds
+public class ZeltrixWareZenoBest_CrackKeybinds
 extends HudElement {
     public final Setting<Mode> mode = new Setting<Mode>("Mode", Mode.Neon);
     private float hAnimation = 95.0f;
     private float vAnimation = 50.0f;
     private float visibleValue = 0.0f;
 
-    public WerPakKeybinds() {
-        super("WerPakKeybinds", 100, 50);
+    public ZeltrixWareZenoBest_CrackKeybinds() {
+        super("ZeltrixWareZenoBest_CrackKeybinds", 100, 50);
     }
 
     @Override
     public void onRender2D(DrawContext context) {
         super.onRender2D(context);
         var activeModules = Managers.MODULE.modules.stream().filter(modx -> modx.isOn() && !Objects.equals(modx.getBind().getBind(), "None")).collect(Collectors.toList());
-        boolean isEditing = WerPakKeybinds.mc.currentScreen instanceof ChatScreen || WerPakKeybinds.mc.currentScreen instanceof HudEditorGui;
+        boolean isEditing = ZeltrixWareZenoBest_CrackKeybinds.mc.currentScreen instanceof ChatScreen || ZeltrixWareZenoBest_CrackKeybinds.mc.currentScreen instanceof HudEditorGui;
         boolean shouldShow = !activeModules.isEmpty() || isEditing;
         this.visibleValue = AnimationUtility.fast(this.visibleValue, shouldShow ? 1.0f : 0.0f, 15.0f);
         if (!(this.visibleValue <= 0.01f)) {
@@ -88,7 +88,7 @@ extends HudElement {
                 }
             } else {
                 for (Module mod : activeModules) {
-                    this.drawModuleBind(context, currentY, x, statusPanelX, statusPanelWidth, itemHeight, mod.getName(), WerPakKeybinds.getShortKeyName(mod), this.visibleValue);
+                    this.drawModuleBind(context, currentY, x, statusPanelX, statusPanelWidth, itemHeight, mod.getName(), ZeltrixWareZenoBest_CrackKeybinds.getShortKeyName(mod), this.visibleValue);
                     currentY += itemHeight + spacing;
                 }
             }

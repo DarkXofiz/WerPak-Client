@@ -32,11 +32,11 @@ public final class RPC
 extends Module {
     private static final DiscordRPC rpc = DiscordRPC.INSTANCE;
     public static Setting<String> appId = new Setting<String>("AppID", "1541752948806254654");
-    public static Setting<Mode> mode = new Setting<Mode>("Picture", Mode.WerPak);
+    public static Setting<Mode> mode = new Setting<Mode>("Picture", Mode.ZeltrixWareZenoBest_Crack);
     public static Setting<dMode> dmode = new Setting<dMode>("DetailsMode", dMode.Server);
-    public static Setting<String> detailsText = new Setting<String>("CustomDetails", "Playing WerPak", v -> dmode.getValue() == dMode.Custom);
+    public static Setting<String> detailsText = new Setting<String>("CustomDetails", "Playing ZeltrixWareZenoBest_Crack", v -> dmode.getValue() == dMode.Custom);
     public static Setting<sMode> smode = new Setting<sMode>("StateMode", sMode.CreatedBy);
-    public static Setting<String> authorText = new Setting<String>("AuthorText", "Created By WerPak", v -> smode.getValue() == sMode.CreatedBy);
+    public static Setting<String> authorText = new Setting<String>("AuthorText", "Created By ZeltrixWareZenoBest_Crack", v -> smode.getValue() == sMode.CreatedBy);
     public static Setting<String> state = new Setting<String>("CustomState", "Beta? Recode? NextGen?", v -> smode.getValue() == sMode.Custom);
     public static Setting<Boolean> showIP = new Setting<Boolean>("ShowIP", true, v -> smode.getValue() == sMode.Server || dmode.getValue() == dMode.Server);
     public static Setting<Boolean> nickname = new Setting<Boolean>("Nickname", true);
@@ -59,7 +59,7 @@ extends Module {
     public static void readFile() {
         block9: {
             try {
-                File file = new File("WerPak/misc/RPC.txt");
+                File file = new File("ZeltrixWareZenoBest_Crack/misc/RPC.txt");
                 if (!file.exists()) {
                     file = new File("ThunderHackRecode/misc/RPC.txt");
                 }
@@ -77,7 +77,7 @@ extends Module {
     }
 
     public static void WriteFile(String url1, String url2) {
-        File folder = new File("WerPak/misc");
+        File folder = new File("ZeltrixWareZenoBest_Crack/misc");
         if (!folder.exists()) {
             folder.mkdirs();
         }
@@ -150,7 +150,7 @@ extends Module {
             DiscordEventHandlers handlers = new DiscordEventHandlers();
             rpc.Discord_Initialize(currentAppId, handlers, true, "");
             RPC.presence.startTimestamp = System.currentTimeMillis() / 1000L;
-            RPC.presence.largeImageText = "WerPak V15 [" + ThunderHack.GITHUB_HASH + "]";
+            RPC.presence.largeImageText = "ZeltrixWareZenoBest_Crack V15 [" + ThunderHack.GITHUB_HASH + "]";
             rpc.Discord_UpdatePresence(presence);
             thread = new Thread(() -> {
                 while (!Thread.currentThread().isInterrupted()) {
@@ -173,7 +173,7 @@ extends Module {
                         RPC.presence.button_label_2 = "";
                         RPC.presence.button_url_2 = "";
                     }
-                    RPC.presence.largeImageText = "WerPak V15 [" + ThunderHack.GITHUB_HASH + "]";
+                    RPC.presence.largeImageText = "ZeltrixWareZenoBest_Crack V15 [" + ThunderHack.GITHUB_HASH + "]";
                     switch (mode.getValue().ordinal()) {
                         case 0: {
                             RPC.presence.largeImageKey = "https://i.imgur.com/yY0z2Uq.gif";
@@ -205,7 +205,7 @@ extends Module {
                         break;
                     }
                 }
-            }, "WerPak-RPC-Handler");
+            }, "ZeltrixWareZenoBest_Crack-RPC-Handler");
             thread.start();
         }
     }
@@ -213,7 +213,7 @@ extends Module {
     private String getDetails() {
         switch (dmode.getValue().ordinal()) {
             case 1: {
-                return "Playing WerPak";
+                return "Playing ZeltrixWareZenoBest_Crack";
             }
             case 2: {
                 return detailsText.getValue();
@@ -222,7 +222,7 @@ extends Module {
                 return this.getServerInfo();
             }
         }
-        return "Playing WerPak";
+        return "Playing ZeltrixWareZenoBest_Crack";
     }
 
     private String getState() {
@@ -240,7 +240,7 @@ extends Module {
                 return state.getValue();
             }
             case 3: {
-                return "WerPak V15 for mc 1.21";
+                return "ZeltrixWareZenoBest_Crack V15 for mc 1.21";
             }
         }
         return authorText.getValue();
@@ -279,7 +279,7 @@ extends Module {
 
     public static enum dMode {
         Server,
-        WerPak,
+        ZeltrixWareZenoBest_Crack,
         Custom;
 
     }
@@ -294,7 +294,7 @@ extends Module {
     }
 
     public static enum Mode {
-        WerPak,
+        ZeltrixWareZenoBest_Crack,
         Recode,
         MegaCute,
         Custom;

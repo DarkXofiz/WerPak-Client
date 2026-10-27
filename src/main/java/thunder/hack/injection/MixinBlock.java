@@ -42,7 +42,7 @@ public abstract class MixinBlock {
             return;
         }
         NoWeb.Mode mode = NoWeb.getNoWebMode();
-        if (mode == NoWeb.Mode.Cancel || mode == NoWeb.Mode.Spoof || mode == NoWeb.Mode.WerPak) {
+        if (mode == NoWeb.Mode.Cancel || mode == NoWeb.Mode.Spoof || mode == NoWeb.Mode.ZeltrixWareZenoBest_Crack) {
             cir.setReturnValue(Float.valueOf(1.0f));
         } else if (mode == NoWeb.Mode.Legit) {
             cir.setReturnValue(Float.valueOf(0.7f + NoWeb.getLegitFactor() * 0.3f));

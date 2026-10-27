@@ -89,7 +89,7 @@ extends AbstractClientPlayerEntity {
     @Inject(method={"shouldSlowDown"}, at={@At(value="HEAD")}, cancellable=true)
     public void shouldSlowDownHook(CallbackInfoReturnable<Boolean> cir) {
         NoWeb.Mode m;
-        if (NoWeb.isNoWebEnabled() && ((m = NoWeb.getNoWebMode()) == NoWeb.Mode.Cancel || m == NoWeb.Mode.Spoof || m == NoWeb.Mode.WerPak)) {
+        if (NoWeb.isNoWebEnabled() && ((m = NoWeb.getNoWebMode()) == NoWeb.Mode.Cancel || m == NoWeb.Mode.Spoof || m == NoWeb.Mode.ZeltrixWareZenoBest_Crack)) {
             cir.setReturnValue(false);
         }
     }

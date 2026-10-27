@@ -152,7 +152,7 @@ extends Screen {
         }
         this.scrollY = 0.0f;
         context.getMatrices().pop();
-        FontRenderers.sf_bold.drawCenteredString(context.getMatrices(), "WerPak", 40.0, 10.0, ModuleManager.clickGui.categoryColor.getValue().getColor());
+        FontRenderers.sf_bold.drawCenteredString(context.getMatrices(), "ZeltrixWareZenoBest_Crack", 40.0, 10.0, ModuleManager.clickGui.categoryColor.getValue().getColor());
         int sw = Module.mc.getWindow().getScaledWidth();
         int sh = Module.mc.getWindow().getScaledHeight();
         Color[] colors = new Color[]{new Color(25, 20, 30, 255), new Color(135, 80, 255, 255), new Color(255, 80, 80, 255), new Color(80, 255, 80, 255), new Color(80, 80, 255, 255)};

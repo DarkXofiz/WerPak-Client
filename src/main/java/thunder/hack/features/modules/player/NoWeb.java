@@ -25,10 +25,10 @@ import thunder.hack.setting.Setting;
 
 public class NoWeb
 extends Module {
-    public static final Setting<Mode> mode = new Setting<Mode>("Mode", Mode.WerPak);
+    public static final Setting<Mode> mode = new Setting<Mode>("Mode", Mode.ZeltrixWareZenoBest_Crack);
     private final Setting<Float> legitFactor = new Setting<Float>("LegitFactor", Float.valueOf(0.55f), Float.valueOf(0.1f), Float.valueOf(0.99f), v -> mode.getValue() == Mode.Legit);
-    private final Setting<Float> speed = new Setting<Float>("Speed", Float.valueOf(0.633f), Float.valueOf(0.1f), Float.valueOf(2.0f), v -> mode.getValue() == Mode.WerPak);
-    private final Setting<Float> motionY = new Setting<Float>("MotionY", Float.valueOf(1.3f), Float.valueOf(0.1f), Float.valueOf(3.0f), v -> mode.getValue() == Mode.WerPak);
+    private final Setting<Float> speed = new Setting<Float>("Speed", Float.valueOf(0.633f), Float.valueOf(0.1f), Float.valueOf(2.0f), v -> mode.getValue() == Mode.ZeltrixWareZenoBest_Crack);
+    private final Setting<Float> motionY = new Setting<Float>("MotionY", Float.valueOf(1.3f), Float.valueOf(0.1f), Float.valueOf(3.0f), v -> mode.getValue() == Mode.ZeltrixWareZenoBest_Crack);
 
     public static boolean isNoWebEnabled() {
         return ModuleManager.noWeb != null && ModuleManager.noWeb.isEnabled();
@@ -64,7 +64,7 @@ extends Module {
                 double newZ = vel.z * 1.85;
                 NoWeb.mc.player.setVelocity(newX, vel.y, newZ);
             }
-        } else if (mode.getValue() == Mode.WerPak && this.isInWebLocal()) {
+        } else if (mode.getValue() == Mode.ZeltrixWareZenoBest_Crack && this.isInWebLocal()) {
             double mY = NoWeb.mc.options.jumpKey.isPressed() ? (double)this.motionY.getValue().floatValue() : (NoWeb.mc.options.sneakKey.isPressed() ? (double)(-this.motionY.getValue().floatValue()) : 0.0);
             float yaw = NoWeb.mc.player.getYaw() * ((float)Math.PI / 180);
             float moveForward = NoWeb.mc.player.input != null ? NoWeb.mc.player.input.movementForward : NoWeb.mc.player.forwardSpeed;
@@ -101,7 +101,7 @@ extends Module {
         Cancel,
         Spoof,
         Legit,
-        WerPak;
+        ZeltrixWareZenoBest_Crack;
 
     }
 }

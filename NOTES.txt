@@ -1,7 +1,7 @@
-WerPak Client V15 (Minecraft 1.21 Fabric)
+ZeltrixWareZenoBest_Crack V15 (Minecraft 1.21 Fabric)
 Rebuilt from the compiled jar. Sources are CFR decompiler output remapped to yarn 1.21 names.
 Based on ThunderHack-Recode by pan4ur and 06ED (GPL v3), see LICENSE.
-Build: Java 21, then ./gradlew build  (jar in build/libs/WerPakClient-15.jar)
+Build: Java 21, then ./gradlew build  (jar in build/libs/ZeltrixWareZenoBest_Crack-15.jar)
 libs/embedded-libs.jar holds the libraries that were embedded in the original jar (MediaPlayerInfo, kotlin, dbus, jnr).
 The mod id stays "thunderhack" because asset folders and mixins use it.
 Not compiled against Minecraft here. Expect a few decompiler related compile errors to fix by hand.

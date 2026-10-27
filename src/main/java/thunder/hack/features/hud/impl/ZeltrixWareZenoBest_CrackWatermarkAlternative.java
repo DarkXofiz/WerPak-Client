@@ -20,7 +20,7 @@ import thunder.hack.gui.font.FontRenderers;
 import thunder.hack.setting.Setting;
 import thunder.hack.utility.render.Render2DEngine;
 
-public class WerPakWatermarkAlternative
+public class ZeltrixWareZenoBest_CrackWatermarkAlternative
 extends HudElement {
     private static final int BG_COLOR = new Color(20, 20, 20, 240).getRGB();
     private static final int WHITE_COLOR = new Color(255, 255, 255, 255).getRGB();
@@ -40,21 +40,21 @@ extends HudElement {
     public final Setting<Boolean> showTime = new Setting<Boolean>("Show Time", true);
     private static final DateTimeFormatter TIME_FMT = DateTimeFormatter.ofPattern("HH:mm:ss");
 
-    public WerPakWatermarkAlternative() {
-        super("WerPakWatermarkAlt", 100, 30);
+    public ZeltrixWareZenoBest_CrackWatermarkAlternative() {
+        super("ZeltrixWareZenoBest_CrackWatermarkAlt", 100, 30);
     }
 
     @Override
     public void onRender2D(DrawContext context) {
         super.onRender2D(context);
-        if (WerPakWatermarkAlternative.mc.player == null || WerPakWatermarkAlternative.mc.world == null) {
+        if (ZeltrixWareZenoBest_CrackWatermarkAlternative.mc.player == null || ZeltrixWareZenoBest_CrackWatermarkAlternative.mc.world == null) {
             return;
         }
         MatrixStack matrices = context.getMatrices();
         float x = this.getPosX();
         float y = this.getPosY();
-        String brandText = "WerPak";
-        String username = WerPakWatermarkAlternative.mc.player.getName().getString();
+        String brandText = "ZeltrixWareZenoBest_Crack";
+        String username = ZeltrixWareZenoBest_CrackWatermarkAlternative.mc.player.getName().getString();
         int fps = mc.getCurrentFps();
         String fpsText = fps + "fps";
         int ping = Managers.SERVER.getPing();
@@ -62,9 +62,9 @@ extends HudElement {
         float tps = Managers.SERVER.getTPS();
         String tpsText = this.formatOneDecimal(tps) + "tps";
         String timeText = LocalTime.now().format(TIME_FMT);
-        int px = MathHelper.floor((double)WerPakWatermarkAlternative.mc.player.getX());
-        int py = MathHelper.floor((double)WerPakWatermarkAlternative.mc.player.getY());
-        int pz = MathHelper.floor((double)WerPakWatermarkAlternative.mc.player.getZ());
+        int px = MathHelper.floor((double)ZeltrixWareZenoBest_CrackWatermarkAlternative.mc.player.getX());
+        int py = MathHelper.floor((double)ZeltrixWareZenoBest_CrackWatermarkAlternative.mc.player.getY());
+        int pz = MathHelper.floor((double)ZeltrixWareZenoBest_CrackWatermarkAlternative.mc.player.getZ());
         String coordsText = "x" + px + " y" + py + " z" + pz;
         double bps = (double)Managers.PLAYER.currentPlayerSpeed * 20.0;
         String bpsText = this.formatOneDecimal((float)bps) + "bps";

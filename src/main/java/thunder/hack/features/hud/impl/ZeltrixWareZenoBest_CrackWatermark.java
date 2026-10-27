@@ -22,22 +22,22 @@ import thunder.hack.setting.Setting;
 import thunder.hack.utility.render.Render2DEngine;
 import thunder.hack.utility.render.TextureStorage;
 
-public class WerPakWatermark
+public class ZeltrixWareZenoBest_CrackWatermark
 extends HudElement {
     public final Setting<Boolean> showIp = new Setting<Boolean>("Show IP", true);
     public final Setting<Boolean> showTime = new Setting<Boolean>("Show Time", true);
 
-    public WerPakWatermark() {
-        super("WerPakWatermark", 120, 24);
+    public ZeltrixWareZenoBest_CrackWatermark() {
+        super("ZeltrixWareZenoBest_CrackWatermark", 120, 24);
     }
 
     @Override
     public void onRender2D(DrawContext context) {
         super.onRender2D(context);
-        String title = "WerPak";
+        String title = "ZeltrixWareZenoBest_Crack";
         String fps = mc.getCurrentFps() + " FPS";
         String ping = Managers.SERVER.getPing() + " ms";
-        String ip = mc.getCurrentServerEntry() != null ? WerPakWatermark.mc.getCurrentServerEntry().address : "Singleplayer";
+        String ip = mc.getCurrentServerEntry() != null ? ZeltrixWareZenoBest_CrackWatermark.mc.getCurrentServerEntry().address : "Singleplayer";
         String time = new SimpleDateFormat("HH:mm:ss").format(new Date());
         float logoSize = 13.0f;
         float logoSpacing = 5.0f;

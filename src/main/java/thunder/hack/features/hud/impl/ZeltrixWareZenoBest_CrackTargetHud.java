@@ -76,7 +76,7 @@ import thunder.hack.setting.Setting;
 import thunder.hack.setting.impl.ColorSetting;
 import thunder.hack.utility.render.Render2DEngine;
 
-public class WerPakTargetHud
+public class ZeltrixWareZenoBest_CrackTargetHud
 extends HudElement {
     public final Setting<ThemeStyle> themeStyle = new Setting<ThemeStyle>("Style", ThemeStyle.Neon);
     public final Setting<Float> scale = new Setting<Float>("Scale", Float.valueOf(1.0f), Float.valueOf(0.5f), Float.valueOf(2.0f));
@@ -97,8 +97,8 @@ extends HudElement {
     private LivingEntity target;
     private boolean direction = false;
 
-    public WerPakTargetHud() {
-        super("WerPakTargetHud", 140, 36);
+    public ZeltrixWareZenoBest_CrackTargetHud() {
+        super("ZeltrixWareZenoBest_CrackTargetHud", 140, 36);
     }
 
     private void updateTarget() {
@@ -107,8 +107,8 @@ extends HudElement {
             LivingEntity living;
             this.target = living = (LivingEntity)class_12972;
             this.direction = true;
-        } else if (WerPakTargetHud.mc.currentScreen instanceof ChatScreen || WerPakTargetHud.mc.currentScreen instanceof HudEditorGui) {
-            this.target = WerPakTargetHud.mc.player;
+        } else if (ZeltrixWareZenoBest_CrackTargetHud.mc.currentScreen instanceof ChatScreen || ZeltrixWareZenoBest_CrackTargetHud.mc.currentScreen instanceof HudEditorGui) {
+            this.target = ZeltrixWareZenoBest_CrackTargetHud.mc.player;
             this.direction = true;
         } else {
             this.direction = false;
@@ -125,7 +125,7 @@ extends HudElement {
         LivingEntity class_13092 = this.target;
         if (class_13092 instanceof PlayerEntity) {
             PlayerEntity ent = (PlayerEntity)class_13092;
-            if (mc.getNetworkHandler() != null && mc.getNetworkHandler().getServerInfo() != null && WerPakTargetHud.mc.getNetworkHandler().getServerInfo().address.contains("funtime") || this.funTimeHP.getValue().booleanValue()) {
+            if (mc.getNetworkHandler() != null && mc.getNetworkHandler().getServerInfo() != null && ZeltrixWareZenoBest_CrackTargetHud.mc.getNetworkHandler().getServerInfo().address.contains("funtime") || this.funTimeHP.getValue().booleanValue()) {
                 ScoreboardObjective scoreBoard;
                 String resolvedHp = "";
                 if (ent.getScoreboard().getObjectiveForSlot(ScoreboardDisplaySlot.BELOW_NAME) != null && (scoreBoard = ent.getScoreboard().getObjectiveForSlot(ScoreboardDisplaySlot.BELOW_NAME)) != null) {
@@ -217,7 +217,7 @@ extends HudElement {
     @Override
     @EventHandler
     public void onMouse(@NotNull EventMouse event) {
-        if (event.getAction() == 1 && event.getButton() == 1 && this.isHovering() && (WerPakTargetHud.mc.currentScreen instanceof HudEditorGui || WerPakTargetHud.mc.currentScreen instanceof ChatScreen)) {
+        if (event.getAction() == 1 && event.getButton() == 1 && this.isHovering() && (ZeltrixWareZenoBest_CrackTargetHud.mc.currentScreen instanceof HudEditorGui || ZeltrixWareZenoBest_CrackTargetHud.mc.currentScreen instanceof ChatScreen)) {
             ThemeStyle[] styles = ThemeStyle.values();
             this.themeStyle.setValue(styles[(this.themeStyle.getValue().ordinal() + 1) % styles.length]);
         }
@@ -229,7 +229,7 @@ extends HudElement {
         LivingEntity class_13092;
         int i;
         super.onRender2D(context);
-        if (WerPakTargetHud.mc.player == null) {
+        if (ZeltrixWareZenoBest_CrackTargetHud.mc.player == null) {
             return;
         }
         this.updateTarget();
@@ -247,7 +247,7 @@ extends HudElement {
         float absorpAmount = this.absorp.getValue() != false ? this.target.getAbsorptionAmount() : 0.0f;
         float targetAbsorpProgress = absorpAmount > 0.0f ? MathHelper.clamp((float)(absorpAmount / maxHealth), (float)0.0f, (float)1.0f) : 0.0f;
         this.absorptionAnimated = Render2DEngine.interpolateFloat(this.absorptionAnimated, targetAbsorpProgress, 0.2f);
-        String name = ModuleManager.media.isEnabled() ? "Protected" : (ModuleManager.nameProtect.isEnabled() && this.target == WerPakTargetHud.mc.player ? NameProtect.getCustomName() : this.target.getName().getString());
+        String name = ModuleManager.media.isEnabled() ? "Protected" : (ModuleManager.nameProtect.isEnabled() && this.target == ZeltrixWareZenoBest_CrackTargetHud.mc.player ? NameProtect.getCustomName() : this.target.getName().getString());
         int roundedHp = Math.round(this.hpAnimated);
         long now = System.currentTimeMillis();
         String hpText = String.valueOf(Math.max(0, roundedHp));
@@ -388,15 +388,15 @@ extends HudElement {
         int tg = themeColor >> 8 & 0xFF;
         int tb = themeColor & 0xFF;
         int ringBgColor = drawAlpha << 24 | tr / 4 << 16 | tg / 4 << 8 | tb / 4;
-        WerPakTargetHud.drawRingArc(matrices, healthCenterX, healthCenterY, healthRingRadius, 2.2f, 0.0f, 360.0f, ringBgColor);
+        ZeltrixWareZenoBest_CrackTargetHud.drawRingArc(matrices, healthCenterX, healthCenterY, healthRingRadius, 2.2f, 0.0f, 360.0f, ringBgColor);
         float sweep = MathHelper.clamp((float)this.hpProgressAnimated, (float)0.0f, (float)1.0f) * 360.0f;
         if (sweep > 0.5f) {
-            WerPakTargetHud.drawRingArc(matrices, healthCenterX, healthCenterY, healthRingRadius, 2.2f, -90.0f, -90.0f + sweep, themeColorWithAlpha);
+            ZeltrixWareZenoBest_CrackTargetHud.drawRingArc(matrices, healthCenterX, healthCenterY, healthRingRadius, 2.2f, -90.0f, -90.0f + sweep, themeColorWithAlpha);
         }
         if (this.absorptionAnimated > 0.01f) {
             float absorbSweep = MathHelper.clamp((float)this.absorptionAnimated, (float)0.0f, (float)1.0f) * 360.0f;
             int goldColor = drawAlpha << 24 | 0xFFC800;
-            WerPakTargetHud.drawRingArc(matrices, healthCenterX, healthCenterY, healthRingRadius, 2.2f, -90.0f, -90.0f + absorbSweep, goldColor);
+            ZeltrixWareZenoBest_CrackTargetHud.drawRingArc(matrices, healthCenterX, healthCenterY, healthRingRadius, 2.2f, -90.0f, -90.0f + absorbSweep, goldColor);
         }
         float totalW = FontRenderers.sf_bold_mini.getStringWidth(hpText);
         float startX = healthCenterX - totalW * 0.5f;

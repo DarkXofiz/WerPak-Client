@@ -273,7 +273,7 @@ extends Module {
             Aura.mc.player.jump();
         }
         boolean withinAttackRange = Aura.mc.player.distanceTo(target) <= this.getRange();
-        boolean bl = werpakWallHit = this.wallsBypass.is(WallsBypass.WerPak) && !Aura.mc.player.canSee(target) && Aura.mc.player.distanceTo(target) <= this.getWallRange() && this.autoCrit();
+        boolean bl = werpakWallHit = this.wallsBypass.is(WallsBypass.ZeltrixWareZenoBest_Crack) && !Aura.mc.player.canSee(target) && Aura.mc.player.distanceTo(target) <= this.getWallRange() && this.autoCrit();
         if (this.grimRayTrace.getValue().booleanValue()) {
             readyForAttack = withinAttackRange && this.autoCrit() && (this.lookingAtHitbox || this.skipRayTraceCheck() || werpakWallHit);
             this.calcRotations(withinAttackRange && this.autoCrit() || werpakWallHit);
@@ -985,7 +985,7 @@ extends Module {
             if (Objects.requireNonNull(this.wallsBypass.getValue()) == WallsBypass.V1) {
                 return target.getPos().add(MathUtility.random(-0.15, 0.15), lenghtY, MathUtility.random(-0.15, 0.15));
             }
-            if (this.wallsBypass.getValue() == WallsBypass.WerPak) {
+            if (this.wallsBypass.getValue() == WallsBypass.ZeltrixWareZenoBest_Crack) {
                 double jitterX = MathUtility.random(-0.08, 0.08);
                 double jitterZ = MathUtility.random(-0.08, 0.08);
                 double werpakY = lenghtY * 0.92 + MathUtility.random(-0.04, 0.04);
@@ -1202,7 +1202,7 @@ extends Module {
         Off,
         V1,
         V2,
-        WerPak;
+        ZeltrixWareZenoBest_Crack;
 
     }
 

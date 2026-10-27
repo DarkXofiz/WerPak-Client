@@ -29,7 +29,7 @@ import thunder.hack.setting.Setting;
 import thunder.hack.utility.render.Render2DEngine;
 import thunder.hack.utility.render.TextureStorage;
 
-public class WerPakWatermarkV2
+public class ZeltrixWareZenoBest_CrackWatermarkV2
 extends HudElement {
     private static final int[] PALETTE = new int[]{new Color(10181046).getRGB(), new Color(3447003).getRGB(), new Color(1752220).getRGB(), new Color(15158332).getRGB(), new Color(15965202).getRGB(), new Color(3066993).getRGB(), new Color(15277667).getRGB(), new Color(16733986).getRGB()};
     private int paletteIndex = 0;
@@ -43,14 +43,14 @@ extends HudElement {
     private static final float ROW_HEIGHT = 20.0f;
     private static final float CORNER_R = 4.0f;
 
-    public WerPakWatermarkV2() {
-        super("WerPakWatermarkV2", 160, 42);
+    public ZeltrixWareZenoBest_CrackWatermarkV2() {
+        super("ZeltrixWareZenoBest_CrackWatermarkV2", 160, 42);
     }
 
     @Override
     public void onRender2D(DrawContext context) {
         super.onRender2D(context);
-        if (WerPakWatermarkV2.mc.player == null || WerPakWatermarkV2.mc.world == null) {
+        if (ZeltrixWareZenoBest_CrackWatermarkV2.mc.player == null || ZeltrixWareZenoBest_CrackWatermarkV2.mc.world == null) {
             return;
         }
         MatrixStack matrices = context.getMatrices();
@@ -78,11 +78,11 @@ extends HudElement {
         float iconGap = 3.0f;
         float slashW = font.getStringWidth(" / ");
         float itemZW = font.getStringWidth("Z");
-        float itemWerPakW = font.getStringWidth("WerPak");
+        float itemZeltrixWareZenoBest_CrackW = font.getStringWidth("ZeltrixWareZenoBest_Crack");
         float headW = iconFont.getStringWidth("p");
         float item3W = headW + iconGap + font.getStringWidth(username);
         float item4W = iconFont.getStringWidth("t") + iconGap + font.getStringWidth(serverPrefix) + (serverAccent.isEmpty() ? 0.0f : font.getStringWidth(serverAccent));
-        float row1W = 12.0f + itemZW + slashW + itemWerPakW + slashW + item3W + slashW + item4W;
+        float row1W = 12.0f + itemZW + slashW + itemZeltrixWareZenoBest_CrackW + slashW + item3W + slashW + item4W;
         float item5W = iconFont.getStringWidth("w") + iconGap + font.getStringWidth(fpsValue) + font.getStringWidth(" FPS");
         float item6W = iconFont.getStringWidth("i") + iconGap + font.getStringWidth(pingValue) + font.getStringWidth(" ms");
         float item7W = this.showTps.getValue() != false ? iconFont.getStringWidth("u") + iconGap + font.getStringWidth(tpsValue) + font.getStringWidth(" TPS") : 0.0f;
@@ -96,8 +96,8 @@ extends HudElement {
         float dx = x + 6.0f;
         font.drawString(matrices, "Z", (double)dx, (double)(y + 7.0f), textNormal);
         font.drawString(matrices, " / ", (double)(dx += itemZW), (double)(y + 7.0f), slashColor);
-        font.drawString(matrices, "WerPak", (double)(dx += slashW), (double)(y + 7.0f), accent);
-        font.drawString(matrices, " / ", (double)(dx += itemWerPakW), (double)(y + 7.0f), slashColor);
+        font.drawString(matrices, "ZeltrixWareZenoBest_Crack", (double)(dx += slashW), (double)(y + 7.0f), accent);
+        font.drawString(matrices, " / ", (double)(dx += itemZeltrixWareZenoBest_CrackW), (double)(y + 7.0f), slashColor);
         RenderSystem.enableBlend();
         RenderSystem.blendFunc((int)770, (int)771);
         RenderSystem.setShaderTexture((int)0, (Identifier)TextureStorage.playerIcon);
@@ -161,7 +161,7 @@ extends HudElement {
         if (mc.getNetworkHandler() == null) {
             return 0;
         }
-        if (WerPakWatermarkV2.mc.player != null && (entry = mc.getNetworkHandler().getPlayerListEntry(WerPakWatermarkV2.mc.player.getUuid())) != null && entry.getLatency() > 0) {
+        if (ZeltrixWareZenoBest_CrackWatermarkV2.mc.player != null && (entry = mc.getNetworkHandler().getPlayerListEntry(ZeltrixWareZenoBest_CrackWatermarkV2.mc.player.getUuid())) != null && entry.getLatency() > 0) {
             return entry.getLatency();
         }
         String username = mc.getSession().getUsername();
@@ -173,8 +173,8 @@ extends HudElement {
     }
 
     private String getServerAddress() {
-        if (mc.getCurrentServerEntry() != null && WerPakWatermarkV2.mc.getCurrentServerEntry().address != null && !WerPakWatermarkV2.mc.getCurrentServerEntry().address.isEmpty()) {
-            return WerPakWatermarkV2.mc.getCurrentServerEntry().address;
+        if (mc.getCurrentServerEntry() != null && ZeltrixWareZenoBest_CrackWatermarkV2.mc.getCurrentServerEntry().address != null && !ZeltrixWareZenoBest_CrackWatermarkV2.mc.getCurrentServerEntry().address.isEmpty()) {
+            return ZeltrixWareZenoBest_CrackWatermarkV2.mc.getCurrentServerEntry().address;
         }
         return "localhost";
     }
