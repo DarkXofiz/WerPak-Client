@@ -594,9 +594,10 @@ public class Render2DEngine {
     }
 
     public static Color skyRainbow(int speed, int index) {
-        int n;
         int angle = (int)((System.currentTimeMillis() / (long)speed + (long)index) % 360L);
-        return Color.getHSBColor((double)((float)((double)n / 360.0)) < 0.5 ? -((float)((double)angle / 360.0)) : (float)((double)(angle %= 360) / 360.0), 0.5f, 1.0f);
+        angle %= 360;
+        float h = (float)((double)angle / 360.0);
+        return Color.getHSBColor(h < 0.5f ? -h : h, 0.5f, 1.0f);
     }
 
     public static Color fade(int speed, int index, Color color, float alpha) {
