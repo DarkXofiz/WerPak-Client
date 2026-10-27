@@ -45,6 +45,7 @@ extends Module {
     public final Setting<Integer> predictTicks = new Setting<Integer>("Predict Ticks", 10, 1, 50);
     public final Setting<Integer> predictLength = new Setting<Integer>("Predict Length", 2, 1, 20);
     public final Setting<Float> driveBoost = new Setting<Float>("Drive Boost", Float.valueOf(1.5f), Float.valueOf(0.1f), Float.valueOf(5.0f));
+    public final Setting<Boolean> velocityAssist = new Setting<Boolean>("Velocity Assist", false);
     public final Setting<Boolean> antiCheat = new Setting<Boolean>("AntiCheat Bypass", true);
     public final Setting<Float> maxTurn = new Setting<Float>("Max Turn", Float.valueOf(18.0f), Float.valueOf(1.0f), Float.valueOf(90.0f), v -> this.antiCheat.getValue());
     public final Setting<Float> maxSpeed = new Setting<Float>("Max Speed", Float.valueOf(1.9f), Float.valueOf(0.5f), Float.valueOf(4.0f), v -> this.antiCheat.getValue());
@@ -114,7 +115,7 @@ extends Module {
                     predictedPos = movePred.subtract(targetFacing.multiply(this.currentOverrun)).add(0.0, 0.2, 0.0);
                 }
                 boolean bl = isFlying = ElytraTarget.mc.player.isFallFlying() || ElytraTarget.mc.player.getEquippedStack(EquipmentSlot.CHEST).isOf(Items.ELYTRA) && !ElytraTarget.mc.player.isOnGround();
-                if (isFlying) {
+                if (isFlying && this.velocityAssist.getValue().booleanValue()) {
                     Vec3d dir = predictedPos.subtract(ElytraTarget.mc.player.getPos());
                     Vec3d currentVel = ElytraTarget.mc.player.getVelocity();
                     double speed = currentVel.length();
