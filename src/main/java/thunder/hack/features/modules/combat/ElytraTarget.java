@@ -45,6 +45,10 @@ extends Module {
     public final Setting<Integer> predictTicks = new Setting<Integer>("Predict Ticks", 10, 1, 50);
     public final Setting<Integer> predictLength = new Setting<Integer>("Predict Length", 2, 1, 20);
     public final Setting<Float> driveBoost = new Setting<Float>("Drive Boost", Float.valueOf(1.5f), Float.valueOf(0.1f), Float.valueOf(5.0f));
+    public final Setting<Boolean> antiCheat = new Setting<Boolean>("AntiCheat Bypass", true);
+    public final Setting<Float> maxTurn = new Setting<Float>("Max Turn", Float.valueOf(18.0f), Float.valueOf(1.0f), Float.valueOf(90.0f), v -> this.antiCheat.getValue());
+    public final Setting<Float> maxSpeed = new Setting<Float>("Max Speed", Float.valueOf(1.9f), Float.valueOf(0.5f), Float.valueOf(4.0f), v -> this.antiCheat.getValue());
+    public final Setting<Float> jitter = new Setting<Float>("Jitter", Float.valueOf(0.02f), Float.valueOf(0.0f), Float.valueOf(0.1f), v -> this.antiCheat.getValue());
     public static PlayerEntity target = null;
     public static Vec3d predictedPos = null;
     private World lastWorld;
@@ -121,6 +125,26 @@ extends Module {
                         Vec3d dirNorm = dir.normalize();
                         double blend = Math.min(1.0, dir.length() / 3.0);
                         Vec3d blendedVel = currentVel.multiply(1.0 - blend).add(dirNorm.multiply(speed * blend));
+                        if (this.antiCheat.getValue().booleanValue() && currentVel.lengthSquared() > 0.0025 && blendedVel.lengthSquared() > 1.0E-6) {
+                            double curYaw = Math.atan2(currentVel.z, currentVel.x);
+                            double newYaw = Math.atan2(blendedVel.z, blendedVel.x);
+                            double diff = MathHelper.wrapDegrees((float)Math.toDegrees(newYaw - curYaw));
+                            double lim = this.maxTurn.getValue().doubleValue();
+                            double clamped = Math.max(-lim, Math.min(lim, diff));
+                            double horiz = Math.sqrt(blendedVel.x * blendedVel.x + blendedVel.z * blendedVel.z);
+                            double outYaw = curYaw + Math.toRadians(clamped);
+                            double vy = blendedVel.y;
+                            double jit = this.jitter.getValue().doubleValue();
+                            double nx = Math.cos(outYaw) * horiz + (Math.random() - 0.5) * jit;
+                            double nz = Math.sin(outYaw) * horiz + (Math.random() - 0.5) * jit;
+                            double ny = vy + (Math.random() - 0.5) * jit;
+                            Vec3d limited = new Vec3d(nx, ny, nz);
+                            double cap = this.maxSpeed.getValue().doubleValue();
+                            if (limited.length() > cap) {
+                                limited = limited.normalize().multiply(cap);
+                            }
+                            blendedVel = limited;
+                        }
                         ElytraTarget.mc.player.setVelocity(blendedVel);
                     }
                 }
