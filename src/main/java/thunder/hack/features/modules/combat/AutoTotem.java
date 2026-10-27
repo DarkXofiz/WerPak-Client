@@ -311,7 +311,7 @@ extends Module {
                                 item = Items.SHIELD;
                                 break;
                             }
-                            item = Items.ELYTRA;
+                            item = Items.FIREWORK_ROCKET;
                             break;
                         }
                         case 2: {
@@ -319,11 +319,11 @@ extends Module {
                                 item = Items.ENCHANTED_GOLDEN_APPLE;
                                 break;
                             }
-                            item = Items.ELYTRA;
+                            item = Items.FIREWORK_ROCKET;
                             break;
                         }
                         case 3: {
-                            item = !AutoTotem.mc.player.getOffHandStack().isEmpty() && offHandItem != Items.TOTEM_OF_UNDYING ? Items.TOTEM_OF_UNDYING : Items.ELYTRA;
+                            item = !AutoTotem.mc.player.getOffHandStack().isEmpty() && offHandItem != Items.TOTEM_OF_UNDYING ? Items.TOTEM_OF_UNDYING : Items.FIREWORK_ROCKET;
                         }
                     }
                     this.prevItem = item;

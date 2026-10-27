@@ -84,8 +84,8 @@ extends Module {
     }
 
     public void useFireWork() {
-        SearchInvResult hotbarFireWorkResult = InventoryUtility.findItemInHotBar(Items.ELYTRA);
-        SearchInvResult fireWorkResult = InventoryUtility.findItemInInventory(Items.ELYTRA);
+        SearchInvResult hotbarFireWorkResult = InventoryUtility.findItemInHotBar(Items.FIREWORK_ROCKET);
+        SearchInvResult fireWorkResult = InventoryUtility.findItemInInventory(Items.FIREWORK_ROCKET);
         InventoryUtility.saveSlot();
         if (hotbarFireWorkResult.found()) {
             hotbarFireWorkResult.switchTo();
@@ -125,8 +125,8 @@ extends Module {
             block11: {
                 SearchInvResult result;
                 block10: {
-                    result = InventoryUtility.findItemInInventory(Items.FIREWORK_ROCKET);
-                    if (ElytraSwap.mc.player.getInventory().getStack(38).getItem() != Items.FIREWORK_ROCKET) break block10;
+                    result = InventoryUtility.findItemInInventory(Items.ELYTRA);
+                    if (ElytraSwap.mc.player.getInventory().getStack(38).getItem() != Items.ELYTRA) break block10;
                     int slot = ElytraSwap.getChestPlateSlot();
                     if (slot != -1) {
                         if (this.delay.getValue().booleanValue()) {

@@ -132,14 +132,14 @@ extends Module {
     private boolean checkElytra() {
         if (ElytraRecast.mc.player.input.jumping && !ElytraRecast.mc.player.getAbilities().flying && !ElytraRecast.mc.player.hasVehicle() && !ElytraRecast.mc.player.isClimbing()) {
             ItemStack is = ElytraRecast.mc.player.getEquippedStack(EquipmentSlot.CHEST);
-            return is.isOf(Items.FIREWORK_ROCKET) && (ElytraItem.isUsable((ItemStack)is) || this.allowBroken.getValue() != false);
+            return is.isOf(Items.ELYTRA) && (ElytraItem.isUsable((ItemStack)is) || this.allowBroken.getValue() != false);
         }
         return false;
     }
 
     private boolean check() {
         ItemStack is;
-        if (!ElytraRecast.mc.player.isTouchingWater() && !ElytraRecast.mc.player.hasStatusEffect(StatusEffects.LEVITATION) && (is = ElytraRecast.mc.player.getEquippedStack(EquipmentSlot.CHEST)).isOf(Items.FIREWORK_ROCKET) && (ElytraItem.isUsable((ItemStack)is) || this.allowBroken.getValue().booleanValue())) {
+        if (!ElytraRecast.mc.player.isTouchingWater() && !ElytraRecast.mc.player.hasStatusEffect(StatusEffects.LEVITATION) && (is = ElytraRecast.mc.player.getEquippedStack(EquipmentSlot.CHEST)).isOf(Items.ELYTRA) && (ElytraItem.isUsable((ItemStack)is) || this.allowBroken.getValue().booleanValue())) {
             ElytraRecast.mc.player.startFallFlying();
             return true;
         }

@@ -245,13 +245,13 @@ public final class InventoryUtility {
 
     public static int getElytra() {
         for (ItemStack stack : Module.mc.player.getInventory().armor) {
-            if (stack.getItem() != Items.FIREWORK_ROCKET || stack.getDamage() >= 430) continue;
+            if (stack.getItem() != Items.ELYTRA || stack.getDamage() >= 430) continue;
             return -2;
         }
         int slot = -1;
         for (int i = 0; i < 36; ++i) {
             ItemStack s = Module.mc.player.getInventory().getStack(i);
-            if (s.getItem() != Items.FIREWORK_ROCKET || s.getDamage() >= 430) continue;
+            if (s.getItem() != Items.ELYTRA || s.getDamage() >= 430) continue;
             slot = i;
             break;
         }

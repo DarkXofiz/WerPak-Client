@@ -265,7 +265,7 @@ extends Module {
     }
 
     private void doPacket(EventSync e) {
-        if (!(this.isBoxCollidingGround() && this.stopOnGround.getValue().booleanValue() || ElytraPlus.mc.player.getInventory().getStack(38).getItem() != Items.FIREWORK_ROCKET)) {
+        if (!(this.isBoxCollidingGround() && this.stopOnGround.getValue().booleanValue() || ElytraPlus.mc.player.getInventory().getStack(38).getItem() != Items.ELYTRA)) {
             if (this.infDurability.getValue().booleanValue() || !ElytraPlus.mc.player.isFallFlying()) {
                 this.sendPacket((Packet<?>)new ClientCommandC2SPacket((Entity)ElytraPlus.mc.player, ClientCommandC2SPacket.Mode.START_FALL_FLYING));
             }
@@ -277,7 +277,7 @@ extends Module {
 
     private void doPitch40Infinite() {
         ItemStack is = ElytraPlus.mc.player.getEquippedStack(EquipmentSlot.CHEST);
-        if (is.isOf(Items.FIREWORK_ROCKET)) {
+        if (is.isOf(Items.ELYTRA)) {
             ElytraPlus.mc.player.setPitch(this.lastInfinitePitch);
             if (is.getDamage() > 380 && ElytraPlus.mc.player.age % 100 == 0) {
                 Managers.NOTIFICATION.publicity("Elytra+", ClientSettings.isRu() ? "\u042d\u043b\u0438\u0442\u0440\u0430 \u0441\u043a\u043e\u0440\u043e \u0441\u043b\u043e\u043c\u0430\u0435\u0442\u0441\u044f!" : "Elytra's about to break!", 2, Notification.Type.WARNING);
@@ -460,7 +460,7 @@ extends Module {
     private void doMotionPacket(EventMove e) {
         ElytraPlus.mc.player.getAbilities().flying = false;
         ElytraPlus.mc.player.getAbilities().setFlySpeed(0.05f);
-        if (this.isBoxCollidingGround() && this.stopOnGround.getValue().booleanValue() || ElytraPlus.mc.player.getInventory().getStack(38).getItem() != Items.FIREWORK_ROCKET) {
+        if (this.isBoxCollidingGround() && this.stopOnGround.getValue().booleanValue() || ElytraPlus.mc.player.getInventory().getStack(38).getItem() != Items.ELYTRA) {
             return;
         }
         ElytraPlus.mc.player.getAbilities().flying = true;
@@ -614,7 +614,7 @@ extends Module {
     }
 
     private void doBoost(EventMove e) {
-        if (ElytraPlus.mc.player.getInventory().getStack(38).getItem() != Items.FIREWORK_ROCKET || !ElytraPlus.mc.player.isFallFlying() || ElytraPlus.mc.player.isTouchingWater() || ElytraPlus.mc.player.isInLava() || !ElytraPlus.mc.player.isFallFlying()) {
+        if (ElytraPlus.mc.player.getInventory().getStack(38).getItem() != Items.ELYTRA || !ElytraPlus.mc.player.isFallFlying() || ElytraPlus.mc.player.isTouchingWater() || ElytraPlus.mc.player.isInLava() || !ElytraPlus.mc.player.isFallFlying()) {
             return;
         }
         float moveForward = ElytraPlus.mc.player.input.movementForward;
@@ -700,7 +700,7 @@ extends Module {
     }
 
     private void doControl(EventMove e) {
-        if (ElytraPlus.mc.player.getInventory().getStack(38).getItem() != Items.FIREWORK_ROCKET || !ElytraPlus.mc.player.isFallFlying()) {
+        if (ElytraPlus.mc.player.getInventory().getStack(38).getItem() != Items.ELYTRA || !ElytraPlus.mc.player.isFallFlying()) {
             return;
         }
         double[] dir = MovementUtility.forward(this.xzSpeed.getValue().floatValue() * (this.accelerate.getValue().isEnabled() ? Math.min((this.acceleration += this.accelerateFactor.getValue().floatValue()) / 100.0f, 1.0f) : 1.0f));
@@ -730,9 +730,9 @@ extends Module {
 
     private int getFireWorks(boolean hotbar) {
         if (hotbar) {
-            return InventoryUtility.findItemInHotBar(Items.ELYTRA).slot();
+            return InventoryUtility.findItemInHotBar(Items.FIREWORK_ROCKET).slot();
         }
-        return InventoryUtility.findItemInInventory(Items.ELYTRA).slot();
+        return InventoryUtility.findItemInInventory(Items.FIREWORK_ROCKET).slot();
     }
 
     private void noFireworks() {
@@ -764,7 +764,7 @@ extends Module {
     }
 
     private void returnItem() {
-        if (this.slotWithFireWorks == -1 || this.getStackInSlotCopy == null || this.prevItemInHand == Items.ELYTRA || this.prevItemInHand == Items.AIR) {
+        if (this.slotWithFireWorks == -1 || this.getStackInSlotCopy == null || this.prevItemInHand == Items.FIREWORK_ROCKET || this.prevItemInHand == Items.AIR) {
             return;
         }
         int n2 = ElytraPlus.findInInventory(this.getStackInSlotCopy, this.prevItemInHand);
@@ -787,7 +787,7 @@ extends Module {
     }
 
     private int getFireworks() {
-        if (ElytraPlus.mc.player.getOffHandStack().getItem() == Items.ELYTRA) {
+        if (ElytraPlus.mc.player.getOffHandStack().getItem() == Items.FIREWORK_ROCKET) {
             return -2;
         }
         int firesInHotbar = this.getFireWorks(true);
@@ -816,7 +816,7 @@ extends Module {
 
     private boolean shouldSwapToElytra() {
         ItemStack is = ElytraPlus.mc.player.getEquippedStack(EquipmentSlot.CHEST);
-        return is.getItem() != Items.FIREWORK_ROCKET || !ElytraItem.isUsable((ItemStack)is);
+        return is.getItem() != Items.ELYTRA || !ElytraItem.isUsable((ItemStack)is);
     }
 
     private void doFireWork(boolean started) {
@@ -838,7 +838,7 @@ extends Module {
             return;
         }
         this.slotWithFireWorks = slot;
-        boolean inOffhand = ElytraPlus.mc.player.getOffHandStack().getItem() == Items.ELYTRA;
+        boolean inOffhand = ElytraPlus.mc.player.getOffHandStack().getItem() == Items.FIREWORK_ROCKET;
         int prevSlot = ElytraPlus.mc.player.getInventory().selectedSlot;
         if (!inOffhand && prevSlot != slot) {
             this.sendPacket((Packet<?>)new UpdateSelectedSlotC2SPacket(slot));
@@ -855,7 +855,7 @@ extends Module {
 
     private void equipElytra() {
         int elytraSlot = InventoryUtility.getElytra();
-        if (elytraSlot == -1 && ElytraPlus.mc.player.currentScreenHandler.getCursorStack().getItem() != Items.FIREWORK_ROCKET) {
+        if (elytraSlot == -1 && ElytraPlus.mc.player.currentScreenHandler.getCursorStack().getItem() != Items.ELYTRA) {
             this.noElytra();
             return;
         }
@@ -1024,7 +1024,7 @@ extends Module {
     }
 
     public void fireworkOnEnable() {
-        if (ElytraPlus.mc.player.getEquippedStack(EquipmentSlot.CHEST).getItem() != Items.FIREWORK_ROCKET && ElytraPlus.mc.player.currentScreenHandler.getCursorStack().getItem() != Items.FIREWORK_ROCKET && InventoryUtility.getElytra() == -1) {
+        if (ElytraPlus.mc.player.getEquippedStack(EquipmentSlot.CHEST).getItem() != Items.ELYTRA && ElytraPlus.mc.player.currentScreenHandler.getCursorStack().getItem() != Items.ELYTRA && InventoryUtility.getElytra() == -1) {
             this.noElytra();
             return;
         }

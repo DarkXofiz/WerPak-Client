@@ -109,7 +109,7 @@ extends Module {
                     Vec3d movePred = targetPos.add(velocity.multiply(totalDist));
                     predictedPos = movePred.subtract(targetFacing.multiply(this.currentOverrun)).add(0.0, 0.2, 0.0);
                 }
-                boolean bl = isFlying = ElytraTarget.mc.player.isFallFlying() || ElytraTarget.mc.player.getEquippedStack(EquipmentSlot.CHEST).isOf(Items.FIREWORK_ROCKET) && !ElytraTarget.mc.player.isOnGround();
+                boolean bl = isFlying = ElytraTarget.mc.player.isFallFlying() || ElytraTarget.mc.player.getEquippedStack(EquipmentSlot.CHEST).isOf(Items.ELYTRA) && !ElytraTarget.mc.player.isOnGround();
                 if (isFlying) {
                     Vec3d dir = predictedPos.subtract(ElytraTarget.mc.player.getPos());
                     Vec3d currentVel = ElytraTarget.mc.player.getVelocity();
@@ -141,7 +141,7 @@ extends Module {
         for (PlayerEntity player : ElytraTarget.mc.world.getPlayers()) {
             float d;
             boolean isFlying;
-            if (player == ElytraTarget.mc.player || !player.isAlive() || player.isSpectator() || player.getHealth() <= 0.0f || Managers.FRIEND.isFriend(player) || !(isFlying = player.isFallFlying() || player.getEquippedStack(EquipmentSlot.CHEST).isOf(Items.FIREWORK_ROCKET) && !player.isOnGround()) || (d = ElytraTarget.mc.player.distanceTo((Entity)player)) > this.distance.getValue().floatValue()) continue;
+            if (player == ElytraTarget.mc.player || !player.isAlive() || player.isSpectator() || player.getHealth() <= 0.0f || Managers.FRIEND.isFriend(player) || !(isFlying = player.isFallFlying() || player.getEquippedStack(EquipmentSlot.CHEST).isOf(Items.ELYTRA) && !player.isOnGround()) || (d = ElytraTarget.mc.player.distanceTo((Entity)player)) > this.distance.getValue().floatValue()) continue;
             float currentVal = 0.0f;
             Aura.Sort sortMode = ModuleManager.aura.sort.getValue();
             switch (sortMode) {

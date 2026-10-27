@@ -98,7 +98,7 @@ implements IManager {
         if (PlayerManager.mc.currentScreen == null) {
             this.inInventory = false;
         }
-        this.ticksElytraFlying = PlayerManager.mc.player.isFallFlying() && PlayerManager.mc.player.getEquippedStack(EquipmentSlot.CHEST).getItem() == Items.FIREWORK_ROCKET ? ++this.ticksElytraFlying : 0;
+        this.ticksElytraFlying = PlayerManager.mc.player.isFallFlying() && PlayerManager.mc.player.getEquippedStack(EquipmentSlot.CHEST).getItem() == Items.ELYTRA ? ++this.ticksElytraFlying : 0;
     }
 
     @EventHandler

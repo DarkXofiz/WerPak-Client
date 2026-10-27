@@ -160,7 +160,7 @@ extends Module {
     public void useFireWork() {
         boolean applyFakeRot;
         hasUsedFirework = true;
-        SearchInvResult fireWorkResult = InventoryUtility.findItemInInventory(Items.ELYTRA);
+        SearchInvResult fireWorkResult = InventoryUtility.findItemInInventory(Items.FIREWORK_ROCKET);
         if (!fireWorkResult.found()) {
             this.sendMessage(ClientSettings.isRu() ? "\u0423 \u0442\u0435\u0431\u044f \u043d\u0435\u0442 \u0444\u0435\u0439\u0435\u0440\u0432\u0435\u0440\u043a\u043e\u0432!" : "You've got no fireworks!");
             return;
@@ -199,13 +199,13 @@ extends Module {
             ElytraHelper.mc.player.setPitch(firePitch);
         }
         if (this.fireWorkMode.getValue() == FireWorkMode.HvH) {
-            if (ElytraHelper.mc.player.getOffHandStack().getItem() == Items.ELYTRA) {
+            if (ElytraHelper.mc.player.getOffHandStack().getItem() == Items.FIREWORK_ROCKET) {
                 InteractionUtility.sendSequencedPacket(id -> new PlayerInteractItemC2SPacket(Hand.OFF_HAND, id, ElytraHelper.mc.player.getYaw(), ElytraHelper.mc.player.getPitch()));
                 if (this.swing.getValue().booleanValue()) {
                     ElytraHelper.mc.player.swingHand(Hand.OFF_HAND);
                 }
             } else {
-                SearchInvResult hotbarFireWorkResult = InventoryUtility.findItemInHotBar(Items.ELYTRA);
+                SearchInvResult hotbarFireWorkResult = InventoryUtility.findItemInHotBar(Items.FIREWORK_ROCKET);
                 if (hotbarFireWorkResult.found()) {
                     int currentSlot = ElytraHelper.mc.player.getInventory().selectedSlot;
                     int fireworkSlot = hotbarFireWorkResult.slot();
@@ -242,7 +242,7 @@ extends Module {
                 ElytraHelper.mc.interactionManager.clickSlot(ElytraHelper.mc.player.playerScreenHandler.syncId, fireworkSlot, currentSlot, SlotActionType.SWAP, (PlayerEntity)ElytraHelper.mc.player);
             }
         } else {
-            SearchInvResult hotbarFireWorkResult = InventoryUtility.findItemInHotBar(Items.ELYTRA);
+            SearchInvResult hotbarFireWorkResult = InventoryUtility.findItemInHotBar(Items.FIREWORK_ROCKET);
             if (this.fireWorkMode.getValue() == FireWorkMode.Normal && this.slotReturn.getValue().booleanValue()) {
                 this.returnSlot = ElytraHelper.mc.player.getInventory().selectedSlot;
                 this.returnInvSlot = hotbarFireWorkResult.found() ? -1 : (fireWorkResult.found() ? fireWorkResult.slot() : -1);
@@ -318,8 +318,8 @@ extends Module {
     }
 
     private void swapChest(boolean disable) {
-        SearchInvResult result = InventoryUtility.findItemInInventory(Items.FIREWORK_ROCKET);
-        if (ElytraHelper.mc.player.getInventory().getStack(38).getItem() == Items.FIREWORK_ROCKET) {
+        SearchInvResult result = InventoryUtility.findItemInInventory(Items.ELYTRA);
+        if (ElytraHelper.mc.player.getInventory().getStack(38).getItem() == Items.ELYTRA) {
             int slot = ElytraHelper.getChestPlateSlot();
             if (slot == -1) {
                 if (disable) {

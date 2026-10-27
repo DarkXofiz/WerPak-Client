@@ -114,7 +114,7 @@ extends Command {
     }
 
     private void execute(float y) {
-        int elytra = InventoryUtility.findItemInInventory(Items.FIREWORK_ROCKET).slot();
+        int elytra = InventoryUtility.findItemInInventory(Items.ELYTRA).slot();
         if (elytra == -1) {
             EClipCommand.sendMessage(String.valueOf(Formatting.RED) + "\u0432\u0430\u043c \u043d\u0443\u0436\u043d\u044b \u044d\u043b\u0438\u0442\u0440\u044b \u0432 \u0438\u043d\u0432\u0435\u043d\u0442\u0430\u0440\u0435");
             return;
