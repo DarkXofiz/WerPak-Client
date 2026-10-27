@@ -118,7 +118,7 @@ extends Module {
                 this.drawText(context, (String)str2, width - 2 - this.getStringWidth((String)str2), height - (j += offset));
             }
         }
-        int n2 = LegacyHud.mc.currentScreen instanceof ChatScreen && this.renderingUp.getValue() != false ? 13 : (i = this.renderingUp.getValue() != false ? -2 : 0);
+        i = LegacyHud.mc.currentScreen instanceof ChatScreen && this.renderingUp.getValue() != false ? 13 : (this.renderingUp.getValue() != false ? -2 : 0);
         if (this.potions.getValue().booleanValue()) {
             var effects = new ArrayList<>(LegacyHud.mc.player.getStatusEffects());
             for (StatusEffectInstance potionEffect : effects) {

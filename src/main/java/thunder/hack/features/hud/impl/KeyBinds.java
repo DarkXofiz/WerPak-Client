@@ -113,7 +113,8 @@ extends HudElement {
         for (ModuleBind bind : activeBinds) {
             totalAnimHeight += rowHeight * bind.anim();
         }
-        float totalHeight = titleHeight + 5.0f + contentHeight + ((contentHeight = totalAnimHeight) > 0.5f ? 4.5f : 0.0f);
+        contentHeight = totalAnimHeight;
+        float totalHeight = titleHeight + 5.0f + contentHeight + (contentHeight > 0.5f ? 4.5f : 0.0f);
         this.animatedHeight = Render2DEngine.interpolateFloat(this.animatedHeight, totalHeight, 0.18f);
         MatrixStack matrices = context.getMatrices();
         matrices.push();

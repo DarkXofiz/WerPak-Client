@@ -40,8 +40,8 @@ extends SettingElement {
             return;
         }
         if (this.hovered) {
-            SettingGroup settingGroup;
-            settingGroup.setExtended(!(settingGroup = (SettingGroup)this.setting.getValue()).isExtended());
+            SettingGroup settingGroup = (SettingGroup)this.setting.getValue();
+            settingGroup.setExtended(!settingGroup.isExtended());
         }
     }
 }

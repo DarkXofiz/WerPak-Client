@@ -209,9 +209,8 @@ extends Screen {
             this.categories.forEach(category -> category.movePosition(0.0f, sliderDelta));
         }
         if (this.rescale) {
-            float f;
             float deltaY = mouseY - this.rescale_y - this.main_height;
-            if ((float)this.main_height + f > 250.0f) {
+            if ((float)this.main_height + deltaY > 250.0f) {
                 this.main_height = (int)((float)this.main_height + deltaY);
             }
         }

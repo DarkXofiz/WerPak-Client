@@ -48,7 +48,7 @@ extends HudElement {
     public void onRender2D(DrawContext context) {
         String username;
         super.onRender2D(context);
-        String string = ModuleManager.media.isEnabled() && Media.nickProtect.getValue().booleanValue() || ModuleManager.nameProtect.isEnabled() ? (ModuleManager.nameProtect.isEnabled() ? NameProtect.getCustomName() : "Protected") : (username = mc.getSession().getUsername());
+        username = ModuleManager.media.isEnabled() && Media.nickProtect.getValue().booleanValue() || ModuleManager.nameProtect.isEnabled() ? (ModuleManager.nameProtect.isEnabled() ? NameProtect.getCustomName() : "Protected") : mc.getSession().getUsername();
         if (mode.getValue() == Mode.Big) {
             Render2DEngine.drawHudBase(context.getMatrices(), this.getPosX(), this.getPosY(), 106.0f, 30.0f, HudEditor.hudRound.getValue().floatValue());
             FontRenderers.thglitch.drawString(context.getMatrices(), "THUNDERHACK", (double)this.getPosX() + 5.5, (double)(this.getPosY() + 5.0f), -1);

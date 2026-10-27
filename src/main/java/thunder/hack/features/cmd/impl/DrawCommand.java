@@ -26,8 +26,8 @@ extends Command {
     @Override
     public void executeBuild(@NotNull LiteralArgumentBuilder<CommandSource> builder) {
         builder.then(DrawCommand.arg("module", ModuleArgumentType.create()).executes(context -> {
-            Module module;
-            module.setDrawn(!(module = (Module)context.getArgument("module", Module.class)).isDrawn());
+            Module module = (Module)context.getArgument("module", Module.class);
+            module.setDrawn(!module.isDrawn());
             if (ClientSettings.isRu()) {
                 DrawCommand.sendMessage("\u041c\u043e\u0434\u0443\u043b\u044c " + String.valueOf(Formatting.GREEN) + module.getName() + String.valueOf(Formatting.WHITE) + " \u0442\u0435\u043f\u0435\u0440\u044c " + (module.isDrawn() ? "\u0432\u0438\u0434\u0435\u043d \u0432 ArrayList" : "\u043d\u0435 \u0432\u0438\u0434\u0435\u043d \u0432 ArrayList"));
             } else {

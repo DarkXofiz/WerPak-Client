@@ -92,7 +92,8 @@ extends Module {
             RenderSystem.depthMask((boolean)false);
             RenderSystem.setShader(GameRenderer::getPositionTexColorProgram);
             bufferBuilder = Tessellator.getInstance().begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_TEXTURE_COLOR);
-            this.fireFlies.forEach(p -> p.render(bufferBuilder));
+            final BufferBuilder bbF = bufferBuilder;
+            this.fireFlies.forEach(p -> p.render(bbF));
             Render2DEngine.endBuilding(bufferBuilder);
             RenderSystem.depthMask((boolean)true);
             RenderSystem.disableDepthTest();
@@ -107,7 +108,8 @@ extends Module {
             RenderSystem.depthMask((boolean)false);
             RenderSystem.setShader(GameRenderer::getPositionTexColorProgram);
             bufferBuilder = Tessellator.getInstance().begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_TEXTURE_COLOR);
-            this.particles.forEach(p -> p.render(bufferBuilder));
+            final BufferBuilder bbP = bufferBuilder;
+            this.particles.forEach(p -> p.render(bbP));
             Render2DEngine.endBuilding(bufferBuilder);
             RenderSystem.depthMask((boolean)true);
             RenderSystem.blendFunc((GlStateManager.SrcFactor)GlStateManager.SrcFactor.SRC_ALPHA, (GlStateManager.DstFactor)GlStateManager.DstFactor.ONE_MINUS_SRC_ALPHA);
