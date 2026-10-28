@@ -250,6 +250,7 @@ implements IManager {
     public static Nuker nuker = new Nuker();
     public static Media media = new Media();
     public static Ghost ghost = new Ghost();
+    public static thunder.hack.features.modules.misc.HeadSpin headSpin = new thunder.hack.features.modules.misc.HeadSpin();
     public static Chams chams = new Chams();
     public static SantaHat santaHat = new SantaHat();
     public static Aura aura = new Aura();
