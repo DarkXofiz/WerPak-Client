@@ -8,8 +8,9 @@ import thunder.hack.setting.Setting;
 
 public class HeadSpin
 extends Module {
-    private final Setting<Float> speed = new Setting<Float>("Speed", Float.valueOf(35.0f), Float.valueOf(5.0f), Float.valueOf(90.0f));
+    private final Setting<Float> speed = new Setting<Float>("Speed", Float.valueOf(20.0f), Float.valueOf(5.0f), Float.valueOf(90.0f));
     private final Setting<Boolean> pitchSpin = new Setting<Boolean>("Pitch Wobble", false);
+    private final Setting<Boolean> spinWhileMoving = new Setting<Boolean>("Spin While Moving", false);
     private float angle = 0.0f;
 
     public HeadSpin() {
@@ -24,6 +25,10 @@ extends Module {
     @EventHandler
     public void onSync(EventSync e) {
         if (HeadSpin.mc.player == null) {
+            return;
+        }
+        boolean moving = HeadSpin.mc.player.input.movementForward != 0.0f || HeadSpin.mc.player.input.movementSideways != 0.0f || HeadSpin.mc.player.input.jumping || HeadSpin.mc.player.isFallFlying();
+        if (moving && !this.spinWhileMoving.getValue().booleanValue()) {
             return;
         }
         final float realYaw = HeadSpin.mc.player.getYaw();
