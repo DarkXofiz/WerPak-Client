@@ -372,8 +372,10 @@ extends Module {
         }
         final float ghostYaw = mc.player.getYaw();
         final float ghostPitch = mc.player.getPitch();
-        mc.player.setYaw(ghostYaw + (float)((Math.random() - 0.5) * 0.24));
-        mc.player.setPitch(net.minecraft.util.math.MathHelper.clamp(ghostPitch + (float)((Math.random() - 0.5) * 0.2), -90.0f, 90.0f));
+        double ghostSens = (Double)mc.options.getMouseSensitivity().getValue() * 0.6 + 0.2;
+        float ghostGcd = (float)(ghostSens * ghostSens * ghostSens * 1.2);
+        mc.player.setYaw(ghostYaw + ghostGcd * (float)(Math.floor(Math.random() * 3.0) - 1.0));
+        mc.player.setPitch(net.minecraft.util.math.MathHelper.clamp(ghostPitch + ghostGcd * (float)(Math.floor(Math.random() * 3.0) - 1.0), -90.0f, 90.0f));
         ghostEvent.addPostAction(() -> {
             mc.player.setYaw(ghostYaw);
             mc.player.setPitch(ghostPitch);
