@@ -45,6 +45,7 @@ extends Module {
     public final Setting<Integer> predictTicks = new Setting<Integer>("Predict Ticks", 10, 1, 50);
     public final Setting<Integer> predictLength = new Setting<Integer>("Predict Length", 2, 1, 20);
     public final Setting<Float> driveBoost = new Setting<Float>("Drive Boost", Float.valueOf(1.5f), Float.valueOf(0.1f), Float.valueOf(5.0f));
+    public final Setting<Float> frontOffset = new Setting<Float>("Front Offset", Float.valueOf(0.0f), Float.valueOf(0.0f), Float.valueOf(25.0f));
     public static PlayerEntity target = null;
     public static Vec3d predictedPos = null;
     private World lastWorld;
@@ -108,6 +109,7 @@ extends Module {
                     double totalDist = (double)this.predictTicks.getValue().intValue() + this.currentOverrun;
                     Vec3d movePred = targetPos.add(velocity.multiply(totalDist));
                     predictedPos = movePred.subtract(targetFacing.multiply(this.currentOverrun)).add(0.0, 0.2, 0.0);
+                    predictedPos = predictedPos.add(targetFacing.multiply(this.frontOffset.getValue().doubleValue()));
                 }
                 boolean bl = isFlying = ElytraTarget.mc.player.isFallFlying() || ElytraTarget.mc.player.getEquippedStack(EquipmentSlot.CHEST).isOf(Items.ELYTRA) && !ElytraTarget.mc.player.isOnGround();
                 if (isFlying) {
@@ -126,6 +128,7 @@ extends Module {
                 }
             } else {
                 predictedPos = this.getFrontPosition((Entity)target, this.overshoot.getValue().doubleValue());
+                predictedPos = predictedPos.add(new Vec3d(-Math.sin(Math.toRadians(target.getYaw())), 0.0, Math.cos(Math.toRadians(target.getYaw()))).multiply(this.frontOffset.getValue().doubleValue()));
                 this.oscillationAngle = 0.0;
                 this.overshot = false;
             }
