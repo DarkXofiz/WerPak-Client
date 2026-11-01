@@ -161,6 +161,8 @@ extends Screen {
         Color[] colors = new Color[]{new Color(25, 20, 30, 255), new Color(135, 80, 255, 255), new Color(255, 80, 80, 255), new Color(80, 255, 80, 255), new Color(80, 80, 255, 255)};
         float cx = (float)sw / 2.0f - (float)colors.length * 20.0f / 2.0f;
         float cy = (float)sh - 30.0f;
+        String zwHint = "Sag tik: kategori ac/kapat   |   Shift: Drawn   |   Scroll: kaydir";
+        FontRenderers.sf_medium.drawString(context.getMatrices(), zwHint, (double)((float)Module.mc.getWindow().getScaledWidth() - FontRenderers.sf_medium.getStringWidth(zwHint) - 10.0f), (double)((float)Module.mc.getWindow().getScaledHeight() - 14.0f), new Color(255, 255, 255, 110).getRGB());
         float zwGlass = (float)colors.length * 20.0f + 62.0f;
         Render2DEngine.drawBlurredShadow(context.getMatrices(), cx - 56.0f, cy - 5.0f, zwGlass, 25.0f, 14, new Color(135, 80, 255, 55));
         Render2DEngine.drawRound(context.getMatrices(), cx - 56.0f, cy - 5.0f, zwGlass, 25.0f, 9.0f, new Color(12, 10, 18, 160));
@@ -171,8 +173,10 @@ extends Screen {
             Render2DEngine.drawRound(context.getMatrices(), cx + (float)(i * 20), cy, 15.0f, 15.0f, 7.5f, new Color(255, 255, 255, 100));
         }
         if (!Objects.equals(currentDescription, "") && ModuleManager.clickGui.descriptions.getValue().booleanValue()) {
-            Render2DEngine.drawHudBase(context.getMatrices(), (float)(mouseX + 7), (float)(mouseY + 5), FontRenderers.sf_medium.getStringWidth(currentDescription) + 6.0f, 11.0f, 1.0f, false);
-            FontRenderers.sf_medium.drawString(context.getMatrices(), currentDescription, (double)(mouseX + 10), (double)(mouseY + 8), HudEditor.getColor(0).getRGB());
+            Render2DEngine.drawBlurredShadow(context.getMatrices(), (float)(mouseX + 7), (float)(mouseY + 5), FontRenderers.sf_medium.getStringWidth(currentDescription) + 10.0f, 13.0f, 10, new Color(135, 80, 255, 50)); // zwTip
+            Render2DEngine.drawRound(context.getMatrices(), (float)(mouseX + 7), (float)(mouseY + 5), FontRenderers.sf_medium.getStringWidth(currentDescription) + 10.0f, 13.0f, 5.0f, new Color(12, 10, 18, 215));
+            Render2DEngine.drawRound(context.getMatrices(), (float)(mouseX + 7), (float)(mouseY + 7), 1.5f, 9.0f, 0.7f, HudEditor.getColor(0));
+            FontRenderers.sf_medium.drawString(context.getMatrices(), currentDescription, (double)(mouseX + 13), (double)(mouseY + 8), -1);
             currentDescription = "";
         }
         if (!HudElement.anyHovered && !anyHovered && GLFW.glfwGetPlatform() != 393219) {
