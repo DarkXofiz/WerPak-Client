@@ -153,7 +153,7 @@ extends Screen {
         }
         this.scrollY = 0.0f;
         context.getMatrices().pop();
-        FontRenderers.sf_bold.drawString(context.getMatrices(), "ZeltrixWareZenoBest_Crack", 10.0, 9.0, ModuleManager.clickGui.categoryColor.getValue().getColor());
+        FontRenderers.sf_bold.drawString(context.getMatrices(), "zeltraxCrack", 10.0, 9.0, ModuleManager.clickGui.categoryColor.getValue().getColor());
         Render2DEngine.drawRound(context.getMatrices(), 10.0f, 21.0f, 70.0f, 1.5f, 0.7f, HudEditor.getColor(0));
         Render2DEngine.drawRound(context.getMatrices(), 82.0f, 21.0f, 24.0f, 1.5f, 0.7f, HudEditor.getColor(90));
         int sw = Module.mc.getWindow().getScaledWidth();

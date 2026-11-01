@@ -44,7 +44,7 @@ public class MixinCobwebBlock {
             return;
         }
         NoWeb.Mode mode = NoWeb.getNoWebMode();
-        if (mode == NoWeb.Mode.Cancel || mode == NoWeb.Mode.Spoof || mode == NoWeb.Mode.ZeltrixWareZenoBest_Crack) {
+        if (mode == NoWeb.Mode.Cancel || mode == NoWeb.Mode.Spoof || mode == NoWeb.Mode.zeltraxCrack) {
             ci.cancel();
         } else if (mode == NoWeb.Mode.Legit) {
             ci.cancel();
