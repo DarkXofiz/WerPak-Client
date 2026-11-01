@@ -46,6 +46,8 @@ extends Module {
     public final Setting<Integer> predictLength = new Setting<Integer>("Predict Length", 2, 1, 20);
     public final Setting<Float> driveBoost = new Setting<Float>("Drive Boost", Float.valueOf(1.5f), Float.valueOf(0.1f), Float.valueOf(5.0f));
     public final Setting<Float> frontOffset = new Setting<Float>("Front Offset", Float.valueOf(0.0f), Float.valueOf(0.0f), Float.valueOf(25.0f));
+    public final Setting<BypassMode> bypassMode = new Setting<BypassMode>("Bypass", BypassMode.Max);
+    public final Setting<Float> bypassTurn = new Setting<Float>("Bypass Turn", Float.valueOf(18.0f), Float.valueOf(2.0f), Float.valueOf(60.0f), v -> this.bypassMode.getValue() != BypassMode.Off);
     public static PlayerEntity target = null;
     public static Vec3d predictedPos = null;
     private World lastWorld;
@@ -112,7 +114,29 @@ extends Module {
                     predictedPos = predictedPos.add(targetFacing.multiply(this.frontOffset.getValue().doubleValue()));
                 }
                 boolean bl = isFlying = ElytraTarget.mc.player.isFallFlying() || ElytraTarget.mc.player.getEquippedStack(EquipmentSlot.CHEST).isOf(Items.ELYTRA) && !ElytraTarget.mc.player.isOnGround();
-                if (isFlying) {
+                if (isFlying && this.bypassMode.getValue() != BypassMode.Off && predictedPos != null) {
+                    Vec3d steer = predictedPos.subtract(ElytraTarget.mc.player.getEyePos());
+                    double flat = Math.sqrt(steer.x * steer.x + steer.z * steer.z);
+                    float wantYaw = (float)(Math.toDegrees(Math.atan2(steer.z, steer.x)) - 90.0);
+                    float wantPitch = (float)(-Math.toDegrees(Math.atan2(steer.y, flat)));
+                    float lim = this.bypassTurn.getValue().floatValue();
+                    float dYaw = MathHelper.clamp((float)MathHelper.wrapDegrees((float)(wantYaw - ElytraTarget.mc.player.getYaw())), (float)(-lim), (float)lim);
+                    float dPitch = MathHelper.clamp((float)(wantPitch - ElytraTarget.mc.player.getPitch()), (float)(-lim * 0.6f), (float)(lim * 0.6f));
+                    dYaw += (float)((Math.random() - 0.5) * 0.6);
+                    dPitch += (float)((Math.random() - 0.5) * 0.4);
+                    if (this.bypassMode.getValue() == BypassMode.Max) {
+                        double sens = (Double)ElytraTarget.mc.options.getMouseSensitivity().getValue() * 0.6 + 0.2;
+                        double gcd = sens * sens * sens * 8.0 * 0.15;
+                        float ease = 0.55f + (float)(Math.random() * 0.25);
+                        dYaw *= ease;
+                        dPitch *= ease;
+                        dYaw = (float)((double)Math.round((double)dYaw / gcd) * gcd);
+                        dPitch = (float)((double)Math.round((double)dPitch / gcd) * gcd);
+                    }
+                    ElytraTarget.mc.player.setYaw(ElytraTarget.mc.player.getYaw() + dYaw);
+                    ElytraTarget.mc.player.setPitch(MathHelper.clamp((float)(ElytraTarget.mc.player.getPitch() + dPitch), (float)-89.0f, (float)89.0f));
+                }
+                if (isFlying && this.bypassMode.getValue() == BypassMode.Off) {
                     Vec3d dir = predictedPos.subtract(ElytraTarget.mc.player.getPos());
                     Vec3d currentVel = ElytraTarget.mc.player.getVelocity();
                     double speed = currentVel.length();
@@ -239,6 +263,12 @@ extends Module {
 
     private double calculateOverrun(float overshootVal, float driveBoostVal) {
         return overshootVal * driveBoostVal;
+    }
+
+    public enum BypassMode {
+        Off,
+        Steer,
+        Max
     }
 }
 
