@@ -364,5 +364,20 @@ extends Module {
         Normal, Silent, Legit, HvH;
     }
 
+
+    @meteordevelopment.orbit.EventHandler
+    public void ghostSync(thunder.hack.events.impl.EventSync ghostEvent) {
+        if (mc.player == null || !mc.player.isFallFlying() || ghostEvent.getPostAction() != null) {
+            return;
+        }
+        final float ghostYaw = mc.player.getYaw();
+        final float ghostPitch = mc.player.getPitch();
+        mc.player.setYaw(ghostYaw + (float)((Math.random() - 0.5) * 0.24));
+        mc.player.setPitch(net.minecraft.util.math.MathHelper.clamp(ghostPitch + (float)((Math.random() - 0.5) * 0.2), -90.0f, 90.0f));
+        ghostEvent.addPostAction(() -> {
+            mc.player.setYaw(ghostYaw);
+            mc.player.setPitch(ghostPitch);
+        });
+    }
 }
 
