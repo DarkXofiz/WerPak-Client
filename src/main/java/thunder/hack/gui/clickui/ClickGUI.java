@@ -140,6 +140,7 @@ extends Screen {
         if (Module.fullNullCheck()) {
             this.renderBackground(context, mouseX, mouseY, delta);
         }
+        Render2DEngine.drawRect(context.getMatrices(), 0.0f, 0.0f, (float)Module.mc.getWindow().getScaledWidth(), (float)Module.mc.getWindow().getScaledHeight(), new Color(8, 6, 14, 80));
         context.getMatrices().push();
         if (this.closeAnimation <= 6.0f) {
             context.getMatrices().translate(this.closeDirectionX * AnimationUtility.deltaTime(), this.closeDirectionY * AnimationUtility.deltaTime(), 0.0f);
@@ -152,12 +153,17 @@ extends Screen {
         }
         this.scrollY = 0.0f;
         context.getMatrices().pop();
-        FontRenderers.sf_bold.drawCenteredString(context.getMatrices(), "ZeltrixWareZenoBest_Crack", 40.0, 10.0, ModuleManager.clickGui.categoryColor.getValue().getColor());
+        FontRenderers.sf_bold.drawString(context.getMatrices(), "ZeltrixWareZenoBest_Crack", 10.0, 9.0, ModuleManager.clickGui.categoryColor.getValue().getColor());
+        Render2DEngine.drawRound(context.getMatrices(), 10.0f, 21.0f, 70.0f, 1.5f, 0.7f, HudEditor.getColor(0));
+        Render2DEngine.drawRound(context.getMatrices(), 82.0f, 21.0f, 24.0f, 1.5f, 0.7f, HudEditor.getColor(90));
         int sw = Module.mc.getWindow().getScaledWidth();
         int sh = Module.mc.getWindow().getScaledHeight();
         Color[] colors = new Color[]{new Color(25, 20, 30, 255), new Color(135, 80, 255, 255), new Color(255, 80, 80, 255), new Color(80, 255, 80, 255), new Color(80, 80, 255, 255)};
         float cx = (float)sw / 2.0f - (float)colors.length * 20.0f / 2.0f;
         float cy = (float)sh - 30.0f;
+        float zwGlass = (float)colors.length * 20.0f + 62.0f;
+        Render2DEngine.drawBlurredShadow(context.getMatrices(), cx - 56.0f, cy - 5.0f, zwGlass, 25.0f, 14, new Color(135, 80, 255, 55));
+        Render2DEngine.drawRound(context.getMatrices(), cx - 56.0f, cy - 5.0f, zwGlass, 25.0f, 9.0f, new Color(12, 10, 18, 160));
         FontRenderers.sf_medium.drawString(context.getMatrices(), "GUI Color", (double)(cx - 50.0f), (double)(cy + 4.0f), -1);
         for (int i = 0; i < colors.length; ++i) {
             Render2DEngine.drawRound(context.getMatrices(), cx + (float)(i * 20), cy, 15.0f, 15.0f, 7.5f, colors[i]);

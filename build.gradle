@@ -111,3 +111,7 @@ publishing {
 	repositories {
 	}
 }
+
+tasks.withType(AbstractArchiveTask).configureEach {
+	archiveVersion = ""
+}
