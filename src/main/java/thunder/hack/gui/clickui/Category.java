@@ -67,6 +67,7 @@ extends AbstractCategory {
         Color m2 = HudEditor.getColor(0);
         Color m3 = HudEditor.getColor(180);
         Color m4 = HudEditor.getColor(90);
+        Render2DEngine.drawBlurredShadow(context.getMatrices(), this.getX() - 2.0f, this.getY() - 2.0f, this.width + 4.0f, 24.0f + (this.isOpen() ? this.catHeight : 0.0f), 16, new Color(m2.getRed(), m2.getGreen(), m2.getBlue(), 75)); // zwStyle
         if (this.isOpen()) {
             if (ModuleManager.clickGui.scrollMode.getValue() != ClickGui.scrollModeEn.Old && !(this.getButtonsHeight() < (double)ModuleManager.clickGui.catHeight.getValue().intValue())) {
                 Render2DEngine.addWindow(context.getMatrices(), this.getX() + 3.0f, this.getY() + this.height - 6.0f, this.getX() + 3.0f + this.width - 6.0f, this.getY() + this.height - 6.0f + (float)ModuleManager.clickGui.catHeight.getValue().intValue(), 1.0);
@@ -101,9 +102,11 @@ extends AbstractCategory {
         if (popStack) {
             Render2DEngine.popWindow();
         }
-        Render2DEngine.drawRound(context.getMatrices(), this.getX(), this.getY(), this.width, 20.0f, 4.0f, HudEditor.getColor(270));
+        Render2DEngine.drawGradientRound(context.getMatrices(), this.getX(), this.getY(), this.width, 20.0f, 7.0f, m1, m2, m3, m4);
         if (this.isOpen()) {
-            Render2DEngine.drawRound(context.getMatrices(), this.getX(), this.getY() + 20.0f, this.width, this.catHeight, 4.0f, ModuleManager.clickGui.categoryColor.getValue().getColorObject());
+            Render2DEngine.drawRound(context.getMatrices(), this.getX(), this.getY() + 20.0f, this.width, this.catHeight, 7.0f, ModuleManager.clickGui.categoryColor.getValue().getColorObject());
+            Render2DEngine.drawRound(context.getMatrices(), this.getX(), this.getY() + 20.0f, this.width, this.catHeight, 7.0f, new Color(10, 8, 16, 70));
+            Render2DEngine.drawRound(context.getMatrices(), this.getX() + 8.0f, this.getY() + 19.0f, this.width - 16.0f, 1.5f, 0.7f, HudEditor.getColor(0));
         }
         FontRenderers.sf_bold.drawString(context.getMatrices(), this.getName(), (double)(this.getX() + 20.0f), (double)(this.getY() + 6.5f), HudEditor.textColor.getValue().getColor());
         context.getMatrices().push();

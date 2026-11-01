@@ -228,6 +228,12 @@ extends AbstractButton {
                 }
             }
         }
+        if (this.hovered) {
+            Render2DEngine.drawRound(context.getMatrices(), this.x + 4.0f, this.y + 1.0f, this.width - 8.0f, this.height - 2.0f, 3.0f, new Color(255, 255, 255, 16)); // zwStyle
+        }
+        if (this.animation > 0.05f) {
+            Render2DEngine.drawRound(context.getMatrices(), this.x + 4.0f, this.y + 3.0f + (this.height - 6.0f) * (1.0f - this.animation) / 2.0f, 2.0f, (this.height - 6.0f) * this.animation, 1.0f, HudEditor.getColor(0));
+        }
         if (!this.module.getBind().getBind().equalsIgnoreCase("none") && !this.binding) {
             FontRenderers.sf_medium_modules.drawString(context.getMatrices(), this.getSbind(), (double)(this.x + this.width - 11.0f - FontRenderers.sf_medium_modules.getStringWidth(this.getSbind())), (double)(this.y + 6.0f), this.module.isEnabled() ? HudEditor.textColor2.getValue().getColor() : HudEditor.textColor.getValue().getColor());
         }
