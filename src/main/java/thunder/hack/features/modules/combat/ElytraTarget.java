@@ -45,9 +45,11 @@ extends Module {
     public final Setting<Integer> predictTicks = new Setting<Integer>("Predict Ticks", 10, 1, 50);
     public final Setting<Integer> predictLength = new Setting<Integer>("Predict Length", 2, 1, 20);
     public final Setting<Float> driveBoost = new Setting<Float>("Drive Boost", Float.valueOf(1.5f), Float.valueOf(0.1f), Float.valueOf(5.0f));
-    public final Setting<Float> frontOffset = new Setting<Float>("Front Offset", Float.valueOf(0.0f), Float.valueOf(0.0f), Float.valueOf(25.0f));
+    public final Setting<Float> frontOffset = new Setting<Float>("Front Offset", Float.valueOf(4.0f), Float.valueOf(0.0f), Float.valueOf(25.0f));
     public final Setting<BypassMode> bypassMode = new Setting<BypassMode>("Bypass", BypassMode.Max);
     public final Setting<Float> bypassTurn = new Setting<Float>("Bypass Turn", Float.valueOf(18.0f), Float.valueOf(2.0f), Float.valueOf(60.0f), v -> this.bypassMode.getValue() != BypassMode.Off);
+    public final Setting<Float> catchUp = new Setting<Float>("Catch Up", Float.valueOf(1.2f), Float.valueOf(1.0f), Float.valueOf(2.0f));
+    private double lastTargetSpeed = 0.0;
     public static PlayerEntity target = null;
     public static Vec3d predictedPos = null;
     private World lastWorld;
@@ -108,6 +110,7 @@ extends Module {
                         velocity = targetPos.subtract(from);
                     }
                     Vec3d targetFacing = new Vec3d(-Math.sin(Math.toRadians(target.getYaw())), 0.0, Math.cos(Math.toRadians(target.getYaw()))).normalize();
+                    this.lastTargetSpeed = velocity.length();
                     double totalDist = (double)this.predictTicks.getValue().intValue() + this.currentOverrun;
                     Vec3d movePred = targetPos.add(velocity.multiply(totalDist));
                     predictedPos = movePred.subtract(targetFacing.multiply(this.currentOverrun)).add(0.0, 0.2, 0.0);
@@ -143,6 +146,7 @@ extends Module {
                     if (speed < 0.1) {
                         speed = 1.0;
                     }
+                    speed = Math.max(speed, this.lastTargetSpeed * this.catchUp.getValue().doubleValue());
                     if (dir.lengthSquared() > 0.5) {
                         Vec3d dirNorm = dir.normalize();
                         double blend = Math.min(1.0, dir.length() / 3.0);
