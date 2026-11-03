@@ -542,6 +542,9 @@ extends Module {
         if (this.getAttackCooldown() < this.attackCooldown.getValue().floatValue() && !this.oldDelay.getValue().isEnabled()) {
             return false;
         }
+        if (Aura.mc.world != null && (Aura.mc.world.getBlockState(Aura.mc.player.getBlockPos()).isOf(net.minecraft.block.Blocks.COBWEB) || Aura.mc.world.getBlockState(Aura.mc.player.getBlockPos().up()).isOf(net.minecraft.block.Blocks.COBWEB))) {
+            return true;
+        }
         if (ModuleManager.criticals.isEnabled() && ModuleManager.criticals.mode.is(Criticals.Mode.Grim)) {
             return true;
         }
